@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiches de revision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-bottom: 3px solid #e94560;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #e94560, #ff6b6b, #e94560);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        .header p {
+            font-size: 1.1rem;
+            color: #8892b0;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: #8892b0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .matieres-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .matiere-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 20px;
+            padding: 35px 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matiere-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .matiere-card.cejm::before { background: linear-gradient(90deg, #e94560, #ff6b6b, #a29bfe, #00cec9); }
+        .matiere-card.empty::before { background: #2a2a4a; }
+
+        .matiere-card:hover {
+            transform: translateY(-6px);
+            border-color: #3a3a5a;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+        }
+        .matiere-card.cejm:hover { box-shadow: 0 15px 50px rgba(233, 69, 96, 0.12); }
+
+        .matiere-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .matiere-card.cejm .matiere-icon {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: #fff;
+        }
+        .matiere-card.empty .matiere-icon {
+            background: #2a2a4a;
+            color: #4a4a6a;
+            font-size: 1.8rem;
+        }
+
+        .matiere-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .matiere-card.cejm .matiere-name { color: #fff; }
+        .matiere-card.empty .matiere-name { color: #4a4a6a; }
+
+        .matiere-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .matiere-card.cejm .matiere-desc { color: #8892b0; }
+        .matiere-card.empty .matiere-desc { color: #3a3a5a; }
+
+        .matiere-stats {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .matiere-stat {
+            font-size: 0.78rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .matiere-card.cejm .matiere-stat.eco { background: rgba(0,206,201,0.1); color: #00cec9; }
+        .matiere-card.cejm .matiere-stat.mana { background: rgba(162,155,254,0.1); color: #a29bfe; }
+        .matiere-card.cejm .matiere-stat.droit { background: rgba(233,69,96,0.1); color: #ff6b6b; }
+        .matiere-card.empty .matiere-stat { background: rgba(255,255,255,0.02); color: #3a3a5a; }
+
+        .matiere-arrow {
+            position: absolute;
+            top: 35px; right: 30px;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+        .matiere-card.cejm .matiere-arrow { color: #e94560; }
+        .matiere-card.empty .matiere-arrow { color: #2a2a4a; }
+        .matiere-card:hover .matiere-arrow { transform: translateX(5px); }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #4a4a6a;
+            font-size: 0.85rem;
+            border-top: 1px solid #1a1a2e;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .matieres-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>MES FICHES DE REVISION</h1>
+        <p>Toutes les syntheses de cours organisees par matiere</p>
+    </div>
+
+    <div class="container">
+        <div class="section-title">Mes matieres</div>
+        <div class="matieres-grid">
+
+            <a class="matiere-card cejm" href="cejm.html">
+                <div class="matiere-icon">C</div>
+                <div class="matiere-arrow">&rarr;</div>
+                <div class="matiere-name">CEJM</div>
+                <div class="matiere-desc">Culture Economique, Juridique et Manageriale</div>
+                <div class="matiere-stats">
+                    <span class="matiere-stat eco">6 Economie</span>
+                    <span class="matiere-stat mana">6 Management</span>
+                    <span class="matiere-stat droit">2 Droit</span>
+                </div>
+            </a>
+
+            <div class="matiere-card empty">
+                <div class="matiere-icon">+</div>
+                <div class="matiere-name">Ajouter une matiere</div>
+                <div class="matiere-desc">Glissez vos syntheses pour creer de nouvelles fiches</div>
+                <div class="matiere-stats">
+                    <span class="matiere-stat">Bientot</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">Fiches de revision &mdash; BTS ESUPEC</div>
+
+</body>
+</html>

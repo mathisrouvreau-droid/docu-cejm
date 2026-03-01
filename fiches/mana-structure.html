@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure, coordination et style de management</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .topbar {
+            background: #1a1a2e;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #6c5ce7;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .topbar a {
+            color: #a29bfe;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .topbar a:hover { color: #fff; }
+        .topbar .title {
+            font-size: 1rem;
+            color: #8892b0;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e, #2d1b69);
+            padding: 50px 25px 40px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(162,155,254,0.15);
+            color: #a29bfe;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .hero p {
+            color: #8892b0;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .section-num {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #a29bfe;
+        }
+        .card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            color: #fff;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card p, .card li {
+            color: #b0b0c8;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .card ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+        .card li {
+            margin-bottom: 6px;
+        }
+        .keyword {
+            color: #a29bfe;
+            font-weight: 600;
+        }
+        .def-box {
+            background: rgba(162,155,254,0.08);
+            border-left: 3px solid #6c5ce7;
+            padding: 15px 18px;
+            border-radius: 0 10px 10px 0;
+            margin: 12px 0;
+        }
+        .def-box p {
+            color: #c0c0d8;
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 700px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(162,155,254,0.08));
+            border: 1px solid rgba(162,155,254,0.25);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th {
+            background: rgba(162,155,254,0.15);
+            color: #a29bfe;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #2a2a4a;
+            color: #b0b0c8;
+            line-height: 1.5;
+        }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .auteur {
+            display: inline-block;
+            background: rgba(162,155,254,0.12);
+            color: #a29bfe;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="../cejm.html">&larr; Accueil</a>
+        <span class="title">Management &bull; Cas SCF Partie 2</span>
+    </div>
+
+    <div class="hero">
+        <div class="hero-badge">Management</div>
+        <h1>Structure, coordination, controle et style de management</h1>
+        <p>Processus, niveaux de management, styles de Likert, structures d'entreprise et mecanismes de coordination de Mintzberg</p>
+    </div>
+
+    <div class="container">
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">1</div>
+                <div class="section-title">Les processus de l'entreprise</div>
+            </div>
+
+            <div class="card">
+                <h3>Definition d'un processus</h3>
+                <div class="def-box">
+                    <p>Un <span class="keyword">processus</span> est un ensemble organise d'activites en interaction mobilisant des moyens (personnel, equipements, logiciels, informations) qui transforment des <strong>elements entrants</strong> en <strong>elements sortants</strong>. Il est transversal a l'entreprise et vise a repondre aux besoins du client.</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Processus productif</h3>
+                    <p>Assure la <span class="keyword">production/fabrication</span> du bien ou du service. Directement <strong>createur de valeur</strong> pour l'entreprise.</p>
+                </div>
+                <div class="card">
+                    <h3>Processus de support</h3>
+                    <p>Organise les <span class="keyword">ressources</span> (RH, SI). Ne cree pas directement de valeur mais est indispensable au processus productif.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Processus de pilotage</h3>
+                <p>Assure la <span class="keyword">prise de decision</span> et le <span class="keyword">controle</span>. Elabore la strategie et s'assure de sa bonne execution (planification et controle). La combinaison des 3 processus rend l'organisation plus <strong>performante</strong> (efficacite + efficience).</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">2</div>
+                <div class="section-title">Niveaux et styles de management</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card highlight-card">
+                    <h3>Management strategique</h3>
+                    <p>Decisions qui engagent le <span class="keyword">long terme</span> et la perennite de l'entreprise. Releve de la <strong>direction</strong>.</p>
+                </div>
+                <div class="card highlight-card">
+                    <h3>Management operationnel</h3>
+                    <p>Decisions liees a la <span class="keyword">mise en oeuvre</span> de la strategie. Court/moyen terme. Releve des <strong>cadres intermediaires</strong>.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Les 4 styles de management <span class="auteur">Rensis Likert</span></h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Style</th>
+                                <th>Decision</th>
+                                <th>Caracteristiques</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Autoritaire</strong></td>
+                                <td>Le dirigeant decide seul</td>
+                                <td>Sanctions en cas de non-respect, centre sur l'efficacite</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paternaliste</strong></td>
+                                <td>Le dirigeant decide seul</td>
+                                <td>Ecoute des subordonnes, systeme sanctions/recompenses</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Consultatif</strong></td>
+                                <td>Consultation avant decision</td>
+                                <td>Ecoute et avis des salaries, mais decision finale = direction</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Participatif</strong></td>
+                                <td>Decision collective</td>
+                                <td>Interaction permanente, le + efficace pour les processus</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="def-box">
+                    <p>Il n'y a pas de bon ou de mauvais style de management mais un <span class="keyword">style adapte</span> au temperament du manager et au contexte.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <div class="section-title">Les structures d'entreprise</div>
+            </div>
+
+            <div class="card">
+                <h3>Les 4 structures classiques</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Structure</th>
+                                <th>Principe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Hierarchique</strong></td>
+                                <td><span class="keyword">Unicite du commandement</span> : chaque collaborateur ne depend que d'un seul superieur</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fonctionnelle</strong></td>
+                                <td>Chaque responsable est <span class="keyword">specialise</span> selon ses competences</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Divisionnelle</strong></td>
+                                <td>Chaque division est <span class="keyword">autonome</span> (poles geographiques, activite, produit)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Matricielle</strong></td>
+                                <td>Mode <span class="keyword">projet</span>, favorise la collaboration entre divisions</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Les nouvelles structures</h3>
+                <ul>
+                    <li><span class="keyword">Par projets</span> : equipes temporaires coordonnees par un directeur de projet, dissoutes en fin de projet</li>
+                    <li><span class="keyword">Par processus</span> : structuree autour des processus, decloisonne l'entreprise, supprime la lourdeur hierarchique</li>
+                    <li><span class="keyword">En reseau</span> : ensemble d'entreprises associees (alliances, partenariats), structure virtuelle, une seule entreprise interlocutrice pour le client</li>
+                    <li><span class="keyword">Adhocratie</span> <span class="auteur">Mintzberg</span> : structure organique peu formalisee, decentralisee, equipes pluridisciplinaires autonomes, coordination par ajustement mutuel</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">4</div>
+                <div class="section-title">Mecanismes de coordination</div>
+            </div>
+
+            <div class="card">
+                <h3>Les 6 mecanismes de coordination <span class="auteur">H. Mintzberg</span></h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mecanisme</th>
+                                <th>Principe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ajustement mutuel</strong></td>
+                                <td>Echanges <span class="keyword">informels</span> entre les membres</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Supervision directe</strong></td>
+                                <td><span class="keyword">Ordres</span> donnes par le responsable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Standardisation des procedes</strong></td>
+                                <td>Activites fixees par les <span class="keyword">procedures</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Standardisation des resultats</strong></td>
+                                <td>Coordination orientee par les <span class="keyword">resultats a obtenir</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Standardisation des qualifications</strong></td>
+                                <td>Coordination basee sur la <span class="keyword">formation</span> et les savoirs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Standardisation des normes</strong></td>
+                                <td>Coordination par la <span class="keyword">culture</span> et les valeurs communes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="def-box">
+                    <p>L'entreprise peut modifier sa structure et son mecanisme de coordination en fonction des <span class="keyword">changements d'environnement</span>, de l'evolution de sa taille ou d'autres facteurs.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJM - Fiches de revision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+
+        .topbar { background: #1a1a2e; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #e94560; position: sticky; top: 0; z-index: 100; }
+        .topbar a { color: #ff6b6b; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .topbar a:hover { color: #fff; }
+        .topbar .title { font-size: 1rem; color: #8892b0; }
+
+        .header { text-align: center; padding: 50px 20px 30px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+        .header h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .header p { font-size: 1rem; color: #8892b0; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 25px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #e94560; }
+        .stat-label { font-size: 0.85rem; color: #8892b0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .category { margin-bottom: 50px; }
+        .category-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #1a1a2e; }
+        .category-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+        .eco .category-icon { background: linear-gradient(135deg, #00b894, #00cec9); }
+        .mana .category-icon { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .droit .category-icon { background: linear-gradient(135deg, #e94560, #ff6b6b); }
+        .category-title { font-size: 1.6rem; font-weight: 700; }
+        .eco .category-title { color: #00cec9; }
+        .mana .category-title { color: #a29bfe; }
+        .droit .category-title { color: #ff6b6b; }
+        .category-count { font-size: 0.8rem; color: #8892b0; margin-left: auto; background: #1a1a2e; padding: 5px 12px; border-radius: 20px; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: #1a1a2e; border-radius: 16px; padding: 25px; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; border: 1px solid #2a2a4a; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+        .eco .card::before { background: linear-gradient(90deg, #00b894, #00cec9); }
+        .mana .card::before { background: linear-gradient(90deg, #6c5ce7, #a29bfe); }
+        .droit .card::before { background: linear-gradient(90deg, #e94560, #ff6b6b); }
+        .card:hover { transform: translateY(-5px); border-color: #3a3a5a; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .eco .card:hover { box-shadow: 0 10px 40px rgba(0, 206, 201, 0.15); }
+        .mana .card:hover { box-shadow: 0 10px 40px rgba(162, 155, 254, 0.15); }
+        .droit .card:hover { box-shadow: 0 10px 40px rgba(233, 69, 96, 0.15); }
+
+        .card-cas { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; }
+        .eco .card-cas { color: #00cec9; }
+        .mana .card-cas { color: #a29bfe; }
+        .droit .card-cas { color: #ff6b6b; }
+        .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; line-height: 1.4; color: #fff; }
+        .card-topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .topic-tag { font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: #8892b0; border: 1px solid rgba(255,255,255,0.08); }
+        .card-arrow { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; }
+        .eco .card-arrow { color: #00cec9; }
+        .mana .card-arrow { color: #a29bfe; }
+        .droit .card-arrow { color: #ff6b6b; }
+        .card-arrow span { transition: transform 0.3s ease; display: inline-block; }
+        .card:hover .card-arrow span { transform: translateX(5px); }
+
+        .footer { text-align: center; padding: 30px 20px; color: #4a4a6a; font-size: 0.85rem; border-top: 1px solid #1a1a2e; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .stats { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html">&larr; Accueil</a>
+        <span class="title">CEJM &bull; 14 fiches</span>
+    </div>
+
+    <div class="header">
+        <h1>CEJM</h1>
+        <p>Culture Economique, Juridique et Manageriale</p>
+        <div class="stats">
+            <div class="stat"><div class="stat-number">6</div><div class="stat-label">Economie</div></div>
+            <div class="stat"><div class="stat-number">6</div><div class="stat-label">Management</div></div>
+            <div class="stat"><div class="stat-number">2</div><div class="stat-label">Droit</div></div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- ECONOMIE -->
+        <div class="category eco">
+            <div class="category-header">
+                <div class="category-icon">$</div>
+                <div class="category-title">Economie</div>
+                <div class="category-count">6 fiches</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/eco-environnement.html">
+                    <div class="card-cas">Cas GFI - Partie 1</div>
+                    <div class="card-title">Les agents economiques et leurs echanges</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Agents economiques</span>
+                        <span class="topic-tag">Secteurs institutionnels</span>
+                        <span class="topic-tag">Circuit economique</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/eco-marche.html">
+                    <div class="card-cas">Dossier 1 - Partie 2</div>
+                    <div class="card-title">Le marche : mecanismes et fonctionnement</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Offre / Demande</span>
+                        <span class="topic-tag">Concurrence</span>
+                        <span class="topic-tag">Prix</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/eco-externalites.html">
+                    <div class="card-cas">Dossier 1 - Partie 2</div>
+                    <div class="card-title">Les externalites et defaillances de marche</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Externalites positives</span>
+                        <span class="topic-tag">Externalites negatives</span>
+                        <span class="topic-tag">Biens publics</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/eco-facteurs-production.html">
+                    <div class="card-cas">Cas SCF - Partie 1</div>
+                    <div class="card-title">Les facteurs de production et leur cout</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Travail</span>
+                        <span class="topic-tag">Capital</span>
+                        <span class="topic-tag">Productivite</span>
+                        <span class="topic-tag">Couts</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/eco-numerique.html">
+                    <div class="card-cas">Cas SCF - Partie 2</div>
+                    <div class="card-title">L'economie du numerique</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Transformation digitale</span>
+                        <span class="topic-tag">Plateformes</span>
+                        <span class="topic-tag">E-commerce</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/eco-marche-travail.html">
+                    <div class="card-cas">Cas Dachser - Partie 1</div>
+                    <div class="card-title">Le marche du travail</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Offre / Demande</span>
+                        <span class="topic-tag">Chomage</span>
+                        <span class="topic-tag">Politiques eco.</span>
+                        <span class="topic-tag">Rigidites</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- MANAGEMENT -->
+        <div class="category mana">
+            <div class="category-header">
+                <div class="category-icon">&#9881;</div>
+                <div class="category-title">Management</div>
+                <div class="category-count">6 fiches</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/mana-gfi.html">
+                    <div class="card-cas">Cas GFI - Partie 1</div>
+                    <div class="card-title">Parties prenantes et jeux de pouvoir</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Freeman</span>
+                        <span class="topic-tag">Cyert & March</span>
+                        <span class="topic-tag">Crozier</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/mana-finalite-rse.html">
+                    <div class="card-cas">Dossier 1 - Partie 2</div>
+                    <div class="card-title">Forces de Porter, finalite et RSE</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Finalite</span>
+                        <span class="topic-tag">Porter</span>
+                        <span class="topic-tag">RSE</span>
+                        <span class="topic-tag">ISR</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/mana-performance.html">
+                    <div class="card-cas">Dossier 1 - Partie 2</div>
+                    <div class="card-title">La performance de l'entreprise</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Efficacite</span>
+                        <span class="topic-tag">Efficience</span>
+                        <span class="topic-tag">Indicateurs</span>
+                        <span class="topic-tag">Tableaux de bord</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/mana-structure.html">
+                    <div class="card-cas">Cas SCF - Partie 2</div>
+                    <div class="card-title">Structure, coordination et style de management</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Processus</span>
+                        <span class="topic-tag">Structures</span>
+                        <span class="topic-tag">Likert</span>
+                        <span class="topic-tag">Mintzberg</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/mana-motivation-gpec.html">
+                    <div class="card-cas">Cas Dachser - Partie 2</div>
+                    <div class="card-title">Motivation, conditions de travail et GPEC</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Maslow</span>
+                        <span class="topic-tag">Herzberg</span>
+                        <span class="topic-tag">Adams</span>
+                        <span class="topic-tag">GPEC</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/mana-strategie.html">
+                    <div class="card-cas">Dossier 3 - Parties 1 et 2</div>
+                    <div class="card-title">La demarche strategique</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Diagnostic</span>
+                        <span class="topic-tag">SWOT</span>
+                        <span class="topic-tag">Choix strategiques</span>
+                        <span class="topic-tag">Croissance</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- DROIT -->
+        <div class="category droit">
+            <div class="category-header">
+                <div class="category-icon">&#9878;</div>
+                <div class="category-title">Droit</div>
+                <div class="category-count">2 fiches</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/droit-responsabilite.html">
+                    <div class="card-cas">Cas Dachser - Partie 3</div>
+                    <div class="card-title">Le droit de la responsabilite</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Prevention</span>
+                        <span class="topic-tag">Precaution</span>
+                        <span class="topic-tag">Resp. civile</span>
+                        <span class="topic-tag">Produits defectueux</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/droit-numerique.html">
+                    <div class="card-cas">Cas SCF - Partie 3</div>
+                    <div class="card-title">Le numerique : contrats, vente en ligne et protection des donnees</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Contrats numeriques</span>
+                        <span class="topic-tag">Nom de domaine</span>
+                        <span class="topic-tag">Droit d'auteur</span>
+                        <span class="topic-tag">RGPD</span>
+                    </div>
+                    <div class="card-arrow">Reviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">CEJM - BTS ESUPEC &mdash; Fiches de revision</div>
+</body>
+</html>

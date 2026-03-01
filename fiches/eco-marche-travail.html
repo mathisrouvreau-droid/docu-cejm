@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le marche du travail</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+        .topbar { background: #1a1a2e; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #00cec9; position: sticky; top: 0; z-index: 100; }
+        .topbar a { color: #00cec9; text-decoration: none; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+        .topbar a:hover { color: #fff; }
+        .topbar .title { font-size: 1rem; color: #8892b0; }
+        .hero { background: linear-gradient(135deg, #1a1a2e, #0a3d2e); padding: 50px 25px 40px; text-align: center; }
+        .hero-badge { display: inline-block; background: rgba(0,206,201,0.15); color: #00cec9; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; }
+        .hero h1 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+        .hero p { color: #8892b0; font-size: 1rem; max-width: 600px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 40px; }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .section-num { width: 40px; height: 40px; background: linear-gradient(135deg, #00b894, #00cec9); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: #fff; flex-shrink: 0; }
+        .section-title { font-size: 1.4rem; font-weight: 700; color: #00cec9; }
+        .card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 14px; padding: 22px; margin-bottom: 15px; }
+        .card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 10px; }
+        .card p, .card li { color: #b0b0c8; line-height: 1.7; font-size: 0.95rem; }
+        .card ul { padding-left: 20px; margin-top: 8px; }
+        .card li { margin-bottom: 6px; }
+        .keyword { color: #00cec9; font-weight: 600; }
+        .def-box { background: rgba(0,206,201,0.08); border-left: 3px solid #00b894; padding: 15px 18px; border-radius: 0 10px 10px 0; margin: 12px 0; }
+        .def-box p { color: #c0c0d8; font-size: 0.93rem; line-height: 1.6; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } .hero h1 { font-size: 1.6rem; } }
+        .highlight-card { background: linear-gradient(135deg, rgba(0,184,148,0.1), rgba(0,206,201,0.05)); border: 1px solid rgba(0,206,201,0.2); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { background: rgba(0,206,201,0.15); color: #00cec9; padding: 10px 14px; text-align: left; font-weight: 600; }
+        td { padding: 10px 14px; border-bottom: 1px solid #2a2a4a; color: #b0b0c8; line-height: 1.5; }
+        .table-wrap { overflow-x: auto; margin: 12px 0; }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="../cejm.html">&larr; Accueil</a>
+        <span class="title">Economie &bull; Cas Dachser Partie 1</span>
+    </div>
+    <div class="hero">
+        <div class="hero-badge">Economie</div>
+        <h1>Le marche du travail</h1>
+        <p>Offre et demande de travail, rigidites, segmentation, chomage et politiques economiques</p>
+    </div>
+    <div class="container">
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">1</div>
+                <div class="section-title">Caracteristiques du marche du travail</div>
+            </div>
+
+            <div class="card">
+                <h3>Definition</h3>
+                <div class="def-box">
+                    <p>Le <span class="keyword">marche du travail</span> est le lieu d'echange du facteur travail contre de la monnaie. L'<strong>offre</strong> provient des actifs, la <strong>demande</strong> provient des producteurs. Le <span class="keyword">salaire brut</span> est le prix d'echange.</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card highlight-card">
+                    <h3>L'offre de travail</h3>
+                    <p>Provient de la <span class="keyword">population active</span> (15-64 ans, en emploi ou en recherche). Varie selon :</p>
+                    <ul>
+                        <li>Population et pyramide des ages</li>
+                        <li>Nombre d'inactifs</li>
+                        <li>Age de depart a la retraite</li>
+                        <li>Solde migratoire</li>
+                    </ul>
+                </div>
+                <div class="card highlight-card">
+                    <h3>La demande de travail</h3>
+                    <p>Provient des <span class="keyword">entreprises et organisations</span>. Varie selon :</p>
+                    <ul>
+                        <li>Niveau d'activite et perspectives</li>
+                        <li>Cout du travail (< productivite)</li>
+                        <li>Productivite et automatisation</li>
+                        <li>Reglementation, taux de change</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Le salaire et ses rigidites</h3>
+                <p>En France, le salaire ne peut descendre sous le <span class="keyword">SMIC</span>. Il est interdit de diminuer un salaire sans consentement. L'ajustement par le salaire <strong>ne fonctionne pas</strong> sur le marche du travail.</p>
+            </div>
+
+            <div class="card">
+                <h3>Les rigidites du marche</h3>
+                <ul>
+                    <li><span class="keyword">Salaire de reserve</span> : refus d'emploi si paye moins que le chomage</li>
+                    <li><span class="keyword">Probleme de formation</span> : inadequation des qualifications</li>
+                    <li><span class="keyword">Sur-qualification</span> : refus d'un emploi moins qualifie</li>
+                    <li><span class="keyword">Freins au licenciement</span> : preference pour les contrats courts</li>
+                    <li><span class="keyword">Cout du travail</span> : emplois pas assez productifs pour couvrir le cout</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>La segmentation du marche</h3>
+                <ul>
+                    <li><span class="keyword">Insiders vs Outsiders</span> : 90% en CDI proteges vs chomeurs/CDD/CTT/temps partiel (variables d'ajustement)</li>
+                    <li><span class="keyword">Classes d'ages et sexes</span> : jeunes plus sujets au chomage, temps partiel subi surtout feminin</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">2</div>
+                <div class="section-title">Le chomage</div>
+            </div>
+
+            <div class="card">
+                <h3>Definition du chomeur (BIT)</h3>
+                <div class="def-box">
+                    <p>Personne de <strong>15 ans ou plus</strong> qui remplit <span class="keyword">3 conditions simultanees</span> : etre sans emploi (pas 1h de travail), etre disponible sous 15 jours, avoir cherche activement un emploi dans le mois precedent.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Les causes du chomage</h3>
+                <div class="grid-2">
+                    <div class="def-box">
+                        <p><span class="keyword">Chomage classique</span> (Pigou) : salaire minimum et couts salariaux trop importants. Les emplois ne sont pas assez productifs pour etre profitables.</p>
+                    </div>
+                    <div class="def-box">
+                        <p><span class="keyword">Chomage keynesien</span> : niveau trop faible de la demande et donc de l'activite des entreprises qui n'ont pas besoin d'employer toute la population active.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Les types de chomage</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Type</th><th>Cause</th><th>Duree</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Frictionnel</strong></td><td>Transition entre 2 emplois</td><td>Courte (&lt; 6 mois)</td></tr>
+                            <tr><td><strong>Conjoncturel</strong></td><td>Activite economique insuffisante (demande faible ou manque de competitivite)</td><td>Variable</td></tr>
+                            <tr><td><strong>Structurel</strong></td><td>Inadequation qualifications / besoins des entreprises</td><td>Longue</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <div class="section-title">Les politiques economiques</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card highlight-card">
+                    <h3>Politique de l'offre</h3>
+                    <p>Favoriser la <span class="keyword">competitivite</span> des entreprises :</p>
+                    <ul>
+                        <li>Acces au financement (BPI, pepinieres)</li>
+                        <li>Diminution des charges (couts salariaux, impots)</li>
+                        <li>Allegement reglementaire</li>
+                    </ul>
+                    <p style="margin-top:8px;">Objectif : gagner des parts de marche &rarr; plus d'activite &rarr; plus d'emploi</p>
+                </div>
+                <div class="card highlight-card">
+                    <h3>Politique de la demande</h3>
+                    <p>Stimuler la <span class="keyword">demande</span> :</p>
+                    <ul>
+                        <li>Augmentation SMIC / minimas sociaux</li>
+                        <li>Investissement public (infrastructures)</li>
+                        <li>Emplois non marchands</li>
+                        <li>Baisse des taux d'interet</li>
+                    </ul>
+                    <p style="margin-top:8px;">Attention : stimule aussi les importations. Risque inflationniste.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="def-box">
+                    <p>Les politiques sont plus efficaces quand elles sont <span class="keyword">contracycliques</span> : mises en place en periode de <strong>recession economique</strong>. Leur efficacite varie selon la conjoncture, l'endettement et le niveau de prelevement.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

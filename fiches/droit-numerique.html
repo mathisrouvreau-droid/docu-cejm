@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Droit du numerique</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+        .topbar { background: #1a1a2e; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #e94560; position: sticky; top: 0; z-index: 100; }
+        .topbar a { color: #ff6b6b; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .topbar a:hover { color: #fff; }
+        .topbar .title { font-size: 1rem; color: #8892b0; }
+        .hero { background: linear-gradient(135deg, #1a1a2e, #4a1a2e); padding: 50px 25px 40px; text-align: center; }
+        .hero-badge { display: inline-block; background: rgba(233,69,96,0.15); color: #ff6b6b; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; }
+        .hero h1 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.3; }
+        .hero p { color: #8892b0; font-size: 1rem; max-width: 650px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 40px; }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .section-num { width: 40px; height: 40px; background: linear-gradient(135deg, #e94560, #ff6b6b); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: #fff; flex-shrink: 0; }
+        .section-title { font-size: 1.4rem; font-weight: 700; color: #ff6b6b; }
+        .card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 14px; padding: 22px; margin-bottom: 15px; }
+        .card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 10px; }
+        .card p, .card li { color: #b0b0c8; line-height: 1.7; font-size: 0.95rem; }
+        .card ul { padding-left: 20px; margin-top: 8px; }
+        .card li { margin-bottom: 6px; }
+        .keyword { color: #ff6b6b; font-weight: 600; }
+        .def-box { background: rgba(233,69,96,0.08); border-left: 3px solid #e94560; padding: 15px 18px; border-radius: 0 10px 10px 0; margin: 12px 0; }
+        .def-box p { color: #c0c0d8; font-size: 0.93rem; line-height: 1.6; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } .hero h1 { font-size: 1.6rem; } }
+        .highlight-card { background: linear-gradient(135deg, rgba(233,69,96,0.1), rgba(255,107,107,0.05)); border: 1px solid rgba(255,107,107,0.2); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { background: rgba(233,69,96,0.15); color: #ff6b6b; padding: 10px 14px; text-align: left; font-weight: 600; }
+        td { padding: 10px 14px; border-bottom: 1px solid #2a2a4a; color: #b0b0c8; line-height: 1.5; }
+        .table-wrap { overflow-x: auto; margin: 12px 0; }
+        .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+        .step-num { width: 28px; height: 28px; background: #e94560; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; color: #fff; flex-shrink: 0; margin-top: 2px; }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="../cejm.html">&larr; Accueil</a>
+        <span class="title">Droit &bull; Cas SCF Partie 3</span>
+    </div>
+    <div class="hero">
+        <div class="hero-badge">Droit</div>
+        <h1>Le numerique : contrats, vente en ligne et protection des donnees</h1>
+        <p>Contrats de prestation numerique, noms de domaine, vente en ligne, droit d'auteur et creations numeriques</p>
+    </div>
+    <div class="container">
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">1</div>
+                <div class="section-title">Contrat de prestation numerique</div>
+            </div>
+
+            <div class="card">
+                <h3>Types de contrats</h3>
+                <ul>
+                    <li><span class="keyword">Etude et conseil</span> : recensement de l'existant, preconisations</li>
+                    <li><span class="keyword">Production</span> : conception de site, logiciel + <span class="keyword">Maintenance</span> (preventive/curative)</li>
+                    <li><span class="keyword">SaaS</span> : logiciels sur serveurs de l'editeur, factures a l'utilisation</li>
+                    <li><span class="keyword">Cloud computing</span> : hebergement de donnees sur serveurs specialises</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Clauses specifiques essentielles</h3>
+                <ul>
+                    <li><span class="keyword">Confidentialite</span> : secret de l'information, non-diffusion, securisation</li>
+                    <li><span class="keyword">Propriete / Transfert</span> : definir qui sera proprietaire</li>
+                    <li><span class="keyword">Resultat ou Moyens</span> : obligation d'atteindre un resultat vs mettre tous les moyens</li>
+                    <li><span class="keyword">Assistance</span> : conditions hot line, tarifs, delais de depannage</li>
+                    <li><span class="keyword">Veille technologique</span> : rester au courant des evolutions</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Obligation d'information du prestataire informatique</h3>
+                <div class="def-box">
+                    <p>Triple devoir : <span class="keyword">renseignement</span> (informer sur les caracteristiques), <span class="keyword">mise en garde</span> (alerter sur les risques/erreurs), <span class="keyword">conseil</span> (orienter les choix du client). S'applique en phase precontractuelle ET pendant l'execution. C'est une obligation de <strong>moyen</strong>.</p>
+                </div>
+                <p>En contrepartie, le client a une <span class="keyword">obligation de collaboration</span> : analyser et exprimer ses besoins.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">2</div>
+                <div class="section-title">Nom de domaine</div>
+            </div>
+
+            <div class="card">
+                <h3>Enregistrement</h3>
+                <p>Regle : <span class="keyword">premier arrive, premier servi</span>. Enregistrement via un <strong>registrar</strong> accredite par l'ICANN. Pour le .fr : AFNIC. C'est une "location annuelle" (~10e/an).</p>
+            </div>
+
+            <div class="card">
+                <h3>Conflits</h3>
+                <ul>
+                    <li><span class="keyword">Cybersquatting</span> : achat de noms de domaine pour les revendre a prix d'or</li>
+                    <li><span class="keyword">Typosquatting</span> : noms proches de domaines connus pour capter le trafic</li>
+                    <li>Conflits <span class="keyword">marque / nom de domaine</span> : pas de loi specifique, jurisprudence au cas par cas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <div class="section-title">Contrat de vente en ligne</div>
+            </div>
+
+            <div class="card">
+                <h3>Validite du contrat electronique</h3>
+                <p>Conditions generales : <span class="keyword">consentement libre et eclaire</span>, capacite des parties, contenu licite et certain.</p>
+                <p style="margin-top:8px;">Conditions specifiques : information renforcee (identite vendeur, prix TTC, modalites livraison, droit de retractation, etapes du contrat, archivage).</p>
+            </div>
+
+            <div class="card">
+                <h3>Formation en 3 etapes</h3>
+                <div class="step"><div class="step-num">1</div><p><span class="keyword">1er clic</span> : verification de la commande. Le consommateur peut verifier et corriger. Interdiction des cases pre-cochees.</p></div>
+                <div class="step"><div class="step-num">2</div><p><span class="keyword">2e clic</span> : confirmation de la commande. Formation du contrat entre les parties.</p></div>
+                <div class="step"><div class="step-num">3</div><p><span class="keyword">Accuse de reception</span> de la commande par le vendeur dans un delai raisonnable.</p></div>
+            </div>
+
+            <div class="card">
+                <h3>Droit de retractation</h3>
+                <div class="def-box">
+                    <p><span class="keyword">14 jours</span> (minimum) pour se retracter sans justification. Un formulaire de retractation doit etre fourni. Remboursement total (y compris frais de reexpedition si colis arrive apres retractation).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Preuve electronique</h3>
+                <p>L'ecrit electronique a la meme valeur que le papier si :</p>
+                <ul>
+                    <li>Il permet d'<span class="keyword">identifier la personne</span> dont il emane (signature cryptographique)</li>
+                    <li>Il est conserve dans des conditions garantissant son <span class="keyword">integrite</span></li>
+                </ul>
+                <p style="margin-top:8px;">Archivage obligatoire <span class="keyword">10 ans</span> pour les contrats > 120 euros.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">4</div>
+                <div class="section-title">Droit d'auteur et creations numeriques</div>
+            </div>
+
+            <div class="card">
+                <h3>Oeuvre protegeable</h3>
+                <p>3 criteres : une <span class="keyword">forme</span> perceptible, une <span class="keyword">activite creatrice</span> (pas le hasard), une <span class="keyword">originalite</span>. Aucune formalite necessaire : l'existence suffit.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card highlight-card">
+                    <h3>Droit moral</h3>
+                    <p><span class="keyword">Perpetuel, inalienable, imprescriptible</span></p>
+                    <ul>
+                        <li>Pouvoir de divulgation</li>
+                        <li>Pouvoir de paternite</li>
+                        <li>Respect de l'oeuvre</li>
+                        <li>Repentir et retrait</li>
+                    </ul>
+                </div>
+                <div class="card highlight-card">
+                    <h3>Droit patrimonial</h3>
+                    <p><span class="keyword">Cessible, duree limitee</span> (vie + 70 ans)</p>
+                    <ul>
+                        <li>Droit de reproduction</li>
+                        <li>Droit de representation</li>
+                    </ul>
+                    <p style="margin-top:8px;font-size:0.85rem;">Exception : copie privee (sauf oeuvres d'art, logiciels, BDD)</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Protection : actions en justice</h3>
+                <div class="grid-2">
+                    <div class="def-box">
+                        <p><span class="keyword">Action en contrefacon</span> : violation du droit d'auteur. Sanctions civiles (DI) et penales (3 ans prison, 300 000e).</p>
+                    </div>
+                    <div class="def-box">
+                        <p><span class="keyword">Action en concurrence deloyale</span> : faute (imitation, parasitisme). Ne necessite pas de droit d'auteur. Permet d'obtenir des DI.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Bases de donnees</h3>
+                <p>Double protection :</p>
+                <ul>
+                    <li><span class="keyword">Droit d'auteur</span> : protege les donnees originales et la structure originale</li>
+                    <li><span class="keyword">Droit sui generis</span> (du producteur) : protege l'investissement. Duree 15 ans. Interdit l'extraction substantielle.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Protection des donnees personnelles</h3>
+                <p>Le cybervendeur doit respecter la reglementation a chaque etape : collecte, conclusion du contrat, archivage.</p>
+                <p style="margin-top:8px;">En cas de non-respect, recours possibles :</p>
+                <ul>
+                    <li>Contre l'<span class="keyword">usurpateur</span> : action penale (15 000e + 1 an prison) + responsabilite civile</li>
+                    <li>Contre le <span class="keyword">cybervendeur</span> : action penale (art. 226-17 Code penal) + responsabilite civile pour faute</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">5</div>
+                <div class="section-title">Responsabilite editeur / hebergeur</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Editeur</h3>
+                    <p>Role actif, controle le contenu. <span class="keyword">Responsable</span> de l'ensemble des publications (contenus + droits d'auteur).</p>
+                </div>
+                <div class="card">
+                    <h3>Hebergeur</h3>
+                    <p>Prestataire technique. Responsable <span class="keyword">uniquement</span> s'il n'agit pas promptement apres notification judiciaire (LCEN 2004). Doit conserver les donnees d'identification.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
