@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJM - Definitions</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}
+
+        .topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #e94560;position:sticky;top:0;z-index:100}
+        .topbar a{color:#ff6b6b;text-decoration:none;font-weight:600;font-size:.95rem}
+        .topbar a:hover{color:#fff}
+        .topbar .title{font-size:1rem;color:#8892b0}
+
+        .header{text-align:center;padding:50px 20px 30px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+        .header h1{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:1px}
+        .header p{font-size:1rem;color:#8892b0;max-width:600px;margin:0 auto;line-height:1.6}
+
+        .search-bar{max-width:600px;margin:25px auto 0;position:relative}
+        .search-bar input{width:100%;padding:14px 20px 14px 48px;border-radius:14px;border:1px solid #2a2a4a;background:#1a1a2e;color:#e0e0e0;font-size:1rem;outline:none;transition:border-color .3s}
+        .search-bar input:focus{border-color:#e94560}
+        .search-bar input::placeholder{color:#4a4a6a}
+        .search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#4a4a6a;font-size:1.1rem}
+
+        .filters{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+        .filter-btn{padding:8px 20px;border-radius:20px;border:1px solid #2a2a4a;background:transparent;color:#8892b0;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s}
+        .filter-btn:hover{border-color:#3a3a5a;color:#fff}
+        .filter-btn.active{color:#fff}
+        .filter-btn.active.all{background:#e94560;border-color:#e94560}
+        .filter-btn.active.eco{background:rgba(0,206,201,.2);border-color:#00cec9;color:#00cec9}
+        .filter-btn.active.mana{background:rgba(162,155,254,.2);border-color:#a29bfe;color:#a29bfe}
+        .filter-btn.active.droit{background:rgba(233,69,96,.2);border-color:#ff6b6b;color:#ff6b6b}
+
+        .count-bar{text-align:center;margin-top:15px;font-size:.85rem;color:#4a4a6a}
+        .count-bar strong{color:#8892b0}
+
+        .container{max-width:900px;margin:0 auto;padding:40px 20px}
+
+        .alpha-nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:30px}
+        .alpha-link{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#1a1a2e;border:1px solid #2a2a4a;color:#8892b0;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .2s}
+        .alpha-link:hover{border-color:#e94560;color:#fff}
+        .alpha-link.disabled{opacity:.3;pointer-events:none}
+
+        .letter-group{margin-bottom:35px}
+        .letter-header{font-size:1.8rem;font-weight:800;color:#e94560;margin-bottom:15px;padding-bottom:8px;border-bottom:2px solid #1a1a2e}
+
+        .def-item{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:20px;margin-bottom:12px;transition:all .3s;cursor:pointer}
+        .def-item:hover{border-color:#3a3a5a;box-shadow:0 5px 20px rgba(0,0,0,.2)}
+        .def-item.eco{border-left:3px solid #00cec9}
+        .def-item.mana{border-left:3px solid #a29bfe}
+        .def-item.droit{border-left:3px solid #ff6b6b}
+
+        .def-header{display:flex;align-items:center;gap:12px;justify-content:space-between}
+        .def-term{font-size:1.1rem;font-weight:700;color:#fff;flex:1}
+        .def-badge{font-size:.7rem;padding:4px 12px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+        .def-badge.eco{background:rgba(0,206,201,.12);color:#00cec9}
+        .def-badge.mana{background:rgba(162,155,254,.12);color:#a29bfe}
+        .def-badge.droit{background:rgba(233,69,96,.12);color:#ff6b6b}
+
+        .def-text{color:#b0b0c8;font-size:.93rem;line-height:1.7;margin-top:10px}
+        .def-text .sub{display:block;margin-top:6px;padding-left:15px;border-left:2px solid #2a2a4a}
+        .def-text strong{color:#d0d0e0}
+
+        .def-details{display:none;margin-top:10px}
+        .def-item.open .def-details{display:block}
+        .def-item.open{background:#1e1e35}
+
+        .toggle-icon{color:#4a4a6a;font-size:.8rem;transition:transform .3s}
+        .def-item.open .toggle-icon{transform:rotate(180deg)}
+
+        .footer{text-align:center;padding:30px 20px;color:#4a4a6a;font-size:.85rem;border-top:1px solid #1a1a2e}
+
+        @media(max-width:768px){
+            .header h1{font-size:1.8rem}
+            .alpha-nav{gap:4px}
+            .alpha-link{width:28px;height:28px;font-size:.75rem}
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="cejm.html">&larr; CEJM</a>
+        <span class="title">Definitions &bull; 132 termes</span>
+    </div>
+
+    <div class="header">
+        <h1>Definitions CEJM</h1>
+        <p>Toutes les definitions cles d'Economie, Management et Droit</p>
+        <div class="search-bar">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="searchInput" placeholder="Rechercher une definition..." autocomplete="off">
+        </div>
+        <div class="filters">
+            <button class="filter-btn active all" data-filter="all">Tout (132)</button>
+            <button class="filter-btn eco" data-filter="eco">Economie (54)</button>
+            <button class="filter-btn mana" data-filter="mana">Management (45)</button>
+            <button class="filter-btn droit" data-filter="droit">Droit (33)</button>
+        </div>
+        <div class="count-bar" id="countBar"><strong>132</strong> definitions affichees</div>
+    </div>
+
+    <div class="container">
+        <div class="alpha-nav" id="alphaNav"></div>
+        <div id="definitions">
+
+<!-- A -->
+<div class="letter-group" data-letter="A">
+<div class="letter-header" id="letter-A">A</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Action en concurrence deloyale</div>
+        <span class="def-badge eco">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Faute (imitation, parasitisme). Ne necessite pas de droit d'auteur. Permet d'obtenir des dommages-interets.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Action en contrefacon</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Violation du droit d'auteur. Sanctions civiles (dommages-interets) et penales (3 ans prison, 300 000 euros).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Adhocratie</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Structure organique peu formalisee, decentralisee, equipes pluridisciplinaires autonomes, coordination par ajustement mutuel. (Mintzberg)</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Agent economique</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Un agent economique est un centre de decision economique independant, disposant d'une autonomie de decision dans l'exercice de sa fonction principale. La Comptabilite nationale les classe en secteurs institutionnels.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Asymetrie d'information</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Deficit d'information du consommateur par rapport au vendeur. C'est une imperfection du marche.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Atomicite</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Condition de la CPP : grand nombre d'acheteurs et vendeurs, aucun ne peut fixer les prix seul.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Avantage concurrentiel</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Selon M. Porter, 3 strategies de domaine : <strong>domination par les couts</strong> (minimiser les couts pour offrir des prix plus bas), <strong>differenciation</strong> (fonder l'avantage sur la specificite de l'offre, par le haut ou par le bas), <strong>focalisation (niche)</strong> (se positionner sur un segment etroit du marche).</div></div>
+</div>
+
+</div>
+
+<!-- B -->
+<div class="letter-group" data-letter="B">
+<div class="letter-header" id="letter-B">B</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Balanced Scorecard (Tableau de bord prospectif)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Norton & Kaplan (1992). Integre des indicateurs financiers ET non financiers pour piloter la strategie. 4 axes : Financier, Clients, Processus internes, Apprentissage organisationnel.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Barrieres a l'entree</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Normes, couts fixes, strategies des firmes en place. Empechent les nouveaux entrants d'acceder facilement a un marche.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Bases de donnees (protection)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Double protection : <strong>droit d'auteur</strong> (protege les donnees originales et la structure originale) et <strong>droit sui generis</strong> du producteur (protege l'investissement, duree 15 ans, interdit l'extraction substantielle).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Biens publics</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Biens qui echappent au marche car ils ne sont pas produits par le secteur prive. L'Etat doit les prendre en charge (defense, eclairage public, routes...).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">B to B, B to C, C to C, B to G</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Types d'echanges commerciaux. B to B (entreprise a entreprise), B to C (entreprise a consommateur), C to C (consommateur a consommateur, via plateformes), B to G (entreprise a etat).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Burn-out</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Resultat de la degradation des conditions de travail. Mental : apathie, depression. Physique : crise cardiaque, migraines.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Business vs Corporate</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Business</strong> : analyse de la situation au sein d'un DAS (Domaine d'Activite Strategique). <strong>Corporate</strong> : coherence du portefeuille d'activites + evolution globale.</div></div>
+</div>
+
+</div>
+
+<!-- C -->
+<div class="letter-group" data-letter="C">
+<div class="letter-header" id="letter-C">C</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Chaine de valeur</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Outil d'analyse de M. Porter des activites cles ayant un impact en termes de couts ou de qualite. Distingue les activites principales (logistique, production, commercialisation, SAV) et les activites de soutien (approvisionnements, R&D, RH, infrastructure).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Chomage (definition BIT)</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Personne de 15 ans ou plus qui remplit 3 conditions simultanees : etre sans emploi (pas 1h de travail), etre disponible sous 15 jours, avoir cherche activement un emploi dans le mois precedent.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Chomage classique (Pigou)</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Salaire minimum et couts salariaux trop importants. Les emplois ne sont pas assez productifs pour etre profitables.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Chomage keynesien</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Niveau trop faible de la demande et donc de l'activite des entreprises qui n'ont pas besoin d'employer toute la population active.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Circuit economique</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Schema simplifie des flux representant les echanges entre agents. Les echanges sont necessaires car aucun agent ne peut produire lui-meme l'ensemble des biens et services dont il a besoin.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Cloud computing</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Hebergement de donnees sur serveurs specialises. Type de contrat de prestation numerique.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Coalitions d'individus</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Cyert & March (1963). L'entreprise est composee de coalitions d'individus aux "demandes disparates" ayant des interets propres qu'ils cherchent a maximiser.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Combinaison productive</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">La proportion variable de travail et de capital pour realiser une production. Le choix se fait en fonction du cout relatif du travail et du capital, et de son efficacite. <span class="sub"><strong>Forte intensite capitalistique</strong> : beaucoup de capital, peu de travail. <strong>Faible intensite capitalistique</strong> : beaucoup de main-d'oeuvre, peu de capital.</span></div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Concurrence monopolistique</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Quasi-monopole obtenu par differenciation des produits.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Concurrence pure et parfaite (CPP)</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Modele theorique reposant sur 5 conditions : atomicite, homogeneite, transparence, libre entree/sortie, libre circulation.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Contrat de vente en ligne</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Conditions generales : consentement libre et eclaire, capacite des parties, contenu licite et certain. Conditions specifiques : information renforcee (identite vendeur, prix TTC, modalites livraison, droit de retractation). Formation en 3 etapes : 1er clic (verification), 2e clic (confirmation), accuse de reception.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Couts de production</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Cout du travail</strong> : salaire brut + cotisations patronales. <strong>Cout du capital</strong> : cout de financement des investissements. <strong>Cout des intrants</strong> : matieres premieres + produits semi-finis.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Croissance conjointe</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Mise en place d'accords ou structures communes. Formes : contrats (franchise, licence), joint-venture, reseaux d'entreprises.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Croissance externe</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Acquisition ou prise de controle d'entreprises (concurrentes ou complementaires). Formes : fusion-creation, fusion-absorption, apport d'actifs, prise de participation.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Croissance interne</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Augmenter le CA par la conquete de nouveaux clients, financee par ses propres ressources.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Cybersquatting</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Achat de noms de domaine pour les revendre a prix d'or.</div></div>
+</div>
+
+</div>
+
+<!-- D -->
+<div class="letter-group" data-letter="D">
+<div class="letter-header" id="letter-D">D</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Defaillances de marche</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Apparaissent quand les consequences negatives ne sont pas prises en compte (externalites) et quand certaines activites ne sont pas rentables ou repondent a une demande collective (biens publics).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Diagnostic externe</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Analyser l'environnement. Micro : concurrents, clients, fournisseurs (5 forces de Porter). Macro : methode PESTEL (Politique, Economique, Socioculturel, Technologique, Environnemental, Legal).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Diagnostic interne</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Analyser les ressources et competences de l'entreprise. Penrose : ressources tangibles/intangibles. Hamel & Prahalad : competences specifiques/transversales. Porter : chaine de valeur.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Diagnostic strategique</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Consiste a rassembler des informations pour preparer la decision. Debouche sur une synthese FFOM/SWOT (Forces, Faiblesses, Opportunites, Menaces) et identifie les facteurs cles de succes (FCS).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Diversification</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Se positionner sur un nouveau metier. 4 formes : verticale, horizontale, concentrique, conglomerat.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Dommages (types)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Materiel</strong> : atteinte aux biens. <strong>Corporel</strong> : atteinte au corps. <strong>Moral</strong> : souffrance psychologique. <strong>Patrimoniaux</strong> : atteinte au patrimoine. <strong>Extrapatrimoniaux</strong> : consequences morales. <strong>Prejudice ecologique</strong> : atteinte aux actifs environnementaux.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Droit d'alerte</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Signalement d'un danger grave et imminent. Niveau de l'information.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Droit de retractation</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">14 jours (minimum) pour se retracter sans justification. Un formulaire de retractation doit etre fourni. Remboursement total.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Droit de retrait</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Le salarie se retire d'une situation dangereuse. Niveau de l'action.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Droit moral (d'auteur)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Perpetuel, inalienable, imprescriptible. Comprend : pouvoir de divulgation, pouvoir de paternite, respect de l'oeuvre, repentir et retrait.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Droit patrimonial (d'auteur)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Cessible, duree limitee (vie + 70 ans). Comprend : droit de reproduction, droit de representation. Exception : copie privee (sauf oeuvres d'art, logiciels, BDD).</div></div>
+</div>
+
+</div>
+
+<!-- E -->
+<div class="letter-group" data-letter="E">
+<div class="letter-header" id="letter-E">E</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Economie collaborative</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Echanges pair-to-pair via des plateformes de mise en relation.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Economie de l'usage</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Developpement de la location (voiture, outils, musique...) plutot que la propriete.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Economie du numerique</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Regroupe le secteur des TIC (telecommunication, Internet) et tous les secteurs utilisant les TIC dans leur coeur de metier ou en support.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Editeur (web)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Role actif, controle le contenu. Responsable de l'ensemble des publications (contenus + droits d'auteur).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Efficacite</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Capacite a atteindre les resultats fixes, independamment des moyens utilises.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Efficience</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Capacite a atteindre les resultats de maniere optimale, en economisant les ressources.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Elasticite prix/demande</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Negative</strong> (normal) : prix augmente, demande baisse. <strong>Positive</strong> (luxe) : prix augmente, demande augmente (effet Veblen). <strong>Nulle</strong> (1ere necessite) : prix augmente, demande inchangee.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Externalisation (impartition)</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Logique : ne plus faire soi-meme mais faire faire. Formes : concession, franchise, sous-traitance.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Externalites</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Effets (positifs ou negatifs) des actions d'un agent economique sur le bien-etre d'un autre agent, sans compensation monetaire. Elles ne sont pas prises en compte dans le prix des biens. <span class="sub"><strong>Positives</strong> : le bien-etre d'un agent est ameliore sans compensation (innovations, formation). <strong>Negatives</strong> : le bien-etre est deteriore sans compensation (pollution, nuisances).</span></div></div>
+</div>
+
+</div>
+
+<!-- F -->
+<div class="letter-group" data-letter="F">
+<div class="letter-header" id="letter-F">F</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Facteurs de production</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Le travail</strong> : activite humaine. <strong>Le capital</strong> : moyens de production materiels. <strong>Le facteur naturel</strong> : ressources naturelles. <strong>Le progres technique</strong> : savoir-faire, brevets, R&D, formation.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Facteurs d'hygiene (Herzberg)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Conditions physiques, organisation, relations d'equipe, remuneration. Pas sources de motivation mais leur absence = demotivation.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Facteurs de motivation (Herzberg)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Contenu du travail, autonomie, responsabilisation, reconnaissance, promotion. La motivation vient de l'enrichissement du travail.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Finalite de l'entreprise</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Traduit la vocation de l'entreprise, sa raison d'etre. <strong>Financiere</strong> : faire du profit. <strong>Economique</strong> : fabriquer et vendre. <strong>Sociale</strong> : creer des emplois. <strong>Environnementale</strong> : produire en preservant l'environnement. Selon Drucker : satisfaction des clients. Selon Schumpeter : innovation (destruction creatrice).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Freemium, Free-to-pay, Yield management</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Nouveaux modeles de remuneration du numerique.</div></div>
+</div>
+
+</div>
+
+<!-- G -->
+<div class="letter-group" data-letter="G">
+<div class="letter-header" id="letter-G">G</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">GAFAM</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Google, Apple, Facebook, Amazon, Microsoft. Mega numeriques dominant l'economie digitale.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">GPEC</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Gestion Previsionnelle des Emplois et Competences. Obligatoire dans les entreprises de +300 salaries depuis 2005. Permet d'adapter de facon anticipee les RH aux orientations strategiques. <strong>Quantitative</strong> : gestion des emplois et effectifs. <strong>Qualitative</strong> : gestion des competences et qualifications.</div></div>
+</div>
+
+</div>
+
+<!-- H -->
+<div class="letter-group" data-letter="H">
+<div class="letter-header" id="letter-H">H</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Hebergeur (web)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Prestataire technique. Responsable uniquement s'il n'agit pas promptement apres notification judiciaire (LCEN 2004). Doit conserver les donnees d'identification.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Homogeneite</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Condition de la CPP : produits identiques et interchangeables.</div></div>
+</div>
+
+</div>
+
+<!-- I -->
+<div class="letter-group" data-letter="I">
+<div class="letter-header" id="letter-I">I</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Insiders vs Outsiders</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">90% en CDI proteges (insiders) vs chomeurs/CDD/CTT/temps partiel (outsiders, variables d'ajustement).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Integration</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Reunir des activites complementaires le long de la filiere. <strong>Verticale</strong> : amont (fournisseurs) et/ou aval (clients). <strong>Horizontale</strong> : achat de concurrents.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Internaliser les externalites</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">2 moyens de l'Etat : <strong>reglementation</strong> (interdictions, normes, quotas) et <strong>incitations</strong> (subventions, credit d'impot, ecotaxes, principe pollueur-payeur).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Internationalisation</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">4 niveaux : <strong>exportation simple</strong> (vendre a l'etranger), <strong>partenariat</strong> (sous-traitance/licence locale), <strong>IDE</strong> (investissement direct a l'etranger), <strong>FMN</strong> (firme multinationale, strategie mondiale).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">ISBLSM</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Institutions Sans But Lucratif au Service des Menages : associations, clubs sportifs, syndicats, partis politiques.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">ISR</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Investissements Socialement Responsables. Placements prenant en compte des criteres extra-financiers : sociaux, environnementaux, ethiques.</div></div>
+</div>
+
+</div>
+
+<!-- L -->
+<div class="letter-group" data-letter="L">
+<div class="letter-header" id="letter-L">L</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Licornes</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Start-up valorisees a plus d'1 milliard (ex : Blablacar).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Libre circulation</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Condition de la CPP : mobilite parfaite du capital et du travail.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Libre entree/sortie</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Condition de la CPP : aucune barriere tarifaire, administrative ou technique.</div></div>
+</div>
+
+</div>
+
+<!-- M -->
+<div class="letter-group" data-letter="M">
+<div class="letter-header" id="letter-M">M</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Management operationnel</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Decisions liees a la mise en oeuvre de la strategie. Court/moyen terme. Releve des cadres intermediaires.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Management strategique</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Decisions qui engagent le long terme et la perennite de l'entreprise. Releve de la direction.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Marche</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Lieu (reel ou virtuel) de rencontre entre offreurs et demandeurs. Permet les echanges et la determination du prix.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Marche des capitaux</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Agents a capacite de financement vs agents a besoin. 3 compartiments : financier (actions/obligations LT), monetaire (CT), changes (devises).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Marche du travail</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Lieu d'echange du facteur travail contre de la monnaie. L'offre provient des actifs, la demande provient des producteurs. Le salaire brut est le prix d'echange.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Mecanismes de coordination (Mintzberg)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">6 mecanismes : <strong>ajustement mutuel</strong> (echanges informels), <strong>supervision directe</strong> (ordres du responsable), <strong>standardisation des procedes</strong> (procedures), <strong>des resultats</strong> (objectifs), <strong>des qualifications</strong> (formation), <strong>des normes</strong> (culture et valeurs).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Monopole / Oligopole</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Peu d'offreurs imposent leurs prix (price-maker).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Modele des 5+1 forces (Porter)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Analyse de l'environnement concurrentiel selon 6 piliers : concurrence, nouveaux entrants, produits de substitution, pouvoir des fournisseurs, pouvoir des clients, Etat/legislation.</div></div>
+</div>
+
+</div>
+
+<!-- N -->
+<div class="letter-group" data-letter="N">
+<div class="letter-header" id="letter-N">N</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Nom de domaine</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Regle "premier arrive, premier servi". Enregistrement via un registrar accredite par l'ICANN. Pour le .fr : AFNIC. C'est une "location annuelle".</div></div>
+</div>
+
+</div>
+
+<!-- O -->
+<div class="letter-group" data-letter="O">
+<div class="letter-header" id="letter-O">O</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Obligation de collaboration du client</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Le client doit analyser et exprimer ses besoins en contrepartie de l'obligation d'information du prestataire.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Obligation d'information du prestataire informatique</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Triple devoir : renseignement (informer sur les caracteristiques), mise en garde (alerter sur les risques), conseil (orienter les choix du client). Obligation de moyen.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Obligation de securite de l'employeur</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Obligation de resultat : meme avec des mesures de prevention, l'entreprise est responsable en cas de maladie professionnelle/accident. Inclut : identifier, supprimer, evaluer les risques, mettre en oeuvre les moyens adaptes, information et formation.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Offre disruptive</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Offre qui bouleverse un marche existant (ex : Airbnb, Blablacar).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Oeuvre protegeable</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">3 criteres : une forme perceptible, une activite creatrice (pas le hasard), une originalite. Aucune formalite necessaire : l'existence suffit.</div></div>
+</div>
+
+</div>
+
+<!-- P -->
+<div class="letter-group" data-letter="P">
+<div class="letter-header" id="letter-P">P</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Partie prenante (stakeholder)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">E. Freeman. Un individu ou groupe qui peut influencer les decisions d'une entreprise, affecter ou etre affecte par la realisation de ses objectifs. <span class="sub"><strong>Internes</strong> : dirigeants, salaries, representants, actionnaires. <strong>Externes</strong> : clients, fournisseurs, concurrents, banques, syndicats, ONG, societe civile.</span></div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Performance</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Capacite a obtenir des resultats conformes aux objectifs fixes. Implique aussi l'idee de comparaison avec les concurrents.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Performance globale</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Performance multidimensionnelle : economique, financiere, societale/environnementale, relationnelle/organisationnelle, boursiere.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Permis a polluer</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">L'Etat fixe un nombre de permis a polluer que les entreprises peuvent echanger. Incitation a moins polluer pour revendre ses droits sur ce marche.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Pertinence</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Adequation entre les objectifs et les moyens mobilises.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">PESTEL</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Methode d'analyse de l'environnement macro : Politique, Economique, Socioculturel, Technologique, Environnemental, Legal.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Politique de la demande</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Stimuler la demande : augmentation SMIC/minimas sociaux, investissement public, emplois non marchands, baisse des taux d'interet. Attention : stimule aussi les importations, risque inflationniste.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Politique de l'offre</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Favoriser la competitivite des entreprises : acces au financement, diminution des charges, allegement reglementaire. Objectif : gagner des parts de marche, plus d'activite, plus d'emploi.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Politiques contracycliques</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Politiques plus efficaces quand mises en place en periode de recession economique. Leur efficacite varie selon la conjoncture, l'endettement et le niveau de prelevement.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Population active</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Personnes de 15-64 ans, en emploi ou en recherche d'emploi. Varie selon la population, pyramide des ages, nombre d'inactifs, age de depart a la retraite, solde migratoire.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Pratiques anticoncurrentielles</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Ententes sur les prix, interdites par la loi et sanctionnees par l'Autorite de la concurrence.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Preuve electronique</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">L'ecrit electronique a la meme valeur que le papier si : il permet d'identifier la personne dont il emane (signature cryptographique) et il est conserve dans des conditions garantissant son integrite. Archivage obligatoire 10 ans pour les contrats > 120 euros.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Principe de non-cumul</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">La responsabilite du fait des produits defectueux (RDFPD) prime sur les deux autres regimes (contractuelle et delictuelle).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Principe de precaution</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">En cas d'absence de certitude scientifique, evaluer les risques graves et irreversibles et prendre des mesures proportionnees. Valeur constitutionnelle (2004).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Principe de prevention</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Eviter/reduire les dommages lies aux risques averes en agissant a la source. S'applique aux risques environnementaux, technologiques, sante au travail.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Prix de marche</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Depend du niveau de l'offre et de la demande. Equilibre au point d'intersection offre = demande.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Processus</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Ensemble organise d'activites en interaction qui transforment des elements entrants en elements sortants. <span class="sub"><strong>Productif</strong> : assure la production, directement createur de valeur. <strong>Support</strong> : organise les ressources (RH, SI). <strong>Pilotage</strong> : assure la prise de decision et le controle.</span></div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Production marchande / non marchande</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Marchande</strong> : destinee a etre vendue sur un marche a un prix concurrentiel. <strong>Non marchande</strong> : fournie gratuitement ou a un prix inferieur a 50% des couts de production.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Productivite</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Mesure l'efficacite des facteurs de production. Compare la production realisee a la quantite de facteur utilisee. <strong>Du travail</strong> = richesse creee / valeur du travail. <strong>Du capital</strong> = richesse creee / valeur du capital.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Pyramide des besoins (Maslow)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Les besoins sont hierarchises : 1. Survie, 2. Securite, 3. Appartenance, 4. Estime de soi, 5. Realisation de soi. Les 2 premiers ne motivent pas mais leur insatisfaction demotive. Les 3 derniers sont les vrais facteurs de motivation.</div></div>
+</div>
+
+</div>
+
+<!-- R -->
+<div class="letter-group" data-letter="R">
+<div class="letter-header" id="letter-R">R</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Ratio d'equite (Adams)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Avantages / Contribution. Chaque individu compare sa situation avec celle des autres. <strong>Equite</strong> : ratios identiques, motivation maintenue. <strong>Sous-equite</strong> : reduction des efforts. <strong>Sur-equite</strong> : augmentation des efforts.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Reparation integrale</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Principe de reparation integrale des prejudices subis par la victime. <strong>En nature</strong> : remise en etat. <strong>Par equivalent</strong> : dommages-interets.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Responsabilite civile</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">3 conditions de mise en oeuvre : fait generateur, dommage, lien de causalite. <span class="sub"><strong>Contractuelle</strong> : dommage lie a un contrat (inexecution/mauvaise execution). <strong>Delictuelle</strong> : dommage hors contrat (faute personnelle, fait des choses, fait d'autrui).</span></div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Responsabilite des commettants du fait des preposes</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">L'employeur est responsable des dommages causes par le salarie (responsabilite de plein droit). Exception : le salarie est personnellement responsable s'il a agi sans autorisation, a des fins etrangeres a ses attributions et en dehors de ses fonctions.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Responsabilite du fait des produits defectueux (RDFPD)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Produit ayant cause un dommage (avec ou sans contrat). Responsabilite sans faute : prouver le defaut de securite. Prescription : 3 ans (connaissance) / 10 ans (mise en circulation).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Risque</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Evenement futur, incertain, dont l'arrivee ne depend pas exclusivement de la volonte de l'assure, qui cause des dommages.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">RSE</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Responsabilite Societale des Entreprises. Responsabilite des entreprises vis-a-vis des effets de leurs activites sur la societe. <strong>Sociale</strong> : bien-etre au travail. <strong>Environnementale</strong> : production respectueuse. <strong>Economique</strong> : ethique des affaires, commerce equitable.</div></div>
+</div>
+
+</div>
+
+<!-- S -->
+<div class="letter-group" data-letter="S">
+<div class="letter-header" id="letter-S">S</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SaaS</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Software as a Service. Logiciels sur serveurs de l'editeur, factures a l'utilisation. Type de contrat de prestation numerique.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Salaire de reserve</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Refus d'emploi si paye moins que le chomage.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Secteurs institutionnels</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Classification des agents economiques : <strong>SNF</strong> (societes non financieres), <strong>societes financieres</strong> (banques, assurances), <strong>APU</strong> (administrations publiques), <strong>menages</strong>, <strong>ISBLSM</strong>, <strong>reste du monde</strong>.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SMIC</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Salaire minimum en France. Le salaire ne peut descendre sous le SMIC. Il est interdit de diminuer un salaire sans consentement.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SMART</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Les indicateurs doivent etre SMART : Specifique, Mesurable, Atteignable, Realiste, Temporellement defini.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Specialisation</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Se concentrer sur un seul DAS. 3 formes : penetration du marche, developpement du marche, developpement du produit.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Start-up</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Entreprises innovantes en phase de demarrage.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Structures d'entreprise</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Classiques : <strong>hierarchique</strong> (unicite du commandement), <strong>fonctionnelle</strong> (specialisation), <strong>divisionnelle</strong> (autonomie des divisions), <strong>matricielle</strong> (mode projet). Nouvelles : par projets, par processus, en reseau, adhocratie (Mintzberg).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Styles de management (Likert)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">4 styles : <strong>autoritaire</strong> (decide seul, sanctions), <strong>paternaliste</strong> (decide seul, ecoute), <strong>consultatif</strong> (consultation avant decision), <strong>participatif</strong> (decision collective, le plus efficace).</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SWOT / FFOM</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Forces, Faiblesses, Opportunites, Menaces. Synthese du diagnostic strategique.</div></div>
+</div>
+
+</div>
+
+<!-- T -->
+<div class="letter-group" data-letter="T">
+<div class="letter-header" id="letter-T">T</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Taux de change</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Incidence sur le cout des intrants et investissements a l'etranger.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Taux d'interet</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Cout des emprunts. Plus il est bas, plus la rentabilite de l'investissement est importante.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">TMS (Troubles musculo-squelettiques)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Resultent d'un cadre de travail inadapte.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Transparence</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Condition de la CPP : information complete, gratuite et immediate pour tous.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Types de chomage</div>
+        <span class="def-badge eco">Economie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text"><strong>Frictionnel</strong> : transition entre 2 emplois (< 6 mois). <strong>Conjoncturel</strong> : activite economique insuffisante (duree variable). <strong>Structurel</strong> : inadequation qualifications/besoins (longue duree).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Typosquatting</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Noms proches de domaines connus pour capter le trafic.</div></div>
+</div>
+
+</div>
+
+<!-- Z -->
+<div class="letter-group" data-letter="Z">
+<div class="letter-header" id="letter-Z">Z</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Zone d'incertitude (Crozier)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Tout acteur a une capacite d'action et peut exercer une influence et un contre-pouvoir. Ses marges de manoeuvre dependent de sa capacite a controler une zone d'incertitude. Tout n'est pas entierement regle dans une entreprise. (M. Crozier, 1977)</div></div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+
+    <div class="footer">CEJM - BTS ESUPEC &mdash; Definitions</div>
+
+    <script>
+        // Build alpha nav
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const alphaNav = document.getElementById('alphaNav');
+        const existingLetters = new Set([...document.querySelectorAll('.letter-group')].map(g => g.dataset.letter));
+        letters.forEach(l => {
+            const a = document.createElement('a');
+            a.className = 'alpha-link' + (existingLetters.has(l) ? '' : ' disabled');
+            a.textContent = l;
+            a.href = '#letter-' + l;
+            alphaNav.appendChild(a);
+        });
+
+        // Search
+        const searchInput = document.getElementById('searchInput');
+        const countBar = document.getElementById('countBar');
+        let activeFilter = 'all';
+
+        function filterAll() {
+            const query = searchInput.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.def-item');
+            let count = 0;
+            items.forEach(item => {
+                const term = item.querySelector('.def-term').textContent.toLowerCase();
+                const text = item.querySelector('.def-text') ? item.querySelector('.def-text').textContent.toLowerCase() : '';
+                const cat = item.dataset.cat;
+                const matchSearch = !query || term.includes(query) || text.includes(query);
+                const matchFilter = activeFilter === 'all' || cat === activeFilter;
+                const show = matchSearch && matchFilter;
+                item.style.display = show ? '' : 'none';
+                if (show) count++;
+            });
+            // Hide empty letter groups
+            document.querySelectorAll('.letter-group').forEach(g => {
+                const visible = [...g.querySelectorAll('.def-item')].some(i => i.style.display !== 'none');
+                g.style.display = visible ? '' : 'none';
+            });
+            countBar.innerHTML = '<strong>' + count + '</strong> definition' + (count > 1 ? 's' : '') + ' affichee' + (count > 1 ? 's' : '');
+        }
+
+        searchInput.addEventListener('input', filterAll);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.dataset.filter;
+                filterAll();
+            });
+        });
+    </script>
+</body>
+</html>
