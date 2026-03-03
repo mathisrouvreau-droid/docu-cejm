@@ -83,7 +83,7 @@
 <body>
     <div class="topbar">
         <a href="cejm.html">&larr; CEJM</a>
-        <span class="title">Définitions &bull; 134 termes</span>
+        <span class="title">Définitions &bull; 142 termes</span>
 <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
     </div>
 
@@ -95,12 +95,12 @@
             <input type="text" id="searchInput" placeholder="Rechercher une définition..." autocomplete="off">
         </div>
         <div class="filters">
-            <button class="filter-btn active all" data-filter="all">Tout (134)</button>
+            <button class="filter-btn active all" data-filter="all">Tout (142)</button>
             <button class="filter-btn eco" data-filter="eco">Économie (54)</button>
             <button class="filter-btn mana" data-filter="mana">Management (47)</button>
-            <button class="filter-btn droit" data-filter="droit">Droit (33)</button>
+            <button class="filter-btn droit" data-filter="droit">Droit (41)</button>
         </div>
-        <div class="count-bar" id="countBar"><strong>134</strong> définitions affichées</div>
+        <div class="count-bar" id="countBar"><strong>142</strong> définitions affichées</div>
     </div>
 
     <div class="container">
@@ -249,6 +249,15 @@
 <div class="letter-group" data-letter="C">
 <div class="letter-header" id="letter-C">C</div>
 
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Capacité juridique</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Aptitude d'une personne à être titulaire de droits et à les exercer seul. Toutes les personnes physiques ont la capacité sauf le <strong>mineur</strong> et le <strong>majeur protégé</strong>. Les personnes morales ont la capacité juridique via leurs représentants légaux.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Chaîne de valeur</div>
@@ -341,11 +350,47 @@
 
 <div class="def-item droit" data-cat="droit">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Consentement</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Accord donné par chaque partie au contrat. Condition de validité du contrat. Le consentement ne doit pas être vicié par : le <strong>dol</strong> (manœuvre pour tromper), l'<strong>erreur</strong> (croyance fausse) ou la <strong>violence</strong> (menaces physiques ou verbales).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Contrat</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Article 1101 du Code civil : convention par laquelle une ou plusieurs personnes s'obligent envers une ou plusieurs autres à <strong>donner</strong>, à <strong>faire</strong> ou à <strong>ne pas faire</strong> quelque chose. Le contrat a force de loi pour les parties.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Contrat d'adhésion</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Contrat dont les conditions générales sont déterminées à l'avance par une des parties. Exception à la liberté contractuelle. Exemples : transport, assurances. Interdiction des clauses créant un <strong>déséquilibre significatif</strong> entre les droits et obligations des parties.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Contrat de vente en ligne</div>
         <span class="def-badge droit">Droit</span>
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Conditions générales : consentement libre et éclairé, capacité des parties, contenu licite et certain. Conditions spécifiques : information renforcée (identité vendeur, prix TTC, modalités livraison, droit de rétractation). Formation en 3 étapes : 1er clic (vérification), 2e clic (confirmation), accusé de réception.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Contrat dirigé</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Contrat dont le prix est fixé autoritairement par la loi. Exception à la liberté contractuelle. Exemples : loyer (encadrement des loyers), SMIC (salaire minimum).</div></div>
 </div>
 
 <div class="def-item eco" data-cat="eco">
@@ -442,6 +487,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Se positionner sur un nouveau métier. 4 formes : verticale, horizontale, concentrique, conglomérat.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Dol</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Vice du consentement. Manœuvre destinée à tromper le cocontractant. Le dol doit provenir du contractant, être <strong>intentionnel</strong> et <strong>déterminant</strong> pour l'autre partie (sans cette manœuvre, la partie n'aurait pas contracté).</div></div>
 </div>
 
 <div class="def-item droit" data-cat="droit">
@@ -627,6 +681,15 @@
     <div class="def-details"><div class="def-text">Traduit la vocation de l'entreprise, sa raison d'être. <strong>Financière</strong> : faire du profit. <strong>Économique</strong> : fabriquer et vendre. <strong>Sociale</strong> : créer des emplois. <strong>Environnementale</strong> : produire en préservant l'environnement. Selon Drucker : satisfaction des clients. Selon Schumpeter : innovation (destruction créatrice).</div></div>
 </div>
 
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Force obligatoire du contrat</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Le contrat a <strong>force de loi</strong> pour les parties. Chacune d'elles doit le respecter. Elles ne peuvent pas le modifier sans l'accord de l'autre partie.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Freemium, Free-to-pay, Yield management</div>
@@ -749,6 +812,15 @@
 <!-- L -->
 <div class="letter-group" data-letter="L">
 <div class="letter-header" id="letter-L">L</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Liberté contractuelle</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Principe en 3 aspects : liberté de <strong>contracter ou non</strong>, liberté de <strong>choisir le type de contrat</strong> et son contenu, liberté de <strong>choisir son cocontractant</strong>. Exceptions : contrats imposés, contrats d'adhésion, contrats dirigés, interdiction de la discrimination.</div></div>
+</div>
 
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
