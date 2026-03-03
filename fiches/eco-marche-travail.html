@@ -35,12 +35,16 @@
         th { background: rgba(0,206,201,0.15); color: #00cec9; padding: 10px 14px; text-align: left; font-weight: 600; }
         td { padding: 10px 14px; border-bottom: 1px solid #2a2a4a; color: #b0b0c8; line-height: 1.5; }
         .table-wrap { overflow-x: auto; margin: 12px 0; }
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:#f8f9fa}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .def-box{background:rgba(0,0,0,.03)}.light-mode .def-box p{color:#555}.light-mode .highlight-card{background:#f8f9fa;border-color:#dfe6e9}.light-mode th{background:rgba(0,0,0,.04)}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode #theme-toggle{background:rgba(0,0,0,.06)}
     </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
 </head>
 <body>
     <div class="topbar">
         <a href="../cejm.html">&larr; Accueil</a>
         <span class="title">Économie &bull; Cas Dachser Partie 1</span>
+        <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
     </div>
     <div class="hero">
         <div class="hero-badge">Économie</div>
@@ -188,5 +192,6 @@
         </div>
 
     </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
 </body>
 </html>

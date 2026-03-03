@@ -76,12 +76,15 @@
             .alpha-nav{gap:4px}
             .alpha-link{width:28px;height:28px;font-size:.75rem}
         }
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:#f8f9fa}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .controls{background:#fff}.light-mode .search-input{background:#f0f0f5;border-color:#dfe6e9;color:#2d3436}.light-mode .search-input::placeholder{color:#999}.light-mode .filter-btn{background:#f0f0f5;color:#636e72;border-color:#dfe6e9}.light-mode .filter-btn.active{color:#fff}.light-mode .alpha-nav{background:#fff;border-color:#dfe6e9}.light-mode .alpha-btn{color:#636e72}.light-mode .alpha-btn:hover{background:rgba(0,0,0,.05)}.light-mode .letter-header{color:#2d3436;border-bottom-color:#dfe6e9}.light-mode .def-item{background:#fff;border-color:#dfe6e9}.light-mode .def-header{color:#2d3436}.light-mode .def-content{color:#555;border-top-color:#eee}.light-mode .def-toggle{color:#999}.light-mode #theme-toggle{background:rgba(0,0,0,.06)}
     </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
 </head>
 <body>
     <div class="topbar">
         <a href="cejm.html">&larr; CEJM</a>
         <span class="title">Définitions &bull; 132 termes</span>
+<a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
     </div>
 
     <div class="header">
@@ -1402,5 +1405,6 @@
             });
         });
     </script>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
 </body>
 </html>

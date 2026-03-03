@@ -9,6 +9,7 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; }
 
         .header {
+            position: relative;
             text-align: center;
             padding: 60px 20px 40px;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -163,11 +164,14 @@
             .header h1 { font-size: 1.8rem; }
             .matieres-grid { grid-template-columns: 1fr; }
         }
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .header{background:linear-gradient(135deg,#f0f0f5 0%,#e8e8f0 50%,#dde0e8 100%);border-bottom-color:#e94560}.light-mode .header h1{background:linear-gradient(90deg,#e94560,#ff6b6b,#e94560);-webkit-background-clip:text;background-clip:text}.light-mode .header p{color:#636e72}.light-mode .section-title{color:#636e72}.light-mode .matiere-card{background:#fff;border-color:#dfe6e9}.light-mode .matiere-card:hover{border-color:#bbb;box-shadow:0 15px 50px rgba(0,0,0,.1)}.light-mode .matiere-card.cejm .matiere-name{color:#2d3436}.light-mode .matiere-card.cejm .matiere-desc{color:#636e72}.light-mode .matiere-card.empty{background:#f8f9fa;border-color:#dfe6e9}.light-mode .matiere-card.empty .matiere-name{color:#aaa}.light-mode .matiere-card.empty .matiere-desc{color:#bbb}.light-mode .matiere-card.empty .matiere-icon{background:#e0e0e0;color:#aaa}.light-mode .matiere-card.empty .matiere-stat{color:#bbb}.light-mode .matiere-card.empty .matiere-arrow{color:#ccc}.light-mode .matiere-card.empty::before{background:#ddd}.light-mode .footer{color:#aaa;border-top-color:#e0e0e0}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#e94560}
     </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
 </head>
 <body>
 
     <div class="header">
+<a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,.15);padding:6px 14px;border-radius:8px;font-size:.85rem;color:#ff6b6b;text-decoration:none;font-weight:600;">Mode clair</a>
         <h1>MES FICHES DE RÉVISION</h1>
         <p>Toutes les synthèses de cours organisées par matière</p>
     </div>
@@ -202,5 +206,6 @@
 
     <div class="footer">Fiches de révision &mdash; BTS ESUPEC</div>
 
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
 </body>
 </html>
