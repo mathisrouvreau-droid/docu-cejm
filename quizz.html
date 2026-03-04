@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJM - Quizz</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}
+
+        .topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #e94560;position:sticky;top:0;z-index:100}
+        .topbar a{color:#ff6b6b;text-decoration:none;font-weight:600;font-size:.95rem}
+        .topbar a:hover{color:#fff}
+        .topbar .title{font-size:1rem;color:#8892b0}
+
+        .header{text-align:center;padding:50px 20px 30px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+        .header h1{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:1px}
+        .header p{font-size:1rem;color:#8892b0;max-width:600px;margin:0 auto;line-height:1.6}
+
+        .filters{display:flex;justify-content:center;gap:10px;margin-top:25px;flex-wrap:wrap}
+        .filter-btn{padding:8px 20px;border-radius:20px;border:1px solid #2a2a4a;background:transparent;color:#8892b0;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s}
+        .filter-btn:hover{border-color:#3a3a5a;color:#fff}
+        .filter-btn.active.eco{background:rgba(0,206,201,.2);border-color:#00cec9;color:#00cec9}
+        .filter-btn.active.mana{background:rgba(162,155,254,.2);border-color:#a29bfe;color:#a29bfe}
+        .filter-btn.active.droit{background:rgba(233,69,96,.2);border-color:#ff6b6b;color:#ff6b6b}
+
+        .container{max-width:900px;margin:0 auto;padding:40px 20px}
+
+        /* Cards de sélection */
+        .quiz-select{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+        .quiz-card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:16px;padding:30px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+        .quiz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+        .quiz-card.eco::before{background:linear-gradient(90deg,#00b894,#00cec9)}
+        .quiz-card.mana::before{background:linear-gradient(90deg,#6c5ce7,#a29bfe)}
+        .quiz-card.droit::before{background:linear-gradient(90deg,#e94560,#ff6b6b)}
+        .quiz-card:hover{transform:translateY(-5px);border-color:#3a3a5a;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+        .quiz-card.eco:hover{box-shadow:0 10px 40px rgba(0,206,201,.15)}
+        .quiz-card.mana:hover{box-shadow:0 10px 40px rgba(162,155,254,.15)}
+        .quiz-card.droit:hover{box-shadow:0 10px 40px rgba(233,69,96,.15)}
+        .quiz-card-icon{font-size:2.5rem;margin-bottom:15px}
+        .quiz-card-title{font-size:1.3rem;font-weight:700;margin-bottom:8px}
+        .quiz-card.eco .quiz-card-title{color:#00cec9}
+        .quiz-card.mana .quiz-card-title{color:#a29bfe}
+        .quiz-card.droit .quiz-card-title{color:#ff6b6b}
+        .quiz-card-count{font-size:.85rem;color:#8892b0}
+
+        /* Zone de quizz */
+        .quiz-zone{display:none}
+        .quiz-zone.active{display:block}
+
+        .quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:10px}
+        .quiz-back{background:none;border:1px solid #2a2a4a;color:#8892b0;padding:8px 18px;border-radius:10px;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .3s}
+        .quiz-back:hover{border-color:#e94560;color:#fff}
+        .quiz-progress{font-size:.9rem;color:#8892b0;font-weight:600}
+        .quiz-progress strong{color:#fff}
+
+        .progress-bar{width:100%;height:6px;background:#1a1a2e;border-radius:3px;margin-bottom:30px;overflow:hidden}
+        .progress-fill{height:100%;border-radius:3px;transition:width .4s ease}
+        .progress-fill.eco{background:linear-gradient(90deg,#00b894,#00cec9)}
+        .progress-fill.mana{background:linear-gradient(90deg,#6c5ce7,#a29bfe)}
+        .progress-fill.droit{background:linear-gradient(90deg,#e94560,#ff6b6b)}
+
+        .question-card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:16px;padding:35px;margin-bottom:20px}
+        .question-text{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:25px;line-height:1.6}
+        .question-number{font-size:.8rem;color:#4a4a6a;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+
+        .choices{display:flex;flex-direction:column;gap:12px}
+        .choice-btn{background:#161625;border:1px solid #2a2a4a;border-radius:12px;padding:16px 20px;text-align:left;color:#e0e0e0;font-size:1rem;cursor:pointer;transition:all .3s;line-height:1.5;display:flex;align-items:center;gap:12px}
+        .choice-btn:hover:not(.disabled){border-color:#3a3a5a;background:#1e1e35}
+        .choice-letter{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;background:rgba(255,255,255,.06);color:#8892b0;transition:all .3s}
+        .choice-btn.correct{border-color:#00b894;background:rgba(0,184,148,.1)}
+        .choice-btn.correct .choice-letter{background:#00b894;color:#fff}
+        .choice-btn.wrong{border-color:#e94560;background:rgba(233,69,96,.1)}
+        .choice-btn.wrong .choice-letter{background:#e94560;color:#fff}
+        .choice-btn.show-correct{border-color:#00b894;background:rgba(0,184,148,.06)}
+        .choice-btn.show-correct .choice-letter{background:rgba(0,184,148,.3);color:#00b894}
+        .choice-btn.disabled{cursor:default;opacity:.85}
+
+        .feedback{margin-top:20px;padding:15px 20px;border-radius:12px;font-size:.95rem;font-weight:600;display:none;line-height:1.5}
+        .feedback.correct{background:rgba(0,184,148,.1);border:1px solid rgba(0,184,148,.3);color:#00b894;display:block}
+        .feedback.wrong{background:rgba(233,69,96,.1);border:1px solid rgba(233,69,96,.3);color:#ff6b6b;display:block}
+
+        .next-btn{display:none;margin-top:25px;padding:14px 35px;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;color:#fff}
+        .next-btn.eco{background:linear-gradient(135deg,#00b894,#00cec9)}
+        .next-btn.mana{background:linear-gradient(135deg,#6c5ce7,#a29bfe)}
+        .next-btn.droit{background:linear-gradient(135deg,#e94560,#ff6b6b)}
+        .next-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+
+        /* Résultats */
+        .results{display:none;text-align:center;padding:50px 20px}
+        .results.active{display:block}
+        .results-score{font-size:4rem;font-weight:800;margin-bottom:10px}
+        .results-score.eco{color:#00cec9}
+        .results-score.mana{color:#a29bfe}
+        .results-score.droit{color:#ff6b6b}
+        .results-label{font-size:1.2rem;color:#8892b0;margin-bottom:8px}
+        .results-message{font-size:1rem;color:#8892b0;margin-bottom:35px}
+        .results-actions{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+        .results-btn{padding:14px 30px;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;text-decoration:none;border:none}
+        .results-btn:hover{transform:translateY(-2px)}
+        .results-btn.primary{color:#fff}
+        .results-btn.primary.eco{background:linear-gradient(135deg,#00b894,#00cec9)}
+        .results-btn.primary.mana{background:linear-gradient(135deg,#6c5ce7,#a29bfe)}
+        .results-btn.primary.droit{background:linear-gradient(135deg,#e94560,#ff6b6b)}
+        .results-btn.secondary{background:transparent;border:1px solid #2a2a4a;color:#8892b0}
+        .results-btn.secondary:hover{border-color:#e94560;color:#fff}
+
+        .footer{text-align:center;padding:30px 20px;color:#4a4a6a;font-size:.85rem;border-top:1px solid #1a1a2e}
+
+        @media(max-width:768px){
+            .header h1{font-size:1.8rem}
+            .quiz-select{grid-template-columns:1fr}
+            .question-card{padding:25px 18px}
+            .question-text{font-size:1.05rem}
+            .quiz-header{flex-direction:column;align-items:flex-start}
+        }
+
+        /* Light mode */
+        .light-mode body{background:#f5f6fa;color:#2d3436}
+        .light-mode .topbar{background:#fff}
+        .light-mode .topbar a:hover{color:#2d3436}
+        .light-mode .topbar .title{color:#636e72}
+        .light-mode .header{background:linear-gradient(135deg,#f0f0f5 0%,#e8e8f0 50%,#dde0e8 100%)}
+        .light-mode .header h1{color:#2d3436}
+        .light-mode .header p{color:#636e72}
+        .light-mode .filter-btn{background:#f0f0f5;color:#636e72;border-color:#dfe6e9}
+        .light-mode .filter-btn:hover{border-color:#bbb;color:#2d3436}
+        .light-mode .quiz-card{background:#fff;border-color:#dfe6e9}
+        .light-mode .quiz-card:hover{background:#f8f9fa;border-color:#ccc}
+        .light-mode .quiz-back{background:#f0f0f5;border-color:#dfe6e9;color:#636e72}
+        .light-mode .quiz-back:hover{border-color:#e94560;color:#e94560}
+        .light-mode .quiz-progress{color:#636e72}
+        .light-mode .quiz-progress strong{color:#2d3436}
+        .light-mode .progress-bar{background:#dfe6e9}
+        .light-mode .question-card{background:#fff;border-color:#dfe6e9}
+        .light-mode .question-text{color:#2d3436}
+        .light-mode .question-number{color:#999}
+        .light-mode .choice-btn{background:#f8f9fa;border-color:#dfe6e9;color:#2d3436}
+        .light-mode .choice-btn:hover:not(.disabled){background:#f0f0f5;border-color:#ccc}
+        .light-mode .choice-letter{background:rgba(0,0,0,.04);color:#636e72}
+        .light-mode .results-label{color:#636e72}
+        .light-mode .results-message{color:#999}
+        .light-mode .results-btn.secondary{background:#f0f0f5;border-color:#dfe6e9;color:#636e72}
+        .light-mode .results-btn.secondary:hover{border-color:#e94560;color:#e94560}
+        .light-mode .footer{color:#aaa;border-top-color:#dfe6e9}
+        .light-mode #theme-toggle{background:rgba(0,0,0,.06)}
+        .light-mode .quiz-card-count{color:#999}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar">
+        <a href="cejm.html">&larr; CEJM</a>
+        <span class="title">Quizz CEJM</span>
+        <a href="definitions.html" style="margin-left:auto;">Definitions</a>
+        <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
+    </div>
+
+    <div class="header">
+        <h1>Quizz CEJM</h1>
+        <p>Testez vos connaissances en Economie, Management et Droit avec des QCM</p>
+        <div class="filters" id="filters">
+            <button class="filter-btn eco active" onclick="showCategory('eco')">Economie (10)</button>
+            <button class="filter-btn mana" onclick="showCategory('mana')">Management (10)</button>
+            <button class="filter-btn droit" onclick="showCategory('droit')">Droit (10)</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Selection cards -->
+        <div class="quiz-select" id="quizSelect">
+            <div class="quiz-card eco" onclick="startQuiz('eco')">
+                <div class="quiz-card-icon">$</div>
+                <div class="quiz-card-title">Economie</div>
+                <div class="quiz-card-count">10 questions</div>
+            </div>
+            <div class="quiz-card mana" onclick="startQuiz('mana')">
+                <div class="quiz-card-icon">&#9881;</div>
+                <div class="quiz-card-title">Management</div>
+                <div class="quiz-card-count">10 questions</div>
+            </div>
+            <div class="quiz-card droit" onclick="startQuiz('droit')">
+                <div class="quiz-card-icon">&#9878;</div>
+                <div class="quiz-card-title">Droit</div>
+                <div class="quiz-card-count">10 questions</div>
+            </div>
+        </div>
+
+        <!-- Quiz zone -->
+        <div class="quiz-zone" id="quizZone">
+            <div class="quiz-header">
+                <button class="quiz-back" onclick="backToSelect()">&larr; Retour</button>
+                <div class="quiz-progress">Question <strong id="currentQ">1</strong> / <strong id="totalQ">10</strong></div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="choices" id="choices"></div>
+                <div class="feedback" id="feedback"></div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Suivant &rarr;</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results" id="results">
+            <div class="results-label">Votre score</div>
+            <div class="results-score" id="resultsScore"></div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="results-actions">
+                <button class="results-btn primary" id="retryBtn" onclick="retryQuiz()">Recommencer</button>
+                <button class="results-btn secondary" onclick="backToSelect()">Choisir un autre quizz</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">CEJM - BTS ESUPEC &mdash; Quizz de revision</div>
+
+<script>
+// Questions data
+const quizData = {
+    eco: [
+        {
+            q: "Quel mecanisme ajuste les prix sur un marche de concurrence pure et parfaite (CPP) ?",
+            choices: ["L'intervention de l'Etat", "La loi de l'offre et de la demande", "Les accords entre entreprises", "La fixation par le monopole"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce qu'une externalite negative ?",
+            choices: ["Un effet positif sur un tiers non implique", "Un cout supporte par un tiers sans compensation", "Une subvention de l'Etat", "Un avantage concurrentiel"],
+            correct: 1
+        },
+        {
+            q: "Quels sont les deux principaux facteurs de production ?",
+            choices: ["L'offre et la demande", "Le travail et le capital", "Le profit et le chiffre d'affaires", "L'import et l'export"],
+            correct: 1
+        },
+        {
+            q: "Que mesure le PIB ?",
+            choices: ["Le niveau de bonheur d'un pays", "La richesse produite sur un territoire en un an", "Le nombre d'entreprises dans un pays", "Le taux de chomage national"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce qu'un monopole ?",
+            choices: ["Un marche avec de nombreux vendeurs", "Un marche ou un seul offreur domine", "Un accord entre entreprises concurrentes", "Un marche sans barriere a l'entree"],
+            correct: 1
+        },
+        {
+            q: "Quel agent economique produit des biens et services marchands ?",
+            choices: ["Les menages", "Les administrations publiques", "Les entreprises", "Les institutions financieres"],
+            correct: 2
+        },
+        {
+            q: "Que signifie la 'main invisible' d'Adam Smith ?",
+            choices: ["L'Etat intervient discretement dans l'economie", "Le marche s'autoregule par la poursuite des interets individuels", "Les banques centrales controlent les prix", "Les syndicats orientent les salaires"],
+            correct: 1
+        },
+        {
+            q: "Quelle est une condition de la concurrence pure et parfaite (CPP) ?",
+            choices: ["Peu d'offreurs sur le marche", "L'homogeneite des produits", "Des barrieres a l'entree elevees", "Une information asymetrique"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce qu'un bien public ?",
+            choices: ["Un bien vendu par l'Etat", "Un bien non rival et non excluable", "Un bien reserve aux fonctionnaires", "Un bien produit en grande quantite"],
+            correct: 1
+        },
+        {
+            q: "Sur le marche du travail, qui represente l'offre ?",
+            choices: ["Les entreprises qui proposent des emplois", "Les salaries qui proposent leur force de travail", "L'Etat qui fixe le SMIC", "Les syndicats qui negocient les salaires"],
+            correct: 1
+        }
+    ],
+    mana: [
+        {
+            q: "Selon Freeman, qu'est-ce qu'une partie prenante (stakeholder) ?",
+            choices: ["Un actionnaire de l'entreprise uniquement", "Tout individu ou groupe affecte par ou pouvant affecter l'entreprise", "Un salarie syndique", "Un fournisseur strategique"],
+            correct: 1
+        },
+        {
+            q: "Selon Cyert et March, comment se prennent les decisions dans l'organisation ?",
+            choices: ["Par un decideur rationnel unique", "Par des coalitions qui negocient des compromis", "Par vote democratique des salaries", "Par imitation des concurrents"],
+            correct: 1
+        },
+        {
+            q: "Quelle est la contribution principale de Crozier au management ?",
+            choices: ["La pyramide des besoins", "L'analyse strategique du pouvoir et des zones d'incertitude", "La chaine de valeur", "Les 5 forces concurrentielles"],
+            correct: 1
+        },
+        {
+            q: "Combien de forces concurrentielles identifie le modele de Porter ?",
+            choices: ["3", "4", "5", "7"],
+            correct: 2
+        },
+        {
+            q: "Que signifie RSE ?",
+            choices: ["Reglementation Sociale Europeenne", "Responsabilite Societale des Entreprises", "Ratio de Solvabilite Economique", "Restructuration Strategique d'Entreprise"],
+            correct: 1
+        },
+        {
+            q: "Quelle est la difference entre efficacite et efficience ?",
+            choices: ["Il n'y a pas de difference", "L'efficacite atteint les objectifs, l'efficience minimise les ressources utilisees", "L'efficience est toujours superieure a l'efficacite", "L'efficacite concerne les couts, l'efficience les resultats"],
+            correct: 1
+        },
+        {
+            q: "Selon Mintzberg, quel element est le 'sommet strategique' de l'organisation ?",
+            choices: ["Les ouvriers et operateurs", "La direction generale", "Les cadres intermediaires", "Le service logistique"],
+            correct: 1
+        },
+        {
+            q: "Quel style de management est qualifie de 'participatif' selon Likert ?",
+            choices: ["Le style autoritaire exploiteur", "Le style autoritaire paternaliste", "Le style consultatif", "Le style participatif par groupe"],
+            correct: 3
+        },
+        {
+            q: "Dans la pyramide de Maslow, quel besoin est a la base ?",
+            choices: ["L'estime de soi", "L'accomplissement personnel", "Les besoins physiologiques", "Le besoin de securite"],
+            correct: 2
+        },
+        {
+            q: "Que represente le 'S' dans l'analyse SWOT ?",
+            choices: ["Strategy", "Strengths (forces)", "Solutions", "Suppliers"],
+            correct: 1
+        }
+    ],
+    droit: [
+        {
+            q: "Quelles sont les 3 conditions de validite d'un contrat (Code civil) ?",
+            choices: ["Prix, delai, qualite", "Consentement, capacite, contenu licite et certain", "Signature, temoin, notaire", "Offre, acceptation, paiement"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce qu'un vice du consentement ?",
+            choices: ["Un defaut du produit vendu", "Une erreur, un dol ou une violence qui altere le consentement", "Un retard de livraison", "Un defaut de paiement"],
+            correct: 1
+        },
+        {
+            q: "Que signifie le principe de liberte contractuelle ?",
+            choices: ["Les contrats n'ont aucune valeur juridique", "Les parties sont libres de contracter ou non et de choisir le contenu", "Seul l'Etat peut rediger des contrats", "Les contrats sont toujours gratuits"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce que la responsabilite civile delictuelle ?",
+            choices: ["La responsabilite d'un contrat non respecte", "L'obligation de reparer un dommage cause a autrui hors contrat", "Une sanction penale", "La responsabilite des parents pour leurs enfants uniquement"],
+            correct: 1
+        },
+        {
+            q: "Que signifie RGPD ?",
+            choices: ["Reglement General sur la Production de Donnees", "Reglement General sur la Protection des Donnees", "Reglementation Globale pour le Partage Digital", "Reglement General de Prevention Digitale"],
+            correct: 1
+        },
+        {
+            q: "Quel droit protege une oeuvre originale de l'esprit ?",
+            choices: ["Le droit commercial", "Le droit d'auteur", "Le droit fiscal", "Le droit du travail"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce qu'un nom de domaine ?",
+            choices: ["Le nom commercial d'une entreprise", "L'adresse d'un site internet (ex: monsite.fr)", "Le nom du proprietaire du serveur", "Le titre d'une page web"],
+            correct: 1
+        },
+        {
+            q: "Quel principe juridique impose de reparer un dommage previsible ?",
+            choices: ["Le principe de precaution", "Le principe de prevention", "Le principe de proportionnalite", "Le principe d'equite"],
+            correct: 1
+        },
+        {
+            q: "Qu'est-ce que le 'dol' en droit des contrats ?",
+            choices: ["Une clause abusive", "Une manoeuvre trompeuse pour obtenir le consentement", "Un vice cache du produit", "Un retard de livraison intentionnel"],
+            correct: 1
+        },
+        {
+            q: "En matiere de responsabilite du fait des produits defectueux, qui est responsable ?",
+            choices: ["Uniquement le vendeur", "Le producteur du bien", "Uniquement l'acheteur", "Le transporteur"],
+            correct: 1
+        }
+    ]
+};
+
+const categoryNames = { eco: 'Economie', mana: 'Management', droit: 'Droit' };
+
+let currentCategory = null;
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+
+function showCategory(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn.' + cat).classList.add('active');
+    // Scroll to the matching card
+    document.querySelectorAll('.quiz-card').forEach(c => {
+        c.style.display = c.classList.contains(cat) ? '' : 'none';
+    });
+}
+
+function startQuiz(cat) {
+    currentCategory = cat;
+    currentQuestions = shuffleArray([...quizData[cat]]);
+    currentIndex = 0;
+    score = 0;
+    answered = false;
+
+    document.getElementById('quizSelect').style.display = 'none';
+    document.getElementById('filters').style.display = 'none';
+    document.getElementById('results').classList.remove('active');
+    document.getElementById('quizZone').classList.add('active');
+    document.getElementById('totalQ').textContent = currentQuestions.length;
+
+    var pf = document.getElementById('progressFill');
+    pf.className = 'progress-fill ' + cat;
+
+    var nb = document.getElementById('nextBtn');
+    nb.className = 'next-btn ' + cat;
+
+    renderQuestion();
+}
+
+function renderQuestion() {
+    answered = false;
+    var q = currentQuestions[currentIndex];
+    document.getElementById('currentQ').textContent = currentIndex + 1;
+    document.getElementById('questionNumber').textContent = 'Question ' + (currentIndex + 1);
+    document.getElementById('questionText').textContent = q.q;
+    document.getElementById('progressFill').style.width = ((currentIndex / currentQuestions.length) * 100) + '%';
+
+    var feedback = document.getElementById('feedback');
+    feedback.className = 'feedback';
+    feedback.style.display = 'none';
+
+    document.getElementById('nextBtn').style.display = 'none';
+
+    var letters = ['A', 'B', 'C', 'D'];
+    var choicesEl = document.getElementById('choices');
+    choicesEl.innerHTML = '';
+
+    q.choices.forEach(function(choice, i) {
+        var btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.innerHTML = '<span class="choice-letter">' + letters[i] + '</span><span>' + choice + '</span>';
+        btn.onclick = function() { selectAnswer(i); };
+        choicesEl.appendChild(btn);
+    });
+}
+
+function selectAnswer(index) {
+    if (answered) return;
+    answered = true;
+
+    var q = currentQuestions[currentIndex];
+    var btns = document.querySelectorAll('.choice-btn');
+    var feedback = document.getElementById('feedback');
+
+    btns.forEach(function(btn, i) {
+        btn.classList.add('disabled');
+        if (i === q.correct) {
+            btn.classList.add(i === index ? 'correct' : 'show-correct');
+        }
+        if (i === index && i !== q.correct) {
+            btn.classList.add('wrong');
+        }
+    });
+
+    if (index === q.correct) {
+        score++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = 'Bonne reponse !';
+    } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = 'Mauvaise reponse. La bonne reponse etait : ' + q.choices[q.correct];
+    }
+    feedback.style.display = 'block';
+
+    var nextBtn = document.getElementById('nextBtn');
+    nextBtn.style.display = 'inline-block';
+    nextBtn.textContent = (currentIndex === currentQuestions.length - 1) ? 'Voir les resultats' : 'Suivant \u2192';
+}
+
+function nextQuestion() {
+    currentIndex++;
+    if (currentIndex >= currentQuestions.length) {
+        showResults();
+    } else {
+        renderQuestion();
+    }
+}
+
+function showResults() {
+    document.getElementById('quizZone').classList.remove('active');
+    document.getElementById('results').classList.add('active');
+
+    var total = currentQuestions.length;
+    var pct = Math.round((score / total) * 100);
+
+    document.getElementById('resultsScore').textContent = score + '/' + total;
+    document.getElementById('resultsScore').className = 'results-score ' + currentCategory;
+
+    var msg = '';
+    if (pct === 100) msg = 'Parfait ! Vous maitrisez le sujet !';
+    else if (pct >= 80) msg = 'Tres bien ! Quelques details a revoir.';
+    else if (pct >= 60) msg = 'Pas mal ! Continuez a reviser.';
+    else if (pct >= 40) msg = 'Peut mieux faire. Relisez vos fiches !';
+    else msg = 'Il faut reviser ! Retournez voir les fiches.';
+
+    document.getElementById('resultsMessage').textContent = msg;
+
+    var retryBtn = document.getElementById('retryBtn');
+    retryBtn.className = 'results-btn primary ' + currentCategory;
+    retryBtn.textContent = 'Recommencer ' + categoryNames[currentCategory];
+}
+
+function retryQuiz() {
+    startQuiz(currentCategory);
+}
+
+function backToSelect() {
+    document.getElementById('quizZone').classList.remove('active');
+    document.getElementById('results').classList.remove('active');
+    document.getElementById('quizSelect').style.display = '';
+    document.getElementById('filters').style.display = '';
+    // Show all cards again
+    document.querySelectorAll('.quiz-card').forEach(c => c.style.display = '');
+    // Reset filter
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+}
+
+function shuffleArray(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr;
+}
+
+// Theme toggle
+function toggleTheme(e) {
+    e.preventDefault();
+    document.documentElement.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.documentElement.classList.contains('light-mode') ? 'light' : 'dark');
+    document.getElementById('theme-toggle').textContent = document.documentElement.classList.contains('light-mode') ? 'Mode sombre' : 'Mode clair';
+}
+(function(){
+    if (document.documentElement.classList.contains('light-mode')) {
+        var t = document.getElementById('theme-toggle');
+        if (t) t.textContent = 'Mode sombre';
+    }
+})();
+</script>
+</body>
+</html>
