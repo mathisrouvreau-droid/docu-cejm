@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS SIO SISR - Révisions complètes</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #00e676;position:sticky;top:0;z-index:100}.topbar a{color:#69f0ae;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a2e1a);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(0,230,118,.15);color:#69f0ae;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#00b894,#00e676);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#69f0ae}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#69f0ae;font-weight:600}.def-box{background:rgba(0,230,118,.08);border-left:3px solid #00e676;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(0,230,118,.12),rgba(105,240,174,.06));border:1px solid rgba(0,230,118,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(0,230,118,.12);color:#69f0ae;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#69f0ae;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}.exam-q{color:#69f0ae;font-weight:700;margin-bottom:4px}.exam-a{color:#8892b0;font-style:italic;font-size:.9rem;margin-bottom:12px;padding-left:15px;border-left:2px solid #2a2a4a}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#00e676}.light-mode .topbar a{color:#00b894}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e8f5e9)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(0,184,148,.1);color:#00b894}.light-mode .section-title{color:#00b894}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#00b894}.light-mode .def-box{background:rgba(0,184,148,.05);border-left-color:#00b894}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#f0faf5;border-color:#c8e6c9}.light-mode th{background:rgba(0,184,148,.08);color:#00b894}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#00875a}.light-mode .exam-q{color:#00b894}.light-mode .exam-a{color:#888;border-left-color:#dfe6e9}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#00b894}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../cybersecurite.html">&larr; Cybersécurité</a><span class="title">BTS SIO SISR &bull; 13 notions</span><a href="../definitions-cyber.html" style="margin-left:auto;">Définitions</a><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">BTS SIO SISR</div>
+        <h1>Révisions complètes — 13 notions</h1>
+        <p>Cours, avantages/inconvénients et questions types d'examen pour chaque notion</p>
+    </div>
+    <div class="container">
+
+<!-- 1. POWERSHELL -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">PowerShell</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">PowerShell</span> est un shell en ligne de commande et un langage de script développé par Microsoft. Basé sur le framework .NET, il permet d'automatiser l'administration des systèmes Windows (et Linux depuis PowerShell Core).</p></div>
+        <h3>Caractéristiques clés</h3>
+        <ul>
+            <li><span class="keyword">Cmdlets</span> : commandes natives au format Verbe-Nom (ex : Get-Service, Set-Item)</li>
+            <li><span class="keyword">Pipeline (|)</span> : enchaîner des commandes pour passer les objets d'une commande à l'autre</li>
+            <li><span class="keyword">Scripts .ps1</span> : fichiers de scripts PowerShell exécutables</li>
+            <li><span class="keyword">Objets .NET</span> : contrairement au bash, PowerShell manipule des objets structurés, pas juste du texte</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Commandes essentielles</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Commande</th><th>Description</th></tr>
+            <tr><td><span class="keyword">Get-Help &lt;cmd&gt;</span></td><td>Affiche l'aide d'une commande</td></tr>
+            <tr><td><span class="keyword">Get-Service</span></td><td>Liste les services Windows</td></tr>
+            <tr><td><span class="keyword">Start/Stop-Service</span></td><td>Démarrer/arrêter un service</td></tr>
+            <tr><td><span class="keyword">Get-Process</span></td><td>Liste les processus en cours</td></tr>
+            <tr><td><span class="keyword">Get-EventLog</span></td><td>Consulter les journaux d'événements</td></tr>
+            <tr><td><span class="keyword">Get-ADUser</span></td><td>Gestion Active Directory (module RSAT)</td></tr>
+            <tr><td><span class="keyword">Invoke-Command</span></td><td>Exécuter des commandes sur un PC distant</td></tr>
+            <tr><td><span class="keyword">Set-ExecutionPolicy</span></td><td>Définir la politique d'exécution des scripts</td></tr>
+        </table></div>
+        <div class="warn-box"><p><strong>ExecutionPolicy :</strong><br>
+            &bull; <span class="keyword">Restricted</span> : aucun script autorisé (par défaut)<br>
+            &bull; <span class="keyword">RemoteSigned</span> : scripts locaux OK, distants doivent être signés<br>
+            &bull; <span class="keyword">Unrestricted</span> : tous les scripts s'exécutent (risque sécurité)</p></div>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Automatisation puissante (création comptes AD, déploiement...)</li>
+            <li>Intégration native avec l'écosystème Microsoft (AD, Exchange, Azure)</li>
+            <li>Manipulation d'objets .NET : résultats structurés et filtrables</li>
+            <li>Multiplateforme depuis PowerShell Core</li>
+            <li>Télégestion : Invoke-Command sur des dizaines de serveurs</li>
+            <li>Traçabilité : scripts auditables et reproductibles</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Courbe d'apprentissage (syntaxe objets et pipelines)</li>
+            <li>Politique d'exécution restrictive par défaut</li>
+            <li>Risque de sécurité si mal sécurisé (scripts malveillants)</li>
+            <li>Moins adapté que bash pour les environnements Linux purs</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Automatiser la création de 50 comptes AD depuis un fichier CSV ?</p>
+        <p class="exam-a">&rarr; Import-Csv + New-ADUser en boucle foreach. Module ActiveDirectory (RSAT).</p>
+        <p class="exam-q">Q2. Erreur « L'exécution de scripts est désactivée sur ce système » ?</p>
+        <p class="exam-a">&rarr; ExecutionPolicy Restricted par défaut &rarr; Set-ExecutionPolicy RemoteSigned.</p>
+        <p class="exam-q">Q3. Vérifier à distance l'état des services sur 10 serveurs ?</p>
+        <p class="exam-a">&rarr; Invoke-Command -ComputerName + Get-Service. Prérequis : WinRM activé, pare-feu, droits admin.</p>
+        <p class="exam-q">Q4. Différence entre PowerShell et cmd.exe ?</p>
+        <p class="exam-a">&rarr; PowerShell = objets .NET, cmdlets, scripting avancé. CMD = commandes simples, compatibilité ancienne.</p>
+        <p class="exam-q">Q5. Lister les comptes admin locaux de 20 postes ?</p>
+        <p class="exam-a">&rarr; Invoke-Command + Get-LocalGroupMember 'Administrators'. Export vers CSV avec Export-Csv.</p>
+    </div>
+</div>
+
+<!-- 2. RAID -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">RAID (Redundant Array of Independent Disks)</div></div>
+    <div class="card">
+        <div class="def-box"><p>Le <span class="keyword">RAID</span> est une technologie permettant de combiner plusieurs disques durs physiques en un seul volume logique pour améliorer les performances, la redondance (tolérance aux pannes) ou les deux.</p></div>
+        <h3>Les niveaux de RAID principaux</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Niveau</th><th>Description</th></tr>
+            <tr><td><span class="keyword">RAID 0 — Striping</span></td><td>Données réparties sur 2+ disques. Performances max. Aucune redondance : si 1 disque tombe, tout est perdu.</td></tr>
+            <tr><td><span class="keyword">RAID 1 — Mirroring</span></td><td>Données dupliquées sur 2 disques identiques. Tolérance : 1 disque. Capacité utile = 1 seul disque.</td></tr>
+            <tr><td><span class="keyword">RAID 5 — Striping + parité</span></td><td>Données + parité réparties sur 3+ disques. Tolérance : 1 disque. Capacité = (N-1) disques.</td></tr>
+            <tr><td><span class="keyword">RAID 6 — Double parité</span></td><td>Comme RAID 5 mais 2 disques de parité. Tolérance : 2 disques. Nécessite 4+ disques.</td></tr>
+            <tr><td><span class="keyword">RAID 10 (1+0)</span></td><td>Miroir de stripes. Hautes performances + tolérance aux pannes. Nécessite 4+ disques.</td></tr>
+        </table></div>
+        <div class="warn-box"><p><strong>RAID matériel</strong> : contrôleur dédié, plus performant, transparent pour l'OS.<br><strong>RAID logiciel</strong> : géré par l'OS (Windows Storage Spaces, mdadm Linux), moins performant.</p></div>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>RAID 1 : tolérance immédiate, lecture rapide en parallèle</li>
+            <li>RAID 5 : bon compromis capacité/performance/redondance</li>
+            <li>RAID 10 : meilleures perfs lecture/écriture + haute tolérance</li>
+            <li>Continuité de service : le système continue sans interruption</li>
+            <li>Hot spare : disque de rechange à chaud automatique</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>RAID 0 : aucune tolérance, perte totale si 1 disque tombe</li>
+            <li>RAID 5 : vulnérable lors de la reconstruction (2e panne = perte totale)</li>
+            <li><strong>RAID n'est PAS une sauvegarde</strong> : suppression ou ransomware affecte tous les disques</li>
+            <li>RAID 5/6 : pénalité en écriture (calcul de parité)</li>
+            <li>RAID 10 : nécessite 2x plus de disques</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. 4 disques de 2 To, maximiser disponibilité et performances ?</p>
+        <p class="exam-a">&rarr; RAID 10 &rarr; 4 To utiles (50% de 8 To). 1 panne par miroir tolérée.</p>
+        <p class="exam-q">Q2. Un disque tombe en RAID 5 (3 disques de 1 To), conséquences ?</p>
+        <p class="exam-a">&rarr; Fonctionnement dégradé. Si 2e panne avant reconstruction &rarr; perte totale.</p>
+        <p class="exam-q">Q3. « J'ai du RAID 1, donc mes données sont sauvegardées » ?</p>
+        <p class="exam-a">&rarr; RAID ≠ sauvegarde. Ne protège pas contre suppression, ransomware, vol. Recommander 3-2-1.</p>
+        <p class="exam-q">Q4. RAID 5 vs RAID 6 ?</p>
+        <p class="exam-a">&rarr; RAID 6 = 2 disques de parité, tolère 2 pannes. Choisir quand disques &gt;4 To (reconstruction longue).</p>
+        <p class="exam-q">Q5. RAID matériel vs RAID logiciel ?</p>
+        <p class="exam-a">&rarr; RAID matériel = contrôleur dédié, cache, meilleure perf, transparent. Recommandé en production.</p>
+    </div>
+</div>
+
+<!-- 3. HTTPS -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">HTTPS (HyperText Transfer Protocol Secure)</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">HTTPS</span> est la version sécurisée du protocole HTTP. Il utilise <strong>TLS</strong> (Transport Layer Security) pour chiffrer les communications entre le client et le serveur web. Port par défaut : <strong>443</strong>.</p></div>
+        <h3>Fonctionnement TLS</h3>
+        <ul>
+            <li><span class="keyword">1. Handshake TLS</span> : négociation des algorithmes + authentification via certificat</li>
+            <li><span class="keyword">2. Échange de clés</span> : clé de session symétrique générée</li>
+            <li><span class="keyword">3. Communication chiffrée</span> : toutes les données sont chiffrées</li>
+        </ul>
+        <h3 style="margin-top:15px">Types de certificats SSL/TLS</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Description</th></tr>
+            <tr><td><span class="keyword">DV</span></td><td>Domain Validation — vérifie uniquement le domaine. Rapide et gratuit (Let's Encrypt).</td></tr>
+            <tr><td><span class="keyword">OV</span></td><td>Organization Validation — vérifie l'organisation. Plus de confiance.</td></tr>
+            <tr><td><span class="keyword">EV</span></td><td>Extended Validation — nom de l'entreprise visible. Très haute confiance.</td></tr>
+            <tr><td><span class="keyword">Auto-signé</span></td><td>Non reconnu publiquement. Usage interne uniquement.</td></tr>
+        </table></div>
+        <div class="warn-box"><p><strong>HTTP</strong> : données en clair, port 80, vulnérable. <strong>HTTPS</strong> : données chiffrées, port 443, authentification du serveur. Un site phishing peut aussi avoir un certificat HTTPS valide !</p></div>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Chiffrement de bout en bout</li>
+            <li>Authentification du serveur via certificat</li>
+            <li>Intégrité des données garantie par TLS</li>
+            <li>SEO : Google favorise les sites HTTPS</li>
+            <li>Gratuit avec Let's Encrypt (certificats DV)</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Certificats OV/EV payants, renouvellement à gérer</li>
+            <li>Un certificat valide ne garantit PAS la légitimité du site</li>
+            <li>Config incorrecte (TLS 1.0/1.1, cipher faibles) = moins sécurisé</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Mettre en place HTTPS sur un serveur Apache/Nginx ?</p>
+        <p class="exam-a">&rarr; Obtenir certificat (Let's Encrypt ou CA interne), configurer virtual host SSL, port 443, rediriger HTTP&rarr;HTTPS, HSTS.</p>
+        <p class="exam-q">Q2. URL 'www.cr-agricoIe.fr' (I majuscule au lieu de l) ?</p>
+        <p class="exam-a">&rarr; Attaque homographe / typosquatting. HTTPS ne garantit pas la légitimité. Vérifier l'URL, utiliser les favoris.</p>
+        <p class="exam-q">Q3. Mécanisme de handshake TLS ?</p>
+        <p class="exam-a">&rarr; Version TLS, suite cryptographique, échange de clés (DH/ECDH), authentification par certificat, clé de session.</p>
+        <p class="exam-q">Q4. Certificat auto-signé vs CA reconnue ?</p>
+        <p class="exam-a">&rarr; Auto-signé : pas de tiers de confiance, avertissement navigateur, usage interne. CA reconnue : confiance publique.</p>
+        <p class="exam-q">Q5. Site web sous TLS 1.0, risques ?</p>
+        <p class="exam-a">&rarr; TLS 1.0/1.1 vulnérables (POODLE, BEAST). Migrer vers TLS 1.2 minimum, idéalement 1.3.</p>
+    </div>
+</div>
+
+<!-- 4. SSH -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">SSH (Secure Shell)</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">SSH</span> est un protocole réseau cryptographique permettant de se connecter à distance à un serveur de façon sécurisée. Il remplace Telnet (non chiffré). Port par défaut : <strong>22</strong>.</p></div>
+        <h3>Commandes essentielles</h3>
+        <pre><code>ssh user@ip                    # Connexion SSH basique
+ssh -p 2222 user@ip            # Port non standard
+ssh -i clé.pem user@ip         # Connexion avec fichier de clé privée
+scp fichier user@ip:/chemin    # Copier un fichier vers un serveur distant
+sftp user@ip                   # Session de transfert interactive</code></pre>
+        <div class="def-box"><p><strong>Authentification par clé SSH :</strong><br>1. <code>ssh-keygen</code> (générer la paire de clés)<br>2. <code>ssh-copy-id user@serveur</code> (copier la clé publique)<br>3. La clé privée reste sur le client, ne quitte jamais la machine</p></div>
+        <div class="warn-box"><p><strong>Bonnes pratiques SSH :</strong> Changer le port (ex : 2222) | <code>PermitRootLogin no</code> | Désactiver l'auth par mot de passe (<code>PasswordAuthentication no</code>) | Fail2Ban pour bloquer les IP après trop de tentatives</p></div>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Toutes les communications sont chiffrées</li>
+            <li>Authentification forte par clé</li>
+            <li>Multiusage : accès distant, SCP/SFTP, tunneling</li>
+            <li>Léger et disponible partout</li>
+            <li>Traçabilité : connexions loguées</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Port 22 très ciblé (scanners, bots bruteforce)</li>
+            <li>Gestion des clés complexe à grande échelle</li>
+            <li>Si clé privée compromise sans passphrase &rarr; accès immédiat</li>
+            <li>Pas d'interface graphique natif (CLI uniquement)</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Sécuriser l'accès SSH d'un serveur Linux (4 mesures) ?</p>
+        <p class="exam-a">&rarr; Port non standard, PermitRootLogin no, PasswordAuthentication no (clés uniquement), AllowUsers, MaxAuthTries.</p>
+        <p class="exam-q">Q2. Processus d'authentification par clé publique/privée ?</p>
+        <p class="exam-a">&rarr; ssh-keygen + ssh-copy-id. Le serveur chiffre un défi avec la clé pub, le client déchiffre avec la clé privée.</p>
+        <p class="exam-q">Q3. Centaines de tentatives SSH par jour ?</p>
+        <p class="exam-a">&rarr; Analyser /var/log/auth.log. Fail2Ban, changer port, désactiver auth par mot de passe, pare-feu.</p>
+        <p class="exam-q">Q4. SCP vs SFTP ?</p>
+        <p class="exam-a">&rarr; SCP = copie simple, rapide, scriptable. SFTP = session interactive, navigation, reprise sur erreur.</p>
+        <p class="exam-q">Q5. SSH vers les équipements Cisco depuis le siège ?</p>
+        <p class="exam-a">&rarr; Bastion SSH (jump host), clés SSH, IP whitelisting, config AAA sur Cisco (ip ssh version 2).</p>
+    </div>
+</div>
+
+<!-- 5. IDS / IPS -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">IDS et IPS</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">IDS</span> (Intrusion Detection System) : surveille le trafic et génère des alertes. Il ne bloque pas, il observe.<br><span class="keyword">IPS</span> (Intrusion Prevention System) : détecte ET bloque activement le trafic malveillant en temps réel. Positionné en inline dans le flux.</p></div>
+        <div class="table-wrap"><table>
+            <tr><th>Critère</th><th>IDS</th><th>IPS</th></tr>
+            <tr><td><span class="keyword">Rôle</span></td><td>Détecte uniquement</td><td>Détecte ET bloque</td></tr>
+            <tr><td><span class="keyword">Position</span></td><td>Mode passif (copie du trafic)</td><td>Mode inline (flux réel)</td></tr>
+            <tr><td><span class="keyword">Réaction</span></td><td>Génère des alertes</td><td>Bloque, rejette, réinitialise</td></tr>
+            <tr><td><span class="keyword">Faux positifs</span></td><td>Faible impact</td><td>Peut bloquer du trafic légitime</td></tr>
+            <tr><td><span class="keyword">Exemples</span></td><td>Snort (mode IDS), Suricata</td><td>Snort (mode IPS), Suricata IPS</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Types de détection</h3>
+        <ul>
+            <li><span class="keyword">Par signature</span> : compare à une base de signatures connues (efficace pour menaces connues)</li>
+            <li><span class="keyword">Comportementale / anomalie</span> : profil normal puis alerte en cas de déviation (efficace pour zero-day)</li>
+            <li><span class="keyword">NIDS/NIPS</span> : surveille le trafic réseau global</li>
+            <li><span class="keyword">HIDS/HIPS</span> : surveille les activités sur un seul système (fichiers, processus, logs)</li>
+        </ul>
+        <div class="def-box"><p><strong>Outils :</strong> Snort, Suricata (NIDS/NIPS) | OSSEC, Wazuh (HIDS) | Fail2Ban (bannissement d'IP simple)</p></div>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Détection en temps réel des attaques</li>
+            <li>Visibilité réseau complète + analyses forensiques</li>
+            <li>IPS : blocage automatique sans intervention humaine</li>
+            <li>Détection comportementale : détecte les menaces zero-day</li>
+            <li>Complémentaire au pare-feu (analyse le contenu)</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Faux positifs : risque de bloquer du trafic légitime (IPS)</li>
+            <li>Faux négatifs : attaque sophistiquée ou chiffrée peut passer</li>
+            <li>Signatures à mettre à jour régulièrement</li>
+            <li>DPI peut introduire de la latence</li>
+            <li>HTTPS chiffré difficile à inspecter</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Différence IDS / IPS, lequel recommander en premier ?</p>
+        <p class="exam-a">&rarr; IDS d'abord pour phase d'apprentissage, puis IPS une fois les règles affinées (éviter les faux positifs).</p>
+        <p class="exam-q">Q2. Alertes 'SYN Flood détecté' dans les logs IDS ?</p>
+        <p class="exam-a">&rarr; Attaque DDoS SYN Flood. Contre-mesures : SYN cookies, limitation connexions, filtrage IPS, blackholing.</p>
+        <p class="exam-q">Q3. Différence NIDS et HIDS ?</p>
+        <p class="exam-a">&rarr; NIDS = réseau (Snort). HIDS = hôte (OSSEC). Combiner : NIDS pour le périmètre, HIDS pour les serveurs critiques.</p>
+        <p class="exam-q">Q4. Détection par signature vs par anomalie ?</p>
+        <p class="exam-a">&rarr; Signature : efficace menaces connues, nécessite MAJ. Anomalie : détecte zero-day, plus de faux positifs.</p>
+        <p class="exam-q">Q5. IPS bloque des connexions légitimes vers la messagerie ?</p>
+        <p class="exam-a">&rarr; Analyser logs IPS, identifier la règle, vérifier si faux positif, créer exception (whitelist), documenter.</p>
+    </div>
+</div>
+
+<!-- 6. MitM -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Attaque Homme du Milieu (Man-in-the-Middle)</div></div>
+    <div class="card">
+        <div class="def-box"><p>Une attaque <span class="keyword">MitM</span> consiste pour un attaquant à s'intercaler secrètement entre deux parties qui communiquent. Il peut écouter, modifier ou injecter des données à l'insu des victimes.</p></div>
+        <h3>Techniques d'attaque</h3>
+        <ul>
+            <li><span class="keyword">ARP Poisoning</span> : fausses réponses ARP &rarr; tout le trafic passe par l'attaquant</li>
+            <li><span class="keyword">DNS Spoofing</span> : falsification des réponses DNS &rarr; redirection vers un faux site</li>
+            <li><span class="keyword">SSL Stripping</span> : dégrade HTTPS en HTTP &rarr; écoute des données en clair</li>
+            <li><span class="keyword">Evil Twin (WiFi)</span> : point d'accès WiFi malveillant imitant un réseau légitime</li>
+            <li><span class="keyword">BGP Hijacking</span> : détournement du routage Internet</li>
+        </ul>
+        <h3 style="margin-top:15px">Protections</h3>
+        <ul>
+            <li><span class="keyword">HTTPS / TLS</span> : chiffrer les communications</li>
+            <li><span class="keyword">HSTS</span> : force le navigateur à toujours utiliser HTTPS</li>
+            <li><span class="keyword">VPN</span> : chiffrer tout le trafic réseau</li>
+            <li><span class="keyword">DAI</span> (Dynamic ARP Inspection) : valide les paquets ARP sur les switchs managés</li>
+            <li>Éviter les WiFi publics ou utiliser un VPN systématiquement</li>
+        </ul>
+        <div class="warn-box"><p><strong>Scénario type :</strong> un employé se connecte au WiFi d'un hôtel. Un attaquant a créé un faux point d'accès (Evil Twin). Toutes ses communications sont interceptées. <strong>Solution : VPN obligatoire</strong> sur tout réseau non maîtrisé.</p></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Suspicion d'ARP spoofing, comment détecter et corriger ?</p>
+        <p class="exam-a">&rarr; Analyser table ARP (arp -a), arpwatch/XArp. Corrective : activer DAI sur switchs Cisco, DHCP snooping.</p>
+        <p class="exam-q">Q2. Commercial utilisant le WiFi d'un hôtel pour le CRM ?</p>
+        <p class="exam-a">&rarr; Risques : Evil Twin, écoute réseau. Politique : VPN obligatoire, HTTPS pour toutes les apps, sensibilisation.</p>
+        <p class="exam-q">Q3. Attaque SSL Stripping, comment HSTS protège ?</p>
+        <p class="exam-a">&rarr; SSL Stripping dégrade HTTPS&rarr;HTTP. HSTS : le serveur impose HTTPS au navigateur (Strict-Transport-Security header).</p>
+        <p class="exam-q">Q4. Email du PDG demandant un virement de 50 000€ ?</p>
+        <p class="exam-a">&rarr; Business Email Compromise (BEC). Mesures : DMARC/DKIM/SPF, procédure double validation, MFA messagerie.</p>
+        <p class="exam-q">Q5. Qu'est-ce que le certificate pinning ?</p>
+        <p class="exam-a">&rarr; Associer une app à un certificat spécifique &rarr; résiste aux faux certificats. Utilisé dans les apps mobiles.</p>
+    </div>
+</div>
+
+<!-- 7. ITIL -->
+<div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">ITIL (Information Technology Infrastructure Library)</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">ITIL</span> est un référentiel de bonnes pratiques pour la gestion des services informatiques (ITSM). Cadre de référence (framework), pas une norme imposée. Version actuelle : ITIL 4.</p></div>
+        <h3>Les 5 étapes du cycle de vie ITIL</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Étape</th><th>Description</th></tr>
+            <tr><td><span class="keyword">1. Stratégie des services</span></td><td>Définir la stratégie, aligner l'IT sur les objectifs métier</td></tr>
+            <tr><td><span class="keyword">2. Conception des services</span></td><td>Concevoir les nouveaux services (SLA, capacité, disponibilité, sécurité)</td></tr>
+            <tr><td><span class="keyword">3. Transition des services</span></td><td>Mettre en production en maîtrisant les risques (gestion des changements, tests)</td></tr>
+            <tr><td><span class="keyword">4. Exploitation des services</span></td><td>Gérer au quotidien (incidents, problèmes, demandes, accès)</td></tr>
+            <tr><td><span class="keyword">5. Amélioration continue</span></td><td>Mesurer, analyser et améliorer en permanence (PDCA)</td></tr>
+        </table></div>
+        <div class="warn-box"><p><strong>Incident vs Problème vs Changement :</strong><br>
+        &bull; <span class="keyword">Incident</span> : interruption non planifiée. Action immédiate. Ex : messagerie inaccessible.<br>
+        &bull; <span class="keyword">Problème</span> : cause sous-jacente d'incidents. Investigation de fond. Ex : pourquoi le serveur tombe chaque lundi ?<br>
+        &bull; <span class="keyword">Changement</span> : modification planifiée. Ex : mise à jour de l'OS du serveur.</p></div>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Alignement IT / métier</li>
+            <li>Standardisation des processus (même langage)</li>
+            <li>Amélioration de la qualité de service</li>
+            <li>Gestion des risques (gestion des changements)</li>
+            <li>SLA mesurables et suivis</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Lourdeur administrative pour les petites structures</li>
+            <li>Coût de mise en oeuvre (formation, outils ITSM)</li>
+            <li>Risque de bureaucratie si mal appliqué</li>
+            <li>Cadre à adapter, pas de recette unique</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. 30 utilisateurs signalent que Outlook ne fonctionne pas. Processus ITIL ?</p>
+        <p class="exam-a">&rarr; Détection, enregistrement, catégorisation, priorisation, diagnostic, escalade, résolution, clôture.</p>
+        <p class="exam-q">Q2. Lenteur réseau récurrente en fin de mois (comptabilité). Gestion des problèmes ?</p>
+        <p class="exam-a">&rarr; Incident = rétablir. Problème = investiguer (RCA). Démarche : workaround, erreur connue (KEDB), solution définitive.</p>
+        <p class="exam-q">Q3. Migration serveur de fichiers vers un NAS. Gestion des changements ?</p>
+        <p class="exam-a">&rarr; RFC, évaluation risques/impacts, validation CAB, plan de rollback, test pré-prod, déploiement, revue post-implémentation.</p>
+        <p class="exam-q">Q4. Qu'est-ce qu'un SLA ? Exemple concret ?</p>
+        <p class="exam-a">&rarr; Accord de niveau de service. Ex : incidents critiques résolus en 4h, disponibilité 99,9%, hotline 8h-18h.</p>
+        <p class="exam-q">Q5. GLPI et démarche ITIL ?</p>
+        <p class="exam-a">&rarr; GLPI = outil ITSM. Supporte : gestion incidents (tickets), gestion actifs/CMDB, contrats, base de connaissances.</p>
+    </div>
+</div>
+
+<!-- 8. SAUVEGARDES -->
+<div class="section">
+    <div class="section-header"><div class="section-num">8</div><div class="section-title">Sauvegardes et Restaurations</div></div>
+    <div class="card">
+        <div class="def-box"><p>Une <span class="keyword">sauvegarde</span> (backup) est une copie des données permettant de les restaurer en cas de perte, corruption, cyberattaque ou sinistre. Élément central de la continuité d'activité.</p></div>
+        <h3>Types de sauvegardes</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Description</th></tr>
+            <tr><td><span class="keyword">Complète (Full)</span></td><td>Copie intégrale. Sûre et simple à restaurer, mais longue et volumineuse.</td></tr>
+            <tr><td><span class="keyword">Incrémentale</span></td><td>Uniquement les données modifiées depuis la DERNIÈRE sauvegarde. Rapide. Restauration complexe (full + toutes les incrémentales).</td></tr>
+            <tr><td><span class="keyword">Différentielle</span></td><td>Données modifiées depuis la DERNIÈRE SAUVEGARDE COMPLÈTE. Restauration : full + dernière différentielle uniquement.</td></tr>
+            <tr><td><span class="keyword">Miroir (Clone)</span></td><td>Copie exacte synchronisée. Pas d'historique.</td></tr>
+        </table></div>
+        <div class="highlight-card" style="padding:18px;border-radius:12px;margin:15px 0;">
+            <p><strong>Règle 3-2-1 :</strong> <span class="keyword">3</span> copies des données | <span class="keyword">2</span> supports différents | <span class="keyword">1</span> copie hors site</p>
+        </div>
+        <h3>Concepts importants</h3>
+        <ul>
+            <li><span class="keyword">RPO</span> (Recovery Point Objective) : perte de données maximale acceptable. RPO = 4h &rarr; max 4h de perte</li>
+            <li><span class="keyword">RTO</span> (Recovery Time Objective) : temps maximal pour restaurer le service. RTO = 2h &rarr; service rétabli en &lt;2h</li>
+            <li><span class="keyword">PCA</span> : Plan de Continuité d'Activité (maintenir pendant sinistre)</li>
+            <li><span class="keyword">PRA</span> : Plan de Reprise d'Activité (reprendre après sinistre)</li>
+        </ul>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Protection contre tous types de pertes</li>
+            <li>Règle 3-2-1 : aucun événement unique ne détruit tout</li>
+            <li>Incrémentale : rapide quotidiennement</li>
+            <li>Test de restauration possible</li>
+            <li>RPO/RTO : objectifs mesurables</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Coût (stockage, licences, bande passante)</li>
+            <li>Restauration complète peut prendre des heures/jours</li>
+            <li>Incrémentale : restauration complexe (full + toutes dans l'ordre)</li>
+            <li>Sauvegardes non testées = non fiables</li>
+            <li>Sauvegardes connectées : vulnérables aux ransomwares</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Politique de sauvegarde 3-2-1 pour données patients ?</p>
+        <p class="exam-a">&rarr; Full dimanche, incrémentales lun-sam. Copie NAS + bandes (coffre) + cloud chiffrée. Rétention 30 jours min.</p>
+        <p class="exam-q">Q2. RPO 4h et RTO 2h, signification concrète ?</p>
+        <p class="exam-a">&rarr; RPO 4h = sauvegardes toutes les 4h. RTO 2h = infra redondante, procédures testées, serveur de secours.</p>
+        <p class="exam-q">Q3. Ransomware mardi 14h, dernière full dimanche, incrémentales lun et mar matin ?</p>
+        <p class="exam-a">&rarr; Isoler le serveur, restaurer full (dimanche) + incrémentale lundi + incrémentale mardi matin. Perte = mardi matin à 14h.</p>
+        <p class="exam-q">Q4. Pourquoi tester les restaurations régulièrement ?</p>
+        <p class="exam-a">&rarr; Sauvegarde non testée = infiable. Tests trimestriels min. PV de test : date, durée, volume, résultat, signature.</p>
+        <p class="exam-q">Q5. Migration sauvegardes vers le cloud ?</p>
+        <p class="exam-a">&rarr; Avantages : hors site automatique, scalabilité. Risques : confidentialité (chiffrer), bande passante, RGPD localisation.</p>
+    </div>
+</div>
+
+<!-- 9. FORCE BRUTE -->
+<div class="section">
+    <div class="section-header"><div class="section-num">9</div><div class="section-title">Force brute et attaque par dictionnaire</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Méthode</th><th>Vitesse</th></tr>
+            <tr><td><span class="keyword">Force brute</span></td><td>Teste toutes les combinaisons possibles</td><td>Lent mais exhaustif</td></tr>
+            <tr><td><span class="keyword">Dictionnaire</span></td><td>Liste de mots de passe courants (rockyou.txt : 14M mots)</td><td>Très rapide</td></tr>
+            <tr><td><span class="keyword">Hybride</span></td><td>Dictionnaire + règles de transformation (password &rarr; P@ssw0rd)</td><td>Efficace</td></tr>
+            <tr><td><span class="keyword">Rainbow Table</span></td><td>Tables précalculées de hashes</td><td>Très rapide, contrée par le salage</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Contre-mesures</h3>
+        <ul>
+            <li><span class="keyword">Mots de passe forts</span> : 12+ caractères, majuscules, minuscules, chiffres, spéciaux</li>
+            <li><span class="keyword">Verrouillage de compte</span> : bloquer après N tentatives échouées</li>
+            <li><span class="keyword">MFA</span> : second facteur même si le mdp est découvert</li>
+            <li><span class="keyword">Fail2Ban / IPS</span> : bloquer automatiquement les IP</li>
+            <li><span class="keyword">Salage</span> des mots de passe : valeur aléatoire avant hachage (contre les rainbow tables)</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Base de données de hashes MD5 extraite, risques et actions ?</p>
+        <p class="exam-a">&rarr; MD5 cassable rapidement. Actions : forcer réinitialisation de tous les mdp. Futur : bcrypt/argon2 + salt, MFA.</p>
+        <p class="exam-q">Q2. Compte qui se verrouille sans fausse manoeuvre ?</p>
+        <p class="exam-a">&rarr; Analyser logs (Event ID 4625 Windows). Peut être une attaque ou sync credentials (app mobile, ancien mdp).</p>
+        <p class="exam-q">Q3. Tester la robustesse des mdp AD légalement ?</p>
+        <p class="exam-a">&rarr; Autorisation écrite de la direction, audit hors production, rapport confidentiel. Outils : John the Ripper, Hashcat.</p>
+        <p class="exam-q">Q4. Politique GPO de mots de passe pour une PME ?</p>
+        <p class="exam-a">&rarr; 12 car min, complexité, historique 10 derniers, expiration 90j (ou sans si MFA), verrouillage après 5 tentatives, 15 min.</p>
+        <p class="exam-q">Q5. Credential stuffing vs force brute classique ?</p>
+        <p class="exam-a">&rarr; Credential stuffing = couples login/mdp issus de fuites. Protection : MFA, détection IP anormales, Have I Been Pwned.</p>
+    </div>
+</div>
+
+<!-- 10. CYBERATTAQUES -->
+<div class="section">
+    <div class="section-header"><div class="section-num">10</div><div class="section-title">Types de cyberattaques</div></div>
+    <div class="card">
+        <h3>Malwares</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Description et signes</th></tr>
+            <tr><td><span class="keyword">Virus</span></td><td>S'attache à un programme et se propage. Signes : ralentissement, fichiers corrompus.</td></tr>
+            <tr><td><span class="keyword">Ver (Worm)</span></td><td>Se propage automatiquement sans fichier hôte. Signes : saturation réseau.</td></tr>
+            <tr><td><span class="keyword">Trojan</span></td><td>Se déguise en logiciel légitime. Signes : connexions réseau inattendues.</td></tr>
+            <tr><td><span class="keyword">Ransomware</span></td><td>Chiffre les fichiers et demande rançon. Signes : extensions bizarres, message de rançon.</td></tr>
+            <tr><td><span class="keyword">Spyware</span></td><td>Collecte discrètement des infos (keylogger). Signes : lenteur, activité réseau anormale.</td></tr>
+            <tr><td><span class="keyword">Rootkit</span></td><td>Masque sa présence, accès persistant. Très difficile à détecter.</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Attaques sociales (ingénierie sociale)</h3>
+        <ul>
+            <li><span class="keyword">Phishing</span> : email frauduleux pour voler des identifiants. Reconnaître : URL suspecte, urgence, fautes.</li>
+            <li><span class="keyword">Spear Phishing</span> : phishing ciblé sur une personne avec infos personnalisées</li>
+            <li><span class="keyword">Vishing / Smishing</span> : phishing par téléphone ou SMS</li>
+            <li><span class="keyword">Whaling</span> : phishing ciblant des dirigeants (PDG, DAF)</li>
+        </ul>
+        <h3 style="margin-top:15px">Attaques réseau</h3>
+        <ul>
+            <li><span class="keyword">DoS / DDoS</span> : saturation d'un service (1 source vs botnet)</li>
+            <li><span class="keyword">ARP / DNS Spoofing</span> : base des attaques MitM</li>
+            <li><span class="keyword">Injection SQL</span> : insertion de code SQL dans un formulaire</li>
+            <li><span class="keyword">XSS</span> : injection de scripts malveillants dans une page web</li>
+        </ul>
+        <div class="warn-box"><p><strong>Signes d'une cyberattaque :</strong> CPU/RAM élevés sans raison | processus inconnus | trafic inhabituel | connexions vers IP inconnues | mots de passe ne fonctionnant plus | tentatives d'authentification répétées dans les logs</p></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Email du 'directeur financier' demandant un virement de 25 000€ ?</p>
+        <p class="exam-a">&rarr; BEC / Whaling. Signaux : urgence, demande inhabituelle. Mesures : double validation virements, DMARC, formation.</p>
+        <p class="exam-q">Q2. Saturation à 100% de la liaison Internet depuis 30 min ?</p>
+        <p class="exam-a">&rarr; DDoS probable. Contacter FAI (scrubbing center), activer CDN/Cloudflare, analyser logs, activer PCA.</p>
+        <p class="exam-q">Q3. Fichiers renommés en '.locked' + README_DECRYPT.txt ?</p>
+        <p class="exam-a">&rarr; Ransomware. Isoler les machines, identifier patient zéro, ne PAS payer, restaurer depuis sauvegardes saines.</p>
+        <p class="exam-q">Q4. Injection SQL, exemple concret et sécurisation ?</p>
+        <p class="exam-a">&rarr; Saisie SQL dans un champ (' OR '1'='1). Requêtes préparées, validation entrées, WAF, moindre privilège DB.</p>
+        <p class="exam-q">Q5. Plan de sensibilisation phishing pour une PME ?</p>
+        <p class="exam-a">&rarr; Formation + simulations de phishing + procédure de signalement + affichage + e-learning. Indicateur : taux de clics.</p>
+    </div>
+</div>
+
+<!-- 11. CHIFFREMENT -->
+<div class="section">
+    <div class="section-header"><div class="section-num">11</div><div class="section-title">Chiffrement (Cryptographie)</div></div>
+    <div class="card">
+        <div class="def-box"><p>Le <span class="keyword">chiffrement</span> est la transformation de données lisibles en données illisibles à l'aide d'un algorithme et d'une clé. Seule la clé de déchiffrement permet de lire les données.</p></div>
+        <h3>Chiffrement symétrique (1 clé)</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Algorithme</th><th>Description</th></tr>
+            <tr><td><span class="keyword">AES-256</span></td><td>Standard actuel, très sécurisé. Utilisé dans HTTPS, WPA2, chiffrement de disques.</td></tr>
+            <tr><td><span class="keyword">DES / 3DES</span></td><td>Ancien standard. DES est cassé (56 bits). 3DES obsolète.</td></tr>
+            <tr><td><span class="keyword">ChaCha20</span></td><td>Algorithme moderne, très rapide, utilisé dans TLS 1.3.</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Chiffrement asymétrique (clé pub + privée)</h3>
+        <ul>
+            <li><span class="keyword">Usage 1 — Confidentialité</span> : je chiffre avec la clé publique du destinataire, seul lui déchiffre</li>
+            <li><span class="keyword">Usage 2 — Signature</span> : je signe avec ma clé privée, tout le monde vérifie avec ma clé publique</li>
+        </ul>
+        <div class="table-wrap"><table>
+            <tr><th>Algorithme</th><th>Description</th></tr>
+            <tr><td><span class="keyword">RSA</span></td><td>Standard historique. Clés 2048 ou 4096 bits. TLS, SSH, certificats.</td></tr>
+            <tr><td><span class="keyword">ECDSA / ECDH</span></td><td>Courbes elliptiques. Plus efficace que RSA à sécurité équivalente.</td></tr>
+            <tr><td><span class="keyword">Diffie-Hellman</span></td><td>Échange de clé sécurisé sur un canal non sécurisé. Base de TLS.</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Fonctions de hachage</h3>
+        <ul>
+            <li><span class="keyword">SHA-256 / SHA-3</span> : standards actuels sécurisés (certificats, signatures, intégrité)</li>
+            <li><span class="keyword">MD5 / SHA-1</span> : obsolètes et vulnérables — ne plus utiliser</li>
+            <li><span class="keyword">Bcrypt / Argon2</span> : conçues pour hacher les mots de passe (lentes par conception)</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Mots de passe stockés en MD5, pourquoi problématique ?</p>
+        <p class="exam-a">&rarr; MD5 cassable rapidement (rainbow tables, GPU). Solution : bcrypt ou argon2id + salt unique par utilisateur.</p>
+        <p class="exam-q">Q2. Comment fonctionne Diffie-Hellman ? Pourquoi dans TLS ?</p>
+        <p class="exam-a">&rarr; DH établit un secret partagé sur un canal public. Utilisé pour générer la clé de session (Perfect Forward Secrecy).</p>
+        <p class="exam-q">Q3. Vérifier qu'un fichier n'a pas été altéré pendant le transfert ?</p>
+        <p class="exam-a">&rarr; L'expéditeur calcule le hash SHA-256. Le destinataire recalcule et compare. Si identiques = intégrité OK.</p>
+        <p class="exam-q">Q4. Chiffrement d'un disque dur d'ordinateur portable d'entreprise ?</p>
+        <p class="exam-a">&rarr; Protection en cas de vol/perte. BitLocker (Windows) avec AES-256 XTS. Clé de récupération dans AD. TPM.</p>
+        <p class="exam-q">Q5. Différence chiffrement vs encodage ?</p>
+        <p class="exam-a">&rarr; Chiffrement : nécessite clé &rarr; sécurité. Encodage (Base64) : réversible sans clé &rarr; pas de sécurité.</p>
+    </div>
+</div>
+
+<!-- 12. DISPONIBILITÉ -->
+<div class="section">
+    <div class="section-header"><div class="section-num">12</div><div class="section-title">Disponibilité</div></div>
+    <div class="card">
+        <div class="def-box"><p>La <span class="keyword">disponibilité</span> est l'un des 3 piliers de la sécurité (CIA). Elle garantit que les systèmes et données sont accessibles quand les utilisateurs en ont besoin.</p></div>
+        <h3>Mesure de la disponibilité</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Disponibilité</th><th>Temps d'arrêt annuel max</th></tr>
+            <tr><td><span class="keyword">99% (2 neuf)</span></td><td>~3,65 jours/an</td></tr>
+            <tr><td><span class="keyword">99,9% (3 neuf)</span></td><td>~8,7 heures/an</td></tr>
+            <tr><td><span class="keyword">99,99% (4 neuf)</span></td><td>~52 minutes/an</td></tr>
+            <tr><td><span class="keyword">99,999% (5 neuf)</span></td><td>~5 minutes/an (objectif datacenter tier 4)</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Mécanismes</h3>
+        <ul>
+            <li><span class="keyword">Haute disponibilité (HA)</span> : redondance des composants pour éliminer les SPOF</li>
+            <li><span class="keyword">Clustering</span> : plusieurs serveurs en groupe, si un noeud tombe, les autres continuent</li>
+            <li><span class="keyword">Load Balancing</span> : répartition du trafic entre plusieurs serveurs</li>
+            <li><span class="keyword">Failover automatique</span> : basculement vers un système de secours</li>
+            <li><span class="keyword">UPS</span> : alimentation de secours en cas de coupure électrique</li>
+            <li><span class="keyword">Redondance réseau</span> : double FAI, liens redondants</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. ERP disponible 99,9%. Temps d'arrêt max et architecture ?</p>
+        <p class="exam-a">&rarr; 99,9% = 8,76h/an max. Architecture : 2 serveurs cluster actif/passif, VIP, stockage partagé, load balancer, UPS.</p>
+        <p class="exam-q">Q2. Identifier les SPOF : 1 routeur, 1 firewall, 1 switch, 2 serveurs ?</p>
+        <p class="exam-a">&rarr; SPOF : routeur, firewall, switch (chacun unique). Éliminer : HSRP/VRRP, firewall HA, switch en stack. Les 2 serveurs sont OK.</p>
+        <p class="exam-q">Q3. Cluster actif/actif vs actif/passif ?</p>
+        <p class="exam-a">&rarr; Actif/actif : tous traitent des requêtes (serveurs web). Actif/passif : secours en attente (firewall, serveur fichiers).</p>
+        <p class="exam-q">Q4. Alarme UPS, courant coupé. Actions ?</p>
+        <p class="exam-a">&rarr; Vérifier autonomie, contacter électricien, prévenir utilisateurs. Si insuffisant : arrêt contrôlé dans l'ordre de priorité.</p>
+        <p class="exam-q">Q5. Justifier l'investissement HA auprès de la direction ?</p>
+        <p class="exam-a">&rarr; Coût d'une heure d'arrêt (CA), pénalités SLA, perte de données, réputation. Comparer au coût de la solution HA.</p>
+    </div>
+</div>
+
+<!-- 13. MULTISITES -->
+<div class="section">
+    <div class="section-header"><div class="section-num">13</div><div class="section-title">Architecture multisites</div></div>
+    <div class="card">
+        <div class="def-box"><p>Une architecture <span class="keyword">multisite</span> répartit l'infrastructure informatique sur plusieurs sites géographiques distincts pour la disponibilité, la performance et la continuité d'activité.</p></div>
+        <h3>Types de sites</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Description</th></tr>
+            <tr><td><span class="keyword">Actif/actif</span></td><td>Les deux sites traitent des requêtes simultanément. Performances max. Complexité de synchronisation élevée.</td></tr>
+            <tr><td><span class="keyword">Cold standby</span></td><td>Site secondaire en attente. Temps de bascule long. Moins coûteux.</td></tr>
+            <tr><td><span class="keyword">Warm standby</span></td><td>Partiellement en fonction, prêt à basculer rapidement.</td></tr>
+            <tr><td><span class="keyword">Hot standby</span></td><td>En production permanente, synchronisé en temps réel. Bascule quasi-instantanée.</td></tr>
+        </table></div>
+        <h3 style="margin-top:15px">Technologies d'interconnexion</h3>
+        <ul>
+            <li><span class="keyword">VPN IPsec</span> : tunnel chiffré via Internet. Économique, adapté aux petites structures.</li>
+            <li><span class="keyword">MPLS</span> : réseau privé opérateur, garanties QoS. Coûteux mais fiable.</li>
+            <li><span class="keyword">SD-WAN</span> : gestion intelligente des liens WAN multiples (Internet + MPLS). Optimisation automatique.</li>
+            <li><span class="keyword">Liaisons louées (LS)</span> : liens dédiés point à point. Haute dispo, faible latence, très coûteux.</li>
+        </ul>
+        <h3 style="margin-top:15px">Synchronisation des données</h3>
+        <ul>
+            <li><span class="keyword">AD Sites et Services</span> : réplication entre contrôleurs de domaine</li>
+            <li><span class="keyword">DFS-R</span> : réplication de partages de fichiers entre sites</li>
+            <li><span class="keyword">SQL Always On</span>, Oracle Data Guard, MySQL Replication</li>
+            <li><span class="keyword">VMware vSphere Replication</span>, Hyper-V Replica</li>
+        </ul>
+    </div>
+    <div class="grid-2">
+        <div class="card highlight-card"><h3>Avantages</h3><ul>
+            <li>Continuité d'activité géographique</li>
+            <li>Proximité des utilisateurs (réduction latence)</li>
+            <li>Répartition de charge entre les sites</li>
+            <li>AD multisite : gestion centralisée + auth locale</li>
+            <li>Conformité RGPD (données dans la bonne région)</li>
+        </ul></div>
+        <div class="card highlight-card"><h3>Inconvénients</h3><ul>
+            <li>Complexité de gestion</li>
+            <li>Coût des liaisons (MPLS)</li>
+            <li>Synchronisation à surveiller (conflits possibles)</li>
+            <li>Latence inter-sites impacte les applications sensibles</li>
+            <li>Chaque site = vecteur d'attaque à sécuriser</li>
+        </ul></div>
+    </div>
+    <div class="card">
+        <h3>Questions types d'examen</h3>
+        <p class="exam-q">Q1. Interconnecter siège + 5 agences de manière sécurisée et redondante ?</p>
+        <p class="exam-a">&rarr; VPN IPsec avec 2 FAI (redondance), MPLS pour QoS, ou SD-WAN pour gérer les deux intelligemment.</p>
+        <p class="exam-q">Q2. AD multisite (Paris et Lyon), optimiser l'authentification ?</p>
+        <p class="exam-a">&rarr; Sites et services AD : objets Site, sous-réseaux IP, liens de site (coût et schedule). DC locaux sur chaque site.</p>
+        <p class="exam-q">Q3. Lyon = plan de reprise pour Paris. Cold/warm/hot standby, quel RTO ?</p>
+        <p class="exam-a">&rarr; Cold : RTO &gt;24h. Warm : RTO 2-8h. Hot : RTO &lt;1h (synchronisation temps réel). Choisir selon criticité et budget.</p>
+        <p class="exam-q">Q4. Réplication des partages de fichiers entre sites ?</p>
+        <p class="exam-a">&rarr; DFS-R : namespace DFS, groupe de réplication, planification. Limites : conflits si fichier modifié sur 2 sites.</p>
+        <p class="exam-q">Q5. Comparer VPN IPsec, MPLS et SD-WAN pour 8 sites ?</p>
+        <p class="exam-a">&rarr; VPN : économique, peu de QoS. MPLS : QoS garantie, coûteux. SD-WAN : combine les deux, routage intelligent. Recommander SD-WAN si budget moyen.</p>
+    </div>
+</div>
+
+<!-- MÉMO FINAL -->
+<div class="card highlight-card" style="text-align:center;padding:30px;">
+    <h3 style="color:#69f0ae;font-size:1.2rem;margin-bottom:15px;">Mémo final — Mots-clés essentiels</h3>
+    <div class="table-wrap"><table style="text-align:left;">
+        <tr><th>Notion</th><th>Mots-clés</th></tr>
+        <tr><td>PowerShell</td><td>Shell .NET, Cmdlets Verbe-Nom, .ps1, ExecutionPolicy</td></tr>
+        <tr><td>RAID</td><td>0=perf | 1=miroir | 5=parité | 10=miroir+stripe | ≠ sauvegarde</td></tr>
+        <tr><td>HTTPS</td><td>HTTP + TLS, port 443, certificats, Let's Encrypt</td></tr>
+        <tr><td>SSH</td><td>Port 22, remplace Telnet, auth par clé, Fail2Ban</td></tr>
+        <tr><td>IDS/IPS</td><td>IDS = détecte | IPS = bloque | Snort, Suricata | NIDS/HIDS</td></tr>
+        <tr><td>MitM</td><td>ARP Poisoning, SSL Stripping, Evil Twin | HTTPS, VPN, DAI</td></tr>
+        <tr><td>ITIL</td><td>Incident ≠ Problème ≠ Changement | SLA, CAB, RCA</td></tr>
+        <tr><td>Sauvegardes</td><td>Règle 3-2-1 | RPO = perte max | RTO = délai reprise | Full + incrémentale</td></tr>
+        <tr><td>Force brute</td><td>Teste tout | Verrouillage, MFA, mdp forts, salage</td></tr>
+        <tr><td>Cyberattaques</td><td>Phishing, Ransomware, DDoS, Injection SQL, XSS</td></tr>
+        <tr><td>Chiffrement</td><td>Symétrique (AES) | Asymétrique (RSA) | Hachage (SHA-256, Bcrypt)</td></tr>
+        <tr><td>Disponibilité</td><td>99,9% = 8,7h/an | HA, clustering, SPOF, failover</td></tr>
+        <tr><td>Multisite</td><td>Actif/actif ou passif | VPN, MPLS, SD-WAN | AD Sites et Services</td></tr>
+    </table></div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

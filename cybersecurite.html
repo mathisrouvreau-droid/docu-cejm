@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersécurité - Fiches de révision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+
+        .topbar { background: #1a1a2e; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #00e676; position: sticky; top: 0; z-index: 100; }
+        .topbar a { color: #69f0ae; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .topbar a:hover { color: #fff; }
+        .topbar .title { font-size: 1rem; color: #8892b0; }
+
+        .header { text-align: center; padding: 50px 20px 30px; background: linear-gradient(135deg, #1a1a2e 0%, #0a2e1a 50%, #0f3460 100%); }
+        .header h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .header p { font-size: 1rem; color: #8892b0; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 25px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #00e676; }
+        .stat-label { font-size: 0.85rem; color: #8892b0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        .category { margin-bottom: 50px; }
+        .category-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #1a1a2e; }
+        .category-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; background: linear-gradient(135deg, #00b894, #00e676); }
+        .category-title { font-size: 1.6rem; font-weight: 700; color: #69f0ae; }
+        .category-count { font-size: 0.8rem; color: #8892b0; margin-left: auto; background: #1a1a2e; padding: 5px 12px; border-radius: 20px; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: #1a1a2e; border-radius: 16px; padding: 25px; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; border: 1px solid #2a2a4a; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #00b894, #00e676); }
+        .card:hover { transform: translateY(-5px); border-color: #3a3a5a; box-shadow: 0 10px 40px rgba(0, 230, 118, 0.15); }
+
+        .card-cas { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; color: #69f0ae; }
+        .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; line-height: 1.4; color: #fff; }
+        .card-topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .topic-tag { font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: #8892b0; border: 1px solid rgba(255,255,255,0.08); }
+        .card-arrow { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: #69f0ae; }
+        .card-arrow span { transition: transform 0.3s ease; display: inline-block; }
+        .card:hover .card-arrow span { transform: translateX(5px); }
+
+        .footer { text-align: center; padding: 30px 20px; color: #4a4a6a; font-size: 0.85rem; border-top: 1px solid #1a1a2e; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .stats { gap: 20px; }
+        }
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#00e676}.light-mode .topbar a{color:#00b894}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .header{background:linear-gradient(135deg,#f8f9fa,#e8f5e9)}.light-mode .header h1{color:#2d3436}.light-mode .header p{color:#636e72}.light-mode .stat-number{color:#00b894}.light-mode .category-header{border-bottom-color:#e0e0e0}.light-mode .category-title{color:#00b894}.light-mode .category-count{background:#f0f0f5;color:#636e72}.light-mode .card{background:#f8f9fa;border-color:#dfe6e9}.light-mode .card:hover{background:#f0f0f5;border-color:#ccc;box-shadow:0 10px 40px rgba(0,0,0,.1)}.light-mode .card-cas{color:#00b894}.light-mode .card-title{color:#2d3436}.light-mode .card-arrow{color:#00b894}.light-mode .topic-tag{background:rgba(0,0,0,.04);color:#666}.light-mode .footer{color:#aaa;border-top-color:#e0e0e0}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#00b894}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html">&larr; Accueil</a>
+        <span class="title">Cybersécurité &bull; BTS SIO SISR</span>
+        <a href="definitions-cyber.html" style="margin-left:auto;">Définitions</a>
+        <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
+    </div>
+
+    <div class="header">
+        <h1>&#128274; Cybersécurité</h1>
+        <p>BTS SIO option SISR — Épreuves E6 &amp; notions clés</p>
+        <div class="stats">
+            <div class="stat"><div class="stat-number">2</div><div class="stat-label">Fiches</div></div>
+            <div class="stat"><div class="stat-number">25</div><div class="stat-label">Thèmes</div></div>
+            <div class="stat"><div class="stat-number">40</div><div class="stat-label">Définitions</div></div>
+        </div>
+        <a href="definitions-cyber.html" style="display:inline-block;margin-top:25px;padding:12px 30px;background:linear-gradient(135deg,#00b894,#00e676);color:#fff;text-decoration:none;border-radius:12px;font-weight:700;font-size:0.95rem;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(0,230,118,0.3);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(0,230,118,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(0,230,118,0.3)'">&#128218; Toutes les définitions (40)</a>
+    </div>
+
+    <div class="container">
+
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128274;</div>
+                <div class="category-title">Épreuve E6</div>
+                <div class="category-count">1 fiche · 12 thèmes</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/cyber-e6.html">
+                    <div class="card-cas">Sessions 2023 — Cas Ville du Parc & Saint-Jacques</div>
+                    <div class="card-title">U6 — Cybersécurité des services informatiques</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">RGPD</span>
+                        <span class="topic-tag">EBIOS RM</span>
+                        <span class="topic-tag">Ransomwares</span>
+                        <span class="topic-tag">SANS</span>
+                        <span class="topic-tag">PCA</span>
+                        <span class="topic-tag">VLAN</span>
+                        <span class="topic-tag">HAProxy</span>
+                        <span class="topic-tag">PowerShell AD</span>
+                        <span class="topic-tag">VPN IPSec</span>
+                        <span class="topic-tag">PKI</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128421;</div>
+                <div class="category-title">BTS SIO SISR</div>
+                <div class="category-count">1 fiche · 13 notions</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/cyber-sisr.html">
+                    <div class="card-cas">Cours &amp; entraînement — 13 notions clés</div>
+                    <div class="card-title">BTS SIO SISR — Révisions complètes</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">PowerShell</span>
+                        <span class="topic-tag">RAID</span>
+                        <span class="topic-tag">HTTPS</span>
+                        <span class="topic-tag">SSH</span>
+                        <span class="topic-tag">IDS/IPS</span>
+                        <span class="topic-tag">MITM</span>
+                        <span class="topic-tag">ITIL</span>
+                        <span class="topic-tag">Sauvegardes</span>
+                        <span class="topic-tag">Chiffrement</span>
+                        <span class="topic-tag">Disponibilité</span>
+                        <span class="topic-tag">Architecture</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">Cybersécurité E6 SISR - BTS ESUPEC &mdash; Fiches de révision</div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

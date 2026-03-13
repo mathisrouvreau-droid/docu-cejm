@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersécurité E6 - Révision complète</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #00e676;position:sticky;top:0;z-index:100}.topbar a{color:#69f0ae;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a2e1a);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(0,230,118,.15);color:#69f0ae;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:40px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#00b894,#00e676);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#69f0ae}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#69f0ae;font-weight:600}.def-box{background:rgba(0,230,118,.08);border-left:3px solid #00e676;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px}@media(max-width:700px){.grid-2,.grid-3{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(0,230,118,.12),rgba(105,240,174,.06));border:1px solid rgba(0,230,118,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(0,230,118,.12);color:#69f0ae;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#69f0ae;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}.flash-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.flash-grid{grid-template-columns:1fr}}.flash-card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:12px;padding:16px;cursor:pointer;transition:all .3s}.flash-card:hover{border-color:#00e676;box-shadow:0 4px 20px rgba(0,230,118,.1)}.flash-q{color:#69f0ae;font-weight:700;font-size:.9rem;margin-bottom:8px}.flash-a{color:#b0b0c8;font-size:.88rem;line-height:1.5}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#00e676}.light-mode .topbar a{color:#00b894}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e8f5e9)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(0,184,148,.1);color:#00b894}.light-mode .section-title{color:#00b894}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#00b894}.light-mode .def-box{background:rgba(0,184,148,.05);border-left-color:#00b894}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#f0faf5;border-color:#c8e6c9}.light-mode th{background:rgba(0,184,148,.08);color:#00b894}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#00875a}.light-mode .flash-card{background:#fff;border-color:#dfe6e9}.light-mode .flash-card:hover{border-color:#00b894}.light-mode .flash-q{color:#00b894}.light-mode .flash-a{color:#555}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#00b894}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../cybersecurite.html">&larr; Cybersécurité</a><span class="title">E6 SISR &bull; Sessions 2023</span><a href="../definitions-cyber.html" style="margin-left:auto;">Définitions</a><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">Cybersécurité E6</div>
+        <h1>U6 — Cybersécurité des services informatiques</h1>
+        <p>BTS SIO SISR — Sessions 2023 | Cas Ville du Parc & Saint-Jacques — 12 thèmes couverts</p>
+    </div>
+    <div class="container">
+
+        <!-- ① RGPD -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">1</div><div class="section-title">RGPD & données personnelles</div></div>
+            <div class="card">
+                <h3>Les obligations clés (toujours minimum 4 !)</h3>
+                <ul>
+                    <li><span class="keyword">Minimisation des données</span> : ne collecter QUE ce qui est strictement nécessaire à la finalité</li>
+                    <li><span class="keyword">Information et transparence</span> : informer l'usager de la collecte, finalité, durée, droits (accès, rectif, suppression)</li>
+                    <li><span class="keyword">Sécurité des données</span> : mesures techniques ET organisationnelles (chiffrement, contrôle d'accès...)</li>
+                    <li><span class="keyword">Désignation d'un DPO</span> : OBLIGATOIRE pour tout organisme public</li>
+                    <li><span class="keyword">Limitation de la durée</span> de conservation : pas au-delà de la finalité</li>
+                    <li><span class="keyword">Tenue d'un registre</span> des traitements : documenter tous les traitements de données personnelles</li>
+                    <li><span class="keyword">Droit d'accès</span> des personnes : communication de toutes les données les concernant, archivées ou non</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Notification de violation (Articles 33 & 34 RGPD)</h3>
+                <div class="warn-box"><p><strong>Délai de notification à la CNIL : <span class="keyword">72h maximum</span></strong> après avoir pris connaissance de la violation. Si risque élevé pour les personnes &rarr; notifier AUSSI les personnes concernées, sans délai maximal fixé mais le plus tôt possible.</p></div>
+                <div class="def-box"><p><strong>Processus obligatoire :</strong><br>
+                    <span class="keyword">Étape 1</span> &rarr; Détection de la violation et évaluation de la gravité<br>
+                    <span class="keyword">Étape 2</span> &rarr; Notification à la CNIL dans les 72h (portail notifications.cnil.fr) : nature, données concernées, nombre de personnes, conséquences, mesures prises<br>
+                    <span class="keyword">Étape 3</span> &rarr; Si risque élevé : notification aux personnes concernées<br>
+                    <span class="keyword">Étape 4</span> &rarr; Documentation interne (accountability)</p></div>
+                <p style="margin-top:12px;"><strong>Contenu de la notification CNIL :</strong></p>
+                <ul>
+                    <li>Nature de la violation (exfiltration, chiffrement, perte...)</li>
+                    <li>Catégories et volume de données concernées</li>
+                    <li>Nombre approximatif de personnes touchées</li>
+                    <li>Conséquences probables</li>
+                    <li>Mesures prises ou envisagées pour y remédier</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Archivage public (collectivités)</h3>
+                <div class="def-box"><p>Collectivités soumises au <span class="keyword">Code du Patrimoine</span> pour l'archivage public. Actes d'état civil &rarr; conservés <strong>100 ans minimum</strong>. Délibérations du conseil municipal &rarr; conservées <strong>définitivement</strong>. Toute consultation de données archivées doit être <strong>tracée</strong> (journalisée).</p></div>
+            </div>
+            <div class="card">
+                <h3>Conséquences d'une faille</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Pour qui ?</th><th>Conséquences</th></tr>
+                        <tr><td><span class="keyword">La mairie</span></td><td>Amende CNIL jusqu'à 20M&euro; | Atteinte à la réputation | Perte de confiance des habitants | Poursuites judiciaires</td></tr>
+                        <tr><td><span class="keyword">Les usagers</span></td><td>Usurpation d'identité | Spear phishing ciblé | Exposition de données sensibles (revenus, état civil...)</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ② EBIOS RM -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">2</div><div class="section-title">Méthode EBIOS RM — Analyse de risques</div></div>
+            <div class="card">
+                <div class="def-box"><p><span class="keyword">EBIOS RM</span> (Expression des Besoins et Identification des Objectifs de Sécurité — Risk Manager) est la méthode de l'<strong>ANSSI</strong> pour identifier, évaluer et traiter les risques numériques. Elle se concentre sur les <strong>menaces intentionnelles</strong>.</p></div>
+            </div>
+            <div class="card">
+                <h3>Les 5 ateliers EBIOS RM</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>N°</th><th>Atelier</th><th>Ce qu'on y fait</th></tr>
+                        <tr><td>1</td><td><span class="keyword">Cadrage & socle de sécurité</span></td><td>Recenser les valeurs métier (infos et processus importants), les besoins de sécurité (D/I/C), les biens supports, identifier les événements redoutés</td></tr>
+                        <tr><td>2</td><td><span class="keyword">Sources de risques</span></td><td>Identifier les acteurs malveillants et leurs objectifs</td></tr>
+                        <tr><td>3</td><td><span class="keyword">Scénarios stratégiques</span></td><td>Identifier les parties prenantes vulnérables, construire des chemins d'attaque stratégiques</td></tr>
+                        <tr><td>4</td><td><span class="keyword">Scénarios opérationnels</span></td><td>Détailler les modes opératoires techniques (comment l'attaque se passe concrètement)</td></tr>
+                        <tr><td>5</td><td><span class="keyword">Traitement du risque</span></td><td>Définir les mesures de sécurité à mettre en oeuvre, construire la stratégie de traitement</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Matrice des risques</h3>
+                <div class="def-box"><p><strong>Axe X</strong> = <span class="keyword">Vraisemblance</span> (probabilité que l'attaque se produise) : de 1 (Minimal) à 4 (Maximal)<br>
+                    <strong>Axe Y</strong> = <span class="keyword">Gravité</span> (impact sur le SI et l'organisation) : de 1 (Négligeable) à 4 (Critique)<br><br>
+                    <strong>Zone rouge</strong> (haut droite) = risque inacceptable &rarr; mesures obligatoires<br>
+                    <strong>Zone orange</strong> = risque important &rarr; mesures à planifier<br>
+                    <strong>Zone verte</strong> (bas gauche) = risque acceptable</p></div>
+                <div class="warn-box"><p><strong>Ne pas confondre Gravité et Vraisemblance !</strong><br>
+                    <span class="keyword">GRAVITÉ</span> = l'impact SI le scénario se produit (D/I/C affectés, services arrêtés, données perdues...)<br>
+                    <span class="keyword">VRAISEMBLANCE</span> = la probabilité que le scénario se produise (historique, contexte, cibles similaires...)</p></div>
+            </div>
+            <div class="card">
+                <h3>Évaluer Gravité et Vraisemblance — Méthode argumentée</h3>
+                <div class="def-box"><p>
+                    <span class="keyword">Gravité CRITIQUE (4)</span> &rarr; attaque sur les serveurs centraux = tout le SI affecté (1200 postes, 60 serveurs, tous les services)<br><br>
+                    <span class="keyword">Vraisemblance ÉLEVÉE (3-4)</span> &rarr; citer des statistiques ! Ex : « 20% des ransomwares 2021 = Ryuk » | Les collectivités sont des cibles reconnues<br><br>
+                    <strong>Argument D/I/C à toujours développer :</strong><br>
+                    &bull; <strong>Disponibilité</strong> : serveurs chiffrés &rarr; services inaccessibles, interruption totale<br>
+                    &bull; <strong>Intégrité</strong> : fichiers modifiés/chiffrés &rarr; données inexploitables<br>
+                    &bull; <strong>Confidentialité</strong> : données potentiellement exfiltrées &rarr; risque RGPD</p></div>
+            </div>
+            <div class="card">
+                <h3>Mesures de résilience (liste à connaître par coeur)</h3>
+                <ul>
+                    <li>Infrastructure réseau redondée : <span class="keyword">2 sites géographiques distincts</span> avec 2 coeurs de réseau</li>
+                    <li>Cluster de serveurs (ESX) avec <span class="keyword">failover automatique</span></li>
+                    <li>Baies SAN en <span class="keyword">RAID 50</span> avec réplication inter-sites en temps réel</li>
+                    <li>Protocole <span class="keyword">RSTP</span> sur tous les commutateurs (topologie sans boucle et redondante)</li>
+                    <li>Sauvegardes <span class="keyword">VeeamBackup</span> : complètes + incrémentielles, chiffrées, hors ligne, sur 2 sites</li>
+                    <li>Exercices de restauration réguliers pour vérifier les sauvegardes</li>
+                    <li>Locaux sécurisés : badge + biométrie, vidéosurveillance, alarme incendie, UPS, double climatisation</li>
+                    <li>Pare-feux et proxies pour filtrer les flux, centralisation des logs</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ③ RANSOMWARES -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">3</div><div class="section-title">Ransomwares — Tout ce qu'il faut savoir</div></div>
+            <div class="card">
+                <h3>Chaîne d'infection Bazar-Ryuk</h3>
+                <div class="def-box"><p>
+                    <span class="keyword">1.</span> Courriel de phishing contenant un lien malveillant<br>
+                    <span class="keyword">2.</span> Clic &rarr; téléchargement du malware BazarLoader<br>
+                    <span class="keyword">3.</span> BazarLoader contacte son serveur C2 (Command & Control) &rarr; télécharge une backdoor<br>
+                    <span class="keyword">4.</span> Élévation de privilèges (tools : CobaltStrike, Mimikatz, Metasploit, SDBBot)<br>
+                    <span class="keyword">5.</span> Déploiement du ransomware Ryuk &rarr; chiffrement de tous les fichiers (AES-256)<br>
+                    <span class="keyword">6.</span> Clé AES chiffrée avec clé RSA publique Ryuk &rarr; impossibilité de déchiffrer sans payer<br><br>
+                    <strong>Délai entre infection et chiffrement : entre 3h et 5 jours (Ryuk)</strong></p></div>
+            </div>
+            <div class="card">
+                <h3>Caractéristiques clés de Ryuk</h3>
+                <ul>
+                    <li>Extension ajoutée aux fichiers chiffrés : <span class="keyword">.RYK</span></li>
+                    <li>Note de rançon : <span class="keyword">RyukReadMe.txt</span> déposé dans chaque dossier chiffré</li>
+                    <li>Persistance via clé de registre : <code>HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\svchost</code></li>
+                    <li>Propagation réseau : scanne <span class="keyword">10.0.0.0/8</span> | <span class="keyword">172.16.0.0/16 &rarr; 172.31.0.0/16</span> | <span class="keyword">192.168.0.0/16</span></li>
+                    <li>Tente d'arrêter <strong>180 services</strong> et <strong>40 processus</strong> (antivirus, sauvegardes en priorité !)</li>
+                    <li>N'exfiltre PAS les données (contrairement à d'autres ransomwares)</li>
+                    <li>Groupe : <span class="keyword">Wizard Spider / UNC1878</span> (83% des infections Ryuk)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Équipements pouvant être infectés</h3>
+                <ul>
+                    <li><span class="keyword">Postes de travail</span> des agents (PC bureau, laptops) — vecteur d'entrée initial</li>
+                    <li><span class="keyword">Serveurs de fichiers et de virtualisation</span> — cibles principales (données critiques)</li>
+                    <li><span class="keyword">Serveurs applicatifs</span> (Active Directory, DHCP, messagerie) — propagation</li>
+                    <li><span class="keyword">NAS et systèmes de stockage réseau</span> — si accessibles depuis le réseau infecté</li>
+                    <li><span class="keyword">Postes publics</span> — si mal cloisonnés du réseau interne</li>
+                </ul>
+                <div class="warn-box"><p>Les équipements réseau purs (commutateurs, routeurs) sont généralement <strong>épargnés</strong> car ils n'ont pas de système de fichiers standard. Les <span class="keyword">serveurs de sauvegarde</span> sont des cibles PRIORITAIRES pour Ryuk (il les arrête en premier !).</p></div>
+            </div>
+            <div class="card">
+                <h3>Solutions de protection — classifiées par vecteur</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Vecteur d'infection</th><th>Solutions de protection</th></tr>
+                        <tr><td><span class="keyword">Clé USB</span></td><td>Désactivation ports USB via GPO/BIOS | Device Control (DLP/EDR) | Clés USB sur liste blanche uniquement | Procédure de décontamination obligatoire</td></tr>
+                        <tr><td><span class="keyword">Courriel / lien piégé</span></td><td>Secure Email Gateway (sandbox des liens) | Proxy web avec filtrage URL et réputation | Anti-spam avec analyse des PJ | Formation/sensibilisation phishing</td></tr>
+                        <tr><td><span class="keyword">Propagation réseau</span></td><td>Segmentation VLAN | Principe du moindre privilège | Désactivation des comptes admin partagés | MFA sur les comptes à privilèges</td></tr>
+                        <tr><td><span class="keyword">Application Guard & Sandbox</span></td><td>Application Guard : isolation automatique des sites/fichiers non approuvés (transparent pour l'utilisateur) | Sandbox : isolation manuelle, nécessite action de l'utilisateur</td></tr>
+                    </table>
+                </div>
+                <div class="def-box"><p><span class="keyword">Application Guard > Sandbox</span> en efficacité car il agit automatiquement sans intervention de l'utilisateur. Il réduit À LA FOIS la gravité ET la vraisemblance. La Sandbox réduit surtout la gravité.</p></div>
+            </div>
+        </div>
+
+        <!-- ④ RÉPONSE À INCIDENT -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">4</div><div class="section-title">Réponse à incident — Modèle SANS (6 phases)</div></div>
+            <div class="card">
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>#</th><th>Phase</th><th>Description et actions clés</th></tr>
+                        <tr><td>1</td><td><span class="keyword">Préparation</span></td><td>Exercices simulés d'attaques, procédures documentées et testées. Mettre en place les outils de détection AVANT l'incident.</td></tr>
+                        <tr><td>2</td><td><span class="keyword">Identification</span></td><td>Comprendre la CAUSE PREMIÈRE, évaluer la portée (quelles machines ?), collecter les IoC. <strong>Ne pas réinitialiser immédiatement la machine infectée !</strong></td></tr>
+                        <tr><td>3</td><td><span class="keyword">Confinement</span></td><td>Isoler les machines compromises du réseau pour stopper la propagation. Court terme (isoler) puis long terme (analyse approfondie, image disque).</td></tr>
+                        <tr><td>4</td><td><span class="keyword">Éradication</span></td><td>Supprimer le malware, désactiver les comptes compromis, appliquer les correctifs, supprimer les clés de registre et tâches planifiées malveillantes.</td></tr>
+                        <tr><td>5</td><td><span class="keyword">Retour à la normale</span></td><td>Restaurer depuis une sauvegarde saine. Remettre les services en production. Surveiller les machines affectées.</td></tr>
+                        <tr><td>6</td><td><span class="keyword">Enseignements</span></td><td>Réunion post-incident (Post Incident Review). Analyser ce qui a fonctionné, modifier le plan de réponse et les procédures.</td></tr>
+                    </table>
+                </div>
+                <div class="warn-box"><p><strong>Phase 2 (Identification) : NE PAS réinitialiser le premier poste infecté immédiatement !</strong><br>Il faut d'abord collecter les IoC pour rechercher d'autres machines infectées dans tout le SI. Chercher : quelles connexions réseau le malware génère-t-il ? Quels fichiers créés ? Quels processus ? Quelles clés de registre ?</p></div>
+            </div>
+            <div class="card">
+                <h3>Indicateurs de compromission (IoC) — Comment les utiliser</h3>
+                <div class="def-box"><p>
+                    <span class="keyword">1.</span> Relever les adresses IP suspectes dans les journaux du proxy/pare-feu<br>
+                    <span class="keyword">2.</span> Comparer avec les IoC connus du malware (documents fournis dans l'annexe !)<br>
+                    <span class="keyword">3.</span> Si correspondance &rarr; INCIDENT CONFIRMÉ (pas un faux positif)<br>
+                    <span class="keyword">4.</span> Rechercher ces mêmes IoC dans les journaux de TOUTES les autres machines du SI<br>
+                    <span class="keyword">5.</span> Identifier toutes les machines ayant communiqué avec les mêmes IP malveillantes<br><br>
+                    <strong>Exemple Ryuk :</strong> IoC = connexion vers <code>34.217.209.239:443 GET /www/html/var/generic/doc</code></p></div>
+            </div>
+            <div class="card">
+                <h3>Mesures d'éradication — Liste exhaustive</h3>
+                <ul>
+                    <li>Scanner le poste avec un antivirus à jour + outils forensiques</li>
+                    <li>Supprimer les fichiers malveillants (BazarLoader, backdoor, etc.)</li>
+                    <li>Supprimer les <span class="keyword">clés de registre</span> créées par le malware (Run, RunOnce...)</li>
+                    <li>Supprimer les <span class="keyword">tâches planifiées</span> malveillantes</li>
+                    <li>Changer les mots de passe de tous les comptes potentiellement compromis</li>
+                    <li>Appliquer tous les correctifs de sécurité (OS + logiciels)</li>
+                    <li>Si doute &rarr; <span class="keyword">réinstallation complète</span> du poste depuis une image propre</li>
+                    <li>Restaurer les données depuis une sauvegarde saine ANTÉRIEURE à l'infection</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Mesures anti-phishing complémentaires</h3>
+                <ul>
+                    <li><span class="keyword">Secure Email Gateway</span> : analyse sandbox des liens et PJ avant livraison en boîte mail</li>
+                    <li><span class="keyword">Filtrage DNS / Proxy</span> avec blacklists : bloque l'accès aux domaines malveillants connus</li>
+                    <li><span class="keyword">MFA</span> : même si le mot de passe est volé, l'attaquant ne peut pas se connecter seul</li>
+                    <li><span class="keyword">DMARC/DKIM/SPF</span> : empêche l'usurpation du domaine expéditeur</li>
+                    <li><span class="keyword">Campagnes de phishing simulées</span> : tester et former les utilisateurs régulièrement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ⑤ RÉSILIENCE & PCA -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">5</div><div class="section-title">Résilience, PCA & sauvegardes</div></div>
+            <div class="card">
+                <h3>Règle 3-2-1 des sauvegardes (à citer absolument)</h3>
+                <div class="highlight-card" style="padding:18px;border-radius:12px;margin-top:10px;">
+                    <p><span class="keyword">3</span> copies des données (la production + 2 sauvegardes)<br>
+                    <span class="keyword">2</span> types de supports différents (ex : disque local + bande ou cloud)<br>
+                    <span class="keyword">1</span> copie hors site géographiquement distincte (protection contre sinistre physique)</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Réplication ≠ Sauvegarde — Ne pas confondre !</h3>
+                <div class="warn-box"><p>La <span class="keyword">RÉPLICATION</span> garantit la DISPONIBILITÉ sur un second site (copie en temps réel ou différée). Elle ne protège <strong>PAS</strong> contre la corruption des données : si des données sont corrompues ou chiffrées par un ransomware, la corruption est aussi répliquée !<br><br>
+                Seule une <span class="keyword">SAUVEGARDE avec HISTORISATION</span> permet de revenir à un état sain antérieur.<br><br>
+                <strong>Cas concret :</strong> données compromises un mercredi &rarr; si seule la dernière sauvegarde complète (dimanche) est conservée, et qu'elle a été écrasée par la sauvegarde du dimanche suivant &rarr; PERTE DE DONNÉES.</p></div>
+            </div>
+            <div class="card">
+                <h3>Fréquence d'historisation</h3>
+                <div class="def-box"><p>Se demander : <strong>combien de temps APRÈS une compromission peut-on la découvrir ?</strong><br>
+                Si découverte possible 3 jours après &rarr; conserver AU MINIMUM 1 semaine de sauvegardes.<br><br>
+                <span class="keyword">Bonne pratique</span> : 4 sauvegardes complètes (4 derniers dimanches) + incrémentielles de la semaine. Archivage mensuel (pas uniquement annuel) stocké hors site.</p></div>
+            </div>
+            <div class="card">
+                <h3>Défauts classiques d'un plan de réplication</h3>
+                <ul>
+                    <li>Réplication hebdomadaire des VMs trop espacée &rarr; jusqu'à <span class="keyword">7 jours de données perdues</span></li>
+                    <li>Réplication semestrielle des données d'école &rarr; <span class="keyword">6 mois de données perdues</span> potentielles</li>
+                    <li>Absence de réplication des fichiers vidéo de police &rarr; perte de preuves judiciaires</li>
+                    <li>Lieu de sauvegarde unique &rarr; si attaque simultanée des deux sites &rarr; perte totale</li>
+                    <li>Une seule sauvegarde complète conservée &rarr; impossible de revenir à un état antérieur</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Solution si lien inter-site unique (point de défaillance)</h3>
+                <ul>
+                    <li>Déployer un <span class="keyword">accès internet autonome</span> sur le site de secours (FAI différent du site principal)</li>
+                    <li>En cas de coupure du lien principal &rarr; <span class="keyword">VPN IPSec site à site via internet</span> comme lien de repli</li>
+                    <li>Diversification des opérateurs : FAI différent pour chaque site</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Postes de crise : publics reconfigurés vs dédiés</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Critère</th><th>Postes publics reconfigurés</th><th>Postes dédiés (salle technique)</th></tr>
+                        <tr><td><span class="keyword">Disponibilité</span></td><td>Déjà présents mais reconfiguration nécessaire &rarr; lent en période de crise</td><td>Prêts à l'emploi, déploiement immédiat</td></tr>
+                        <tr><td><span class="keyword">Sécurité</span></td><td>RISQUE ÉLEVÉ : potentiellement compromis (usage public), historique non maîtrisé</td><td>Contrôlés par l'équipe IT, jamais exposés au public</td></tr>
+                        <tr><td><span class="keyword">Coût</span></td><td>Faible (existants)</td><td>Plus élevé (achat dédié, non utilisés en temps normal)</td></tr>
+                    </table>
+                </div>
+                <div class="def-box"><p><strong>Recommandation :</strong> postes dédiés car la <span class="keyword">sécurité des données critiques</span> est prioritaire en période de crise.</p></div>
+            </div>
+        </div>
+
+        <!-- ⑥ SÉCURITÉ RÉSEAU -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">6</div><div class="section-title">Sécurité réseau — VLAN & cloisonnement</div></div>
+            <div class="card">
+                <h3>VLAN par adresse MAC vs VLAN par port</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Critère</th><th>VLAN par adresse MAC</th><th>VLAN par port (Port-Based)</th></tr>
+                        <tr><td><span class="keyword">Principe</span></td><td>Le VLAN est déterminé par l'adresse MAC de la carte réseau</td><td>Le VLAN est déterminé par le port physique du commutateur</td></tr>
+                        <tr><td><span class="keyword">Sécurité</span></td><td>FAIBLE : les adresses MAC sont facilement usurpables (MAC spoofing) via des outils logiciels gratuits</td><td>ÉLEVÉE : impossible de changer de VLAN en modifiant l'adresse MAC</td></tr>
+                        <tr><td><span class="keyword">Configuration</span></td><td>Liée à l'identité de la machine</td><td>Liée au câble physique</td></tr>
+                        <tr><td><span class="keyword">Usage recommandé</span></td><td>À ÉVITER en production</td><td>Standard recommandé</td></tr>
+                    </table>
+                </div>
+                <div class="def-box"><p><span class="keyword">VLAN par port</span> = la sécurité vient du câble physique, pas de la machine. Même en branchant une autre machine sur la prise publique, elle reste dans le VLAN public. Sans ajout de matériel supplémentaire : utiliser les commutateurs de niveau 3 déjà en place.</p></div>
+            </div>
+            <div class="card">
+                <h3>Port-Security Cisco — Commandes à connaître par coeur</h3>
+                <pre><code>Switch# configure terminal
+
+! Sécurisation des ports actifs (ex : fa0/1 à fa0/38)
+Switch(config)# interface range fa0/1 - 38
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport port-security
+Switch(config-if-range)# switchport port-security maximum 1
+Switch(config-if-range)# switchport port-security mac-address sticky
+Switch(config-if-range)# switchport port-security violation shutdown
+Switch(config-if-range)# exit
+
+! Désactivation des ports inutilisés (ex : fa0/39 à fa0/42)
+Switch(config)# interface range fa0/39 - 42
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# shutdown
+Switch(config-if-range)# exit
+
+Switch(config)# exit
+Switch# write memory</code></pre>
+            </div>
+            <div class="card">
+                <h3>Modes de violation</h3>
+                <div class="grid-3">
+                    <div class="card highlight-card">
+                        <h3>sticky</h3>
+                        <p>Apprend automatiquement la 1ère adresse MAC connectée et la mémorise &rarr; pas besoin de collecter manuellement</p>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>shutdown</h3>
+                        <p><span class="keyword">Désactive le port</span> si une adresse MAC non autorisée est détectée</p>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>protect / restrict</h3>
+                        <p><strong>protect</strong> : bloque le trafic des adresses inconnues sans désactiver le port. <strong>restrict</strong> : idem + alerte SNMP + compteur de violations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Analyse Wireshark — Identifier une attaque SYN Flood</h3>
+                <div class="def-box"><p><strong>Symptôme :</strong> des milliers de paquets <span class="keyword">SYN</span> vers la même adresse IP SANS ACK de retour.<br>
+                <strong>Cause :</strong> attaque DoS de type SYN Flood — le serveur réserve des ressources pour chaque SYN sans jamais recevoir le ACK final.<br>
+                <strong>Conséquence :</strong> saturation de la table des connexions &rarr; le serveur ne peut plus traiter de connexions légitimes.<br>
+                <strong>Source probable :</strong> machine connectée physiquement au réseau local (intérieur du réseau).</p></div>
+                <div class="def-box"><p><strong>Rappel du 3-Way Handshake TCP :</strong><br>
+                1. Client &rarr; Serveur : <span class="keyword">SYN</span> (demande de connexion)<br>
+                2. Serveur &rarr; Client : <span class="keyword">SYN-ACK</span> (acceptation)<br>
+                3. Client &rarr; Serveur : <span class="keyword">ACK</span> (confirmation)<br>
+                Sans le dernier ACK &rarr; le serveur réserve la connexion indéfiniment &rarr; SYN Flood exploite cela.</p></div>
+            </div>
+            <div class="card">
+                <h3>DDoS — Points essentiels</h3>
+                <ul>
+                    <li><span class="keyword">DDoS</span> = Distributed Denial of Service : saturation des ressources d'une cible depuis un réseau de machines zombies (botnet)</li>
+                    <li>Objectif : rendre le service indisponible pour les utilisateurs légitimes</li>
+                    <li>Types : SYN Flood, UDP Flood, HTTP Flood, amplification DNS/NTP</li>
+                    <li>Pare-feux seuls : <span class="keyword">INSUFFISANTS</span> contre le DDoS (peuvent être saturés eux-mêmes en amont)</li>
+                    <li>Protection efficace : solutions anti-DDoS chez l'opérateur/FAI ou <span class="keyword">scrubbing center</span>, en amont du pare-feu</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ⑦ HAPROXY -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">7</div><div class="section-title">HAProxy, haute disponibilité & certificats TLS</div></div>
+            <div class="card">
+                <h3>HAProxy — Rôle et justification</h3>
+                <ul>
+                    <li><span class="keyword">Load balancer</span> (répartiteur de charge) open source pour TCP/HTTP</li>
+                    <li>Répartit les requêtes entre plusieurs serveurs web (algorithme <span class="keyword">Round-Robin</span> par défaut)</li>
+                    <li>Élimine les <span class="keyword">SPOF</span> (Single Point of Failure) : si un serveur tombe, les requêtes sont redirigées</li>
+                    <li>Peut détecter et bloquer les attaques DDoS et les tentatives de force brute</li>
+                    <li>Journalisation avancée pour détecter les intrusions</li>
+                    <li>Architecture : <span class="keyword">Frontend</span> (écoute) &rarr; <span class="keyword">Backend</span> (serveurs web)</li>
+                </ul>
+                <div class="warn-box"><p><strong>Il faut TOUJOURS doubler les serveurs HAProxy !</strong> Sans redondance, HAProxy lui-même est un SPOF : s'il tombe, TOUS les services web tombent. Solution : <span class="keyword">2 HAProxy en actif/passif</span> avec VRRP/keepalived (IP virtuelle flottante).</p></div>
+            </div>
+            <div class="card">
+                <h3>Stratégies de certificats TLS avec HAProxy</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Stratégie</th><th>Certificat sur...</th><th>Chiffrement jusqu'où ?</th></tr>
+                        <tr><td><span class="keyword">A — Terminaison TLS</span></td><td>Serveur(s) HAProxy uniquement</td><td>HTTPS du client jusqu'à HAProxy. Entre HAProxy et les serveurs web : <strong>HTTP non chiffré</strong> (risque si réseau interne compromis)</td></tr>
+                        <tr><td><span class="keyword">B — Pass-Through TLS</span></td><td>Chaque serveur web backend</td><td>HTTPS de bout en bout (client &rarr; serveurs web). HAProxy transmet sans déchiffrer &rarr; ne peut pas inspecter le contenu</td></tr>
+                    </table>
+                </div>
+                <div class="def-box"><p><strong>Pourquoi une mairie DOIT utiliser un certificat d'une AC publique de confiance ?</strong><br>
+                &rarr; Un certificat auto-signé n'est <strong>pas reconnu</strong> par les navigateurs (avertissement de sécurité)<br>
+                &rarr; Seul un certificat d'AC reconnue prouve l'<span class="keyword">authenticité du site</span><br>
+                &rarr; Le <span class="keyword">RGPD impose</span> la sécurisation des données personnelles en transit &rarr; HTTPS obligatoire</p></div>
+            </div>
+            <div class="card">
+                <h3>Règles de filtrage pare-feu — Comment les écrire</h3>
+                <div class="def-box"><p>
+                    <strong>Structure d'une règle :</strong> N° | Source | Destination | Port/Protocole | Action<br><br>
+                    Toujours spécifier le <span class="keyword">sens du trafic</span> (ex : DMZ &rarr; VLAN_WEB | VPN &rarr; DMZ)<br><br>
+                    La règle de <strong>blocage total par défaut est IMPLICITE</strong> (ne pas l'écrire)<br>
+                    En mode <span class="keyword">stateful</span> : les règles de RETOUR sont implicites (ne pas les écrire non plus)<br><br>
+                    <strong>Exemple HAProxy &rarr; Serveurs web (VLAN55) :</strong><br>
+                    &rarr; TCP port 80 si stratégie A (terminaison TLS)<br>
+                    &rarr; TCP port 443 si stratégie B (pass-through)</p></div>
+            </div>
+        </div>
+
+        <!-- ⑧ POWERSHELL AD -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">8</div><div class="section-title">PowerShell Active Directory — Scripts</div></div>
+            <div class="card">
+                <h3>Propriétés objet utilisateur AD à connaître</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Propriété</th><th>Signification</th></tr>
+                        <tr><td><span class="keyword">PasswordLastSet</span></td><td>Date de la DERNIÈRE MODIFICATION du mot de passe</td></tr>
+                        <tr><td><span class="keyword">LastLogonDate</span></td><td>Date de la DERNIÈRE CONNEXION du compte</td></tr>
+                        <tr><td><span class="keyword">AccountExpirationDate</span></td><td>Date d'expiration du compte</td></tr>
+                        <tr><td><span class="keyword">PasswordNeverExpires</span></td><td>Si true = le mot de passe n'expire jamais</td></tr>
+                        <tr><td><span class="keyword">CannotChangePassword</span></td><td>Si true = l'utilisateur ne peut pas changer son mot de passe</td></tr>
+                        <tr><td><span class="keyword">LogonCount</span></td><td>Nombre de connexions du compte</td></tr>
+                        <tr><td><span class="keyword">Enabled</span></td><td>Si true = compte actif</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Structure de base d'un script PowerShell AD</h3>
+                <pre><code># Définir le seuil de date
+$seuil = (Get-Date).AddDays(-365)  # 1 an
+
+# Récupérer les membres d'un groupe AD
+Get-ADGroupMember -Identity 'Nom du groupe' -Recursive |
+Get-ADUser -Properties PasswordLastSet, LastLogonDate |
+Where-Object { $_.PasswordLastSet -lt $seuil } |
+Select-Object Name, SamAccountName, PasswordLastSet
+
+# Opérateurs de comparaison PowerShell :
+# -lt = inférieur à (less than)
+# -gt = supérieur à (greater than)
+# -eq = égal à (equal)
+# -ne = différent de (not equal)
+# -and = ET logique | -or = OU logique</code></pre>
+                <div class="warn-box"><p><strong>Erreurs fréquentes :</strong><br>
+                &bull; MDP non changé depuis X jours &rarr; utiliser <span class="keyword">PasswordLastSet</span> (pas LastLogonDate !)<br>
+                &bull; Compte non connecté depuis X jours &rarr; utiliser <span class="keyword">LastLogonDate</span><br>
+                &bull; « Administrateurs de l'entreprise » ≠ « Admins du domaine » : deux groupes distincts dans AD !<br>
+                &bull; Toujours utiliser <span class="keyword">-Recursive</span> pour Get-ADGroupMember pour inclure les sous-groupes</p></div>
+            </div>
+            <div class="card">
+                <h3>Recommandations ANSSI sur les mots de passe</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Recommandation</th><th>Explication</th></tr>
+                        <tr><td><span class="keyword">R24 — Comptes standards</span></td><td>Ne PAS imposer de délai d'expiration si le mot de passe est robuste et les systèmes le permettent</td></tr>
+                        <tr><td><span class="keyword">R25 — Comptes à privilèges</span></td><td>IMPOSER un délai d'expiration entre 1 et 3 ans</td></tr>
+                        <tr><td><span class="keyword">En cas de compromission</span></td><td>Expiration IMMÉDIATE des mots de passe des comptes concernés</td></tr>
+                    </table>
+                </div>
+                <div class="warn-box"><p><strong>À ÉVITER :</strong> Durée trop courte (&lt; 1 mois) : contre-productif ! Les utilisateurs choisissent des mots de passe faibles et prévisibles (Mdp_janvier &rarr; Mdp_fevrier), ou notent leurs MDP. Durée illimitée pour les comptes à privilèges : inacceptable !</p></div>
+            </div>
+        </div>
+
+        <!-- ⑨ VPN IPSec & PKI -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">9</div><div class="section-title">VPN IPSec & Infrastructure à clés publiques (PKI)</div></div>
+            <div class="card">
+                <h3>Objectifs de sécurité garantis par un VPN</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Objectif</th><th>Description</th></tr>
+                        <tr><td><span class="keyword">Confidentialité</span></td><td>Données chiffrées en transit (AES, ChaCha20...) &rarr; interception impossible</td></tr>
+                        <tr><td><span class="keyword">Intégrité</span></td><td>HMAC garantit que les données n'ont pas été modifiées &rarr; toute altération est détectée</td></tr>
+                        <tr><td><span class="keyword">Authentification</span></td><td>Les deux extrémités s'authentifient mutuellement &rarr; protection contre le Man-in-the-Middle</td></tr>
+                        <tr><td><span class="keyword">Non-répudiation</span></td><td>Avec certificats : impossible de nier avoir participé à l'échange</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Les deux phases IKE du VPN IPSec</h3>
+                <div class="def-box"><p>
+                    <strong><span class="keyword">PHASE 1 (IKE)</span></strong> : Établissement du canal sécurisé de négociation<br>
+                    &rarr; Négociation des algorithmes de chiffrement/authentification<br>
+                    &rarr; Authentification mutuelle (certificats ou PSK)<br>
+                    &rarr; Résultat : tunnel ISAKMP-SA (IKEv1) ou PARENT-SA (IKEv2) chiffré<br><br>
+                    <strong><span class="keyword">PHASE 2 (IPSec)</span></strong> : Établissement des tunnels de données<br>
+                    &rarr; Négociation du profil de chiffrement des données et des réseaux autorisés<br>
+                    &rarr; Création de DEUX canaux (un par sens) avec deux clés différentes :<br>
+                    &bull; <strong>ESP-SA1</strong> (IKEv1) ou <strong>CHILD-SA1</strong> (IKEv2) : clé pour le sens Mairie &rarr; Site secours<br>
+                    &bull; <strong>ESP-SA2</strong> (IKEv1) ou <strong>CHILD-SA2</strong> (IKEv2) : clé pour le sens Site secours &rarr; Mairie<br>
+                    &rarr; Chaque extrémité possède les 2 clés : une pour CHIFFRER, une pour DÉCHIFFRER</p></div>
+                <div class="warn-box"><p><strong>Point clé souvent mal compris :</strong> Les 2 clés symétriques (ESP-SA1 et ESP-SA2) sont <span class="keyword">DIFFÉRENTES</span> ! Une par sens de communication. Ce n'est PAS une clé asymétrique : les deux parties connaissent les deux clés symétriques.</p></div>
+            </div>
+            <div class="card">
+                <h3>PKI vs PSK — Comparaison à maîtriser</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Critère</th><th>PKI / IGC (certificats)</th><th>PSK (clé pré-partagée)</th></tr>
+                        <tr><td><span class="keyword">Ajout d'un équipement</span></td><td>Facile : émettre un nouveau certificat depuis l'AC &rarr; aucune modif sur les autres</td><td>Complexe : reconfigurer tous les autres équipements avec la nouvelle PSK</td></tr>
+                        <tr><td><span class="keyword">Révocation en cas de vol</span></td><td>Rapide : révoquer le certificat &rarr; CRL publiée &rarr; refus immédiat par tous les équipements</td><td>Lente et dangereuse : changer manuellement la PSK sur TOUS les équipements</td></tr>
+                        <tr><td><span class="keyword">Sécurité</span></td><td>Élevée — cryptographie asymétrique (RSA/ECDSA) — recommandé ANSSI</td><td>Risquée en production — PSK &lt; 100 bits = choix risqué selon l'ANSSI</td></tr>
+                        <tr><td><span class="keyword">Usage</span></td><td>Production et environnements réels</td><td>Tests et diagnostics uniquement</td></tr>
+                    </table>
+                </div>
+                <div class="def-box"><p><strong>En cas de VOL d'ordinateur avec PKI :</strong> révoquer le certificat &rarr; l'attaquant ne peut plus s'authentifier même avec l'ordinateur volé.<br>
+                <strong>En cas de VOL avec PSK :</strong> la PSK est sur la machine &rarr; l'attaquant peut immédiatement établir un tunnel VPN valide.</p></div>
+            </div>
+            <div class="card">
+                <h3>Objectif d'une PKI / IGC</h3>
+                <div class="def-box"><p>Une <span class="keyword">PKI</span> (Infrastructure à Clés Publiques) est un ensemble de mécanismes permettant de créer, gérer, distribuer, révoquer des certificats numériques. Elle lie de façon fiable une <strong>clef publique</strong> à l'<strong>identité</strong> d'un équipement ou d'un utilisateur, grâce à la signature d'une Autorité de Certification (AC). Elle garantit l'authenticité des correspondants dans tous les échanges sécurisés (VPN, HTTPS, authentification admin...).</p></div>
+            </div>
+        </div>
+
+        <!-- ⑩ FLASHCARDS -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">10</div><div class="section-title">Flashcards — Questions rapides</div></div>
+            <div class="flash-grid">
+                <div class="flash-card"><div class="flash-q">Délai notification CNIL après violation ?</div><div class="flash-a">&rarr; 72 heures maximum (Art. 33 RGPD)</div></div>
+                <div class="flash-card"><div class="flash-q">Que signifie SPOF ?</div><div class="flash-a">&rarr; Single Point of Failure = point de défaillance unique &rarr; à éviter</div></div>
+                <div class="flash-card"><div class="flash-q">Règle 3-2-1 ?</div><div class="flash-a">&rarr; 3 copies | 2 supports différents | 1 hors site</div></div>
+                <div class="flash-card"><div class="flash-q">Différence réplication vs sauvegarde ?</div><div class="flash-a">&rarr; Réplication = disponibilité. Sauvegarde = retour à un état antérieur sain</div></div>
+                <div class="flash-card"><div class="flash-q">Que fait 'sticky' sur un port Cisco ?</div><div class="flash-a">&rarr; Mémorise automatiquement la 1ère adresse MAC connectée comme adresse autorisée</div></div>
+                <div class="flash-card"><div class="flash-q">Violation 'shutdown' vs 'restrict' ?</div><div class="flash-a">&rarr; Shutdown : désactive le port | Restrict : bloque + alerte SNMP + compteur</div></div>
+                <div class="flash-card"><div class="flash-q">Stratégie TLS A vs B sur HAProxy ?</div><div class="flash-a">&rarr; A (terminaison) : chiffré jusqu'à HAProxy puis HTTP | B (pass-through) : chiffré de bout en bout</div></div>
+                <div class="flash-card"><div class="flash-q">ESP-SA1 sert à quoi côté mairie ?</div><div class="flash-a">&rarr; Chiffrer les données ENVOYÉES par la mairie vers le site distant</div></div>
+                <div class="flash-card"><div class="flash-q">Pourquoi doubler les HAProxy ?</div><div class="flash-a">&rarr; HAProxy seul = SPOF. En doublant : si l'un tombe, l'autre prend le relais (actif/passif)</div></div>
+                <div class="flash-card"><div class="flash-q">Pourquoi PKI > PSK en production ?</div><div class="flash-a">&rarr; Révocation rapide | Ajout facile de nouveaux équipements | Sécurité crypto supérieure</div></div>
+                <div class="flash-card"><div class="flash-q">Ryuk scanne quelles plages IP ?</div><div class="flash-a">&rarr; 10.0.0.0/8 | 172.16.0.0/16 &rarr; 172.31.0.0/16 | 192.168.0.0/16</div></div>
+                <div class="flash-card"><div class="flash-q">Ryuk exfiltre-t-il des données ?</div><div class="flash-a">&rarr; Non. Il chiffre uniquement (contrairement à d'autres ransomwares)</div></div>
+                <div class="flash-card"><div class="flash-q">Phase 2 SANS : que NE faut-il PAS faire ?</div><div class="flash-a">&rarr; Ne pas réinitialiser le poste immédiatement &rarr; collecter d'abord les IoC</div></div>
+                <div class="flash-card"><div class="flash-q">MAC spoofing : pourquoi c'est simple ?</div><div class="flash-a">&rarr; Les adresses MAC sont en clair sur le réseau &rarr; copiables + modifiables avec des outils gratuits</div></div>
+                <div class="flash-card"><div class="flash-q">DPO : obligatoire pour qui ?</div><div class="flash-a">&rarr; Tout organisme PUBLIC (mairies, hôpitaux, administrations...)</div></div>
+                <div class="flash-card"><div class="flash-q">EBIOS RM : publiée par qui ?</div><div class="flash-a">&rarr; L'ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information)</div></div>
+                <div class="flash-card"><div class="flash-q">ANSSI R24 = ?</div><div class="flash-a">&rarr; Ne PAS imposer d'expiration sur les MDP des comptes NON sensibles</div></div>
+                <div class="flash-card"><div class="flash-q">ANSSI R25 = ?</div><div class="flash-a">&rarr; Imposer une expiration de 1 à 3 ans sur les MDP des comptes à PRIVILÈGES</div></div>
+                <div class="flash-card"><div class="flash-q">Qu'est-ce qu'un IoC ?</div><div class="flash-a">&rarr; Indicator of Compromise : indice d'infection (IP malveillante, hash de fichier, clé de registre...)</div></div>
+                <div class="flash-card"><div class="flash-q">Lien inter-site unique &rarr; solution ?</div><div class="flash-a">&rarr; Déployer un lien internet indépendant sur le site de secours + VPN IPSec de repli via internet</div></div>
+            </div>
+        </div>
+
+        <!-- ⑪ POINTS À NE PAS OUBLIER -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">11</div><div class="section-title">Points auxquels on ne pense pas toujours</div></div>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>En analyse de risques EBIOS</h3>
+                    <ul>
+                        <li>Toujours argumenter la vraisemblance avec des <span class="keyword">faits/statistiques</span></li>
+                        <li>Toujours développer les <span class="keyword">3 axes D/I/C</span> séparément</li>
+                        <li>Les mesures déjà en place RÉDUISENT la vraisemblance et/ou la gravité &rarr; les citer</li>
+                        <li>Application Guard agit aussi sur la VRAISEMBLANCE (car automatique)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>En sécurité réseau</h3>
+                    <ul>
+                        <li>Pare-feu stateful : les règles de RETOUR sont <span class="keyword">IMPLICITES</span></li>
+                        <li>La règle DENY ALL par défaut est IMPLICITE</li>
+                        <li>VLAN par MAC = insuffisant TOUJOURS &rarr; proposer VLAN par port</li>
+                        <li>Désactiver les ports inutilisés du commutateur</li>
+                        <li><span class="keyword">write memory</span> &rarr; TOUJOURS sauvegarder la config Cisco à la fin</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>En réponse à incident</h3>
+                    <ul>
+                        <li>Qualifier l'alerte : INCIDENT CONFIRMÉ ou FAUX POSITIF ? &rarr; justifier avec les IoC</li>
+                        <li>Identifier les AUTRES machines impactées &rarr; scanner tout le SI avec les IoC</li>
+                        <li>La notification CNIL a un délai de <span class="keyword">72h</span></li>
+                        <li>Éradication : penser aux <span class="keyword">tâches planifiées</span> et <span class="keyword">clés de registre</span></li>
+                        <li>Retour à la normale : surveiller le poste après réintégration</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>En PCA / sauvegarde</h3>
+                    <ul>
+                        <li>Réplication ≠ protection contre la corruption</li>
+                        <li>Conserver <span class="keyword">PLUSIEURS sauvegardes</span> complètes</li>
+                        <li>Archivage annuel uniquement = INSUFFISANT &rarr; archivage mensuel</li>
+                        <li>Les exercices de <span class="keyword">RESTAURATION</span> sont obligatoires</li>
+                        <li>Obligation légale : tester les PCA régulièrement</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>En VPN / PKI</h3>
+                    <ul>
+                        <li>PSK déconseillée en production par l'ANSSI</li>
+                        <li>Les 2 clés ESP-SA sont <span class="keyword">symétriques mais différentes</span></li>
+                        <li>Vol d'ordinateur avec PKI : <span class="keyword">RÉVOQUER</span> le certificat immédiatement</li>
+                        <li>Règles de filtrage VPN nomade : restreindre par UTILISATEUR et DESTINATION</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>En mots de passe AD</h3>
+                    <ul>
+                        <li><span class="keyword">PasswordLastSet</span> ≠ LastLogonDate &rarr; bien choisir la propriété</li>
+                        <li>« Administrateurs de l'entreprise » ≠ « Admins du domaine »</li>
+                        <li><span class="keyword">-Recursive</span> dans Get-ADGroupMember &rarr; souvent oublié</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⑫ DÉFINITIONS -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">12</div><div class="section-title">Définitions à maîtriser</div></div>
+            <div class="card">
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Terme</th><th>Définition rapide</th></tr>
+                        <tr><td><span class="keyword">SPOF</span></td><td>Single Point of Failure : composant dont la panne entraîne l'arrêt complet du service</td></tr>
+                        <tr><td><span class="keyword">Hardening</span></td><td>Durcissement : réduction de la surface d'attaque d'un système (désactivation de services, ports, comptes inutiles)</td></tr>
+                        <tr><td><span class="keyword">DMZ</span></td><td>Zone démilitarisée : réseau intermédiaire entre internet et le réseau interne, pour les services exposés</td></tr>
+                        <tr><td><span class="keyword">Botnet</span></td><td>Réseau de machines zombies contrôlées par un attaquant, utilisé pour des attaques DDoS</td></tr>
+                        <tr><td><span class="keyword">C2 (Command & Control)</span></td><td>Serveur utilisé par un attaquant pour piloter ses malwares à distance</td></tr>
+                        <tr><td><span class="keyword">IoC</span></td><td>Indicator of Compromise : signe d'infection (IP, hash, domaine, clé de registre...)</td></tr>
+                        <tr><td><span class="keyword">Failover</span></td><td>Basculement automatique vers un système de secours en cas de panne du système principal</td></tr>
+                        <tr><td><span class="keyword">Round-Robin</span></td><td>Algorithme de répartition de charge : les requêtes sont distribuées à chaque serveur à tour de rôle</td></tr>
+                        <tr><td><span class="keyword">Scrubbing center</span></td><td>Centre de nettoyage du trafic anti-DDoS : filtre le trafic malveillant avant qu'il n'atteigne la cible</td></tr>
+                        <tr><td><span class="keyword">VRRP / Keepalived</span></td><td>Protocole de redondance d'adresses IP pour la haute disponibilité (ex : 2 HAProxy)</td></tr>
+                        <tr><td><span class="keyword">MFA</span></td><td>Multi-Factor Authentication : authentification nécessitant au moins 2 facteurs</td></tr>
+                        <tr><td><span class="keyword">iSCSI</span></td><td>Protocole de stockage réseau (SAN) utilisant TCP/IP pour accéder à des disques distants</td></tr>
+                        <tr><td><span class="keyword">RAID 50</span></td><td>Combinaison RAID 5+0 : tolérance aux pannes + performances accrues</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONSEIL FINAL -->
+        <div class="card highlight-card" style="text-align:center;padding:30px;">
+            <h3 style="color:#69f0ae;font-size:1.2rem;margin-bottom:15px;">Conseil final pour l'examen</h3>
+            <p>Toujours s'appuyer sur les <span class="keyword">annexes et documents fournis</span> dans le sujet : les réponses y sont souvent présentes ou suggérées.<br><br>
+            Structurer chaque réponse : <span class="keyword">définir</span> &rarr; <span class="keyword">expliquer le principe</span> &rarr; <span class="keyword">illustrer avec un exemple du contexte</span> &rarr; <span class="keyword">conclure</span>.<br><br>
+            Pour les analyses de risque : toujours <strong>D/I/C + Gravité + Vraisemblance + argument chiffré</strong>.</p>
+        </div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

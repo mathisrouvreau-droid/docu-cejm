@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersécurité - Définitions</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}
+
+        .topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #00e676;position:sticky;top:0;z-index:100}
+        .topbar a{color:#69f0ae;text-decoration:none;font-weight:600;font-size:.95rem}
+        .topbar a:hover{color:#fff}
+        .topbar .title{font-size:1rem;color:#8892b0}
+
+        .header{text-align:center;padding:50px 20px 30px;background:linear-gradient(135deg,#1a1a2e 0%,#0a2e1a 50%,#0f3460 100%)}
+        .header h1{font-size:2.5rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:1px}
+        .header p{font-size:1rem;color:#8892b0;max-width:600px;margin:0 auto;line-height:1.6}
+
+        .search-bar{max-width:600px;margin:25px auto 0;position:relative}
+        .search-bar input{width:100%;padding:14px 20px 14px 48px;border-radius:14px;border:1px solid #2a2a4a;background:#1a1a2e;color:#e0e0e0;font-size:1rem;outline:none;transition:border-color .3s}
+        .search-bar input:focus{border-color:#00e676}
+        .search-bar input::placeholder{color:#4a4a6a}
+        .search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#4a4a6a;font-size:1.1rem}
+
+        .filters{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+        .filter-btn{padding:8px 20px;border-radius:20px;border:1px solid #2a2a4a;background:transparent;color:#8892b0;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s}
+        .filter-btn:hover{border-color:#3a3a5a;color:#fff}
+        .filter-btn.active{color:#fff}
+        .filter-btn.active.all{background:#00e676;border-color:#00e676;color:#0f0f1a}
+        .filter-btn.active.reseau{background:rgba(0,206,201,.2);border-color:#00cec9;color:#00cec9}
+        .filter-btn.active.risques{background:rgba(255,152,0,.2);border-color:#ff9800;color:#ff9800}
+        .filter-btn.active.infra{background:rgba(162,155,254,.2);border-color:#a29bfe;color:#a29bfe}
+        .filter-btn.active.juridique{background:rgba(233,69,96,.2);border-color:#ff6b6b;color:#ff6b6b}
+        .filter-btn.active.crypto{background:rgba(0,230,118,.2);border-color:#69f0ae;color:#69f0ae}
+
+        .count-bar{text-align:center;margin-top:15px;font-size:.85rem;color:#4a4a6a}
+        .count-bar strong{color:#8892b0}
+
+        .container{max-width:900px;margin:0 auto;padding:40px 20px}
+
+        .alpha-nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:30px}
+        .alpha-link{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#1a1a2e;border:1px solid #2a2a4a;color:#8892b0;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .2s}
+        .alpha-link:hover{border-color:#00e676;color:#fff}
+        .alpha-link.disabled{opacity:.3;pointer-events:none}
+
+        .letter-group{margin-bottom:35px}
+        .letter-header{font-size:1.8rem;font-weight:800;color:#00e676;margin-bottom:15px;padding-bottom:8px;border-bottom:2px solid #1a1a2e}
+
+        .def-item{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:20px;margin-bottom:12px;transition:all .3s;cursor:pointer}
+        .def-item:hover{border-color:#3a3a5a;box-shadow:0 5px 20px rgba(0,0,0,.2)}
+        .def-item.reseau{border-left:3px solid #00cec9}
+        .def-item.risques{border-left:3px solid #ff9800}
+        .def-item.infra{border-left:3px solid #a29bfe}
+        .def-item.juridique{border-left:3px solid #ff6b6b}
+        .def-item.crypto{border-left:3px solid #69f0ae}
+
+        .def-header{display:flex;align-items:center;gap:12px;justify-content:space-between}
+        .def-term{font-size:1.1rem;font-weight:700;color:#fff;flex:1}
+        .def-badge{font-size:.7rem;padding:4px 12px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+        .def-badge.reseau{background:rgba(0,206,201,.12);color:#00cec9}
+        .def-badge.risques{background:rgba(255,152,0,.12);color:#ff9800}
+        .def-badge.infra{background:rgba(162,155,254,.12);color:#a29bfe}
+        .def-badge.juridique{background:rgba(233,69,96,.12);color:#ff6b6b}
+        .def-badge.crypto{background:rgba(0,230,118,.12);color:#69f0ae}
+
+        .def-text{color:#b0b0c8;font-size:.93rem;line-height:1.7;margin-top:10px}
+        .def-text .sub{display:block;margin-top:6px;padding-left:15px;border-left:2px solid #2a2a4a}
+        .def-text strong{color:#d0d0e0}
+
+        .def-details{display:none;margin-top:10px}
+        .def-item.open .def-details{display:block}
+        .def-item.open{background:#1e1e35}
+
+        .toggle-icon{color:#4a4a6a;font-size:.8rem;transition:transform .3s}
+        .def-item.open .toggle-icon{transform:rotate(180deg)}
+
+        .footer{text-align:center;padding:30px 20px;color:#4a4a6a;font-size:.85rem;border-top:1px solid #1a1a2e}
+
+        @media(max-width:768px){
+            .header h1{font-size:1.8rem}
+            .alpha-nav{gap:4px}
+            .alpha-link{width:28px;height:28px;font-size:.75rem}
+        }
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#00e676}.light-mode .topbar a{color:#00b894}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .header{background:linear-gradient(135deg,#f8f9fa,#e8f5e9)}.light-mode .header h1{color:#2d3436}.light-mode .header p{color:#636e72}.light-mode .search-bar input{background:#fff;border-color:#dfe6e9;color:#2d3436}.light-mode .search-bar input:focus{border-color:#00b894}.light-mode .search-bar input::placeholder{color:#999}.light-mode .search-icon{color:#999}.light-mode .filter-btn{background:#f0f0f5;color:#636e72;border-color:#dfe6e9}.light-mode .filter-btn:hover{border-color:#bbb;color:#2d3436}.light-mode .filter-btn.active{color:#fff}.light-mode .filter-btn.active.all{background:#00b894;border-color:#00b894;color:#fff}.light-mode .count-bar{color:#999}.light-mode .count-bar strong{color:#636e72}.light-mode .alpha-link{background:#fff;border-color:#dfe6e9;color:#636e72}.light-mode .alpha-link:hover{border-color:#00b894;color:#00b894}.light-mode .letter-header{color:#00b894;border-bottom-color:#dfe6e9}.light-mode .def-item{background:#fff;border-color:#dfe6e9}.light-mode .def-item:hover{border-color:#ccc;box-shadow:0 5px 20px rgba(0,0,0,.08)}.light-mode .def-item.open{background:#f8f9fa}.light-mode .def-term{color:#2d3436}.light-mode .def-text{color:#555}.light-mode .def-text strong{color:#333}.light-mode .def-text .sub{border-left-color:#dfe6e9}.light-mode .toggle-icon{color:#999}.light-mode .footer{color:#aaa;border-top-color:#dfe6e9}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#00b894}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar">
+        <a href="cybersecurite.html">&larr; Cybersécurité</a>
+        <span class="title">Définitions &bull; 40 termes</span>
+<a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
+    </div>
+
+    <div class="header">
+        <h1>Définitions Cybersécurité</h1>
+        <p>Tous les termes clés pour l'épreuve E6 — BTS SIO SISR</p>
+        <div class="search-bar">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="searchInput" placeholder="Rechercher une définition..." autocomplete="off">
+        </div>
+        <div class="filters">
+            <button class="filter-btn active all" data-filter="all">Tout (40)</button>
+            <button class="filter-btn reseau" data-filter="reseau">Réseau (11)</button>
+            <button class="filter-btn risques" data-filter="risques">Risques (9)</button>
+            <button class="filter-btn infra" data-filter="infra">Infra (8)</button>
+            <button class="filter-btn crypto" data-filter="crypto">Crypto & VPN (7)</button>
+            <button class="filter-btn juridique" data-filter="juridique">Juridique (5)</button>
+        </div>
+        <div class="count-bar" id="countBar"><strong>40</strong> définitions affichées</div>
+    </div>
+
+    <div class="container">
+        <div class="alpha-nav" id="alphaNav"></div>
+        <div id="definitions">
+
+<!-- A -->
+<div class="letter-group" data-letter="A">
+<div class="letter-header" id="letter-A">A</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">AES-256</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Algorithme de chiffrement symétrique utilisant une clé de 256 bits. Standard actuel pour le chiffrement des données. Utilisé notamment par le ransomware Ryuk pour chiffrer les fichiers des victimes.</div></div>
+</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Application Guard</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Technologie d'isolation automatique des sites et fichiers non approuvés dans un environnement sécurisé (sandbox transparente). <strong>Supérieur à la Sandbox classique</strong> car il agit sans intervention de l'utilisateur. Réduit à la fois la gravité ET la vraisemblance d'une attaque.</div></div>
+</div>
+
+</div>
+
+<!-- B -->
+<div class="letter-group" data-letter="B">
+<div class="letter-header" id="letter-B">B</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Botnet</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Réseau de machines zombies contrôlées par un attaquant, utilisé pour des attaques DDoS. Les machines infectées reçoivent des ordres d'un serveur C2 (Command & Control).</div></div>
+</div>
+
+</div>
+
+<!-- C -->
+<div class="letter-group" data-letter="C">
+<div class="letter-header" id="letter-C">C</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">C2 (Command & Control)</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Serveur utilisé par un attaquant pour piloter ses malwares à distance. Dans la chaîne d'infection Bazar-Ryuk, BazarLoader contacte un serveur C2 pour télécharger la backdoor.</div></div>
+</div>
+
+<div class="def-item juridique" data-cat="juridique">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">CNIL</div>
+        <span class="def-badge juridique">Juridique</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Commission Nationale de l'Informatique et des Libertés. Autorité de contrôle française chargée de veiller au respect du RGPD. <strong>Notification obligatoire sous 72h</strong> en cas de violation de données personnelles. Peut infliger des amendes jusqu'à 20 millions d'euros.</div></div>
+</div>
+
+</div>
+
+<!-- D -->
+<div class="letter-group" data-letter="D">
+<div class="letter-header" id="letter-D">D</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">DDoS (Distributed Denial of Service)</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Attaque par déni de service distribué : saturation des ressources d'une cible depuis un réseau de machines zombies (botnet). Objectif : rendre le service indisponible pour les utilisateurs légitimes. Types : SYN Flood, UDP Flood, HTTP Flood, amplification DNS/NTP. <strong>Les pare-feux seuls sont insuffisants</strong> — nécessite un scrubbing center en amont.</div></div>
+</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">D/I/C (Disponibilité, Intégrité, Confidentialité)</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Les trois piliers de la sécurité de l'information, à toujours évaluer séparément dans une analyse de risques EBIOS.
+        <span class="sub"><strong>Disponibilité</strong> : le service est accessible quand on en a besoin.</span>
+        <span class="sub"><strong>Intégrité</strong> : les données n'ont pas été modifiées de manière non autorisée.</span>
+        <span class="sub"><strong>Confidentialité</strong> : les données ne sont accessibles qu'aux personnes autorisées.</span></div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">DMARC / DKIM / SPF</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Protocoles d'authentification des e-mails qui empêchent l'usurpation du domaine expéditeur (anti-spoofing). <strong>SPF</strong> : liste les serveurs autorisés à envoyer des mails pour un domaine. <strong>DKIM</strong> : signature cryptographique du mail. <strong>DMARC</strong> : politique de traitement si SPF/DKIM échouent.</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">DMZ (Zone démilitarisée)</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Réseau intermédiaire entre internet et le réseau interne, destiné à héberger les services exposés au public (serveur web, messagerie...). Protégé par des pare-feux des deux côtés.</div></div>
+</div>
+
+<div class="def-item juridique" data-cat="juridique">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">DPO (Délégué à la Protection des Données)</div>
+        <span class="def-badge juridique">Juridique</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Personne désignée pour veiller au respect du RGPD au sein d'une organisation. Sa désignation est <strong>obligatoire pour tout organisme public</strong> (mairies, hôpitaux, administrations...).</div></div>
+</div>
+
+</div>
+
+<!-- E -->
+<div class="letter-group" data-letter="E">
+<div class="letter-header" id="letter-E">E</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">EBIOS RM</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Expression des Besoins et Identification des Objectifs de Sécurité — Risk Manager. Méthode de l'<strong>ANSSI</strong> pour identifier, évaluer et traiter les risques numériques. Se concentre sur les menaces intentionnelles. Composée de <strong>5 ateliers</strong> : cadrage, sources de risques, scénarios stratégiques, scénarios opérationnels, traitement du risque.</div></div>
+</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">ESP-SA (Encapsulating Security Payload - Security Association)</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Canaux de données chiffrés créés lors de la Phase 2 d'un VPN IPSec. <strong>Deux clés symétriques DIFFÉRENTES</strong> sont créées (une par sens de communication). ESP-SA1 : chiffre les données dans le sens A→B. ESP-SA2 : chiffre dans le sens B→A. Les deux extrémités connaissent les deux clés.</div></div>
+</div>
+
+</div>
+
+<!-- F -->
+<div class="letter-group" data-letter="F">
+<div class="letter-header" id="letter-F">F</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Failover</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Basculement automatique vers un système de secours en cas de panne du système principal. Essentiel pour la haute disponibilité (ex : cluster de serveurs ESX, HAProxy en actif/passif).</div></div>
+</div>
+
+</div>
+
+<!-- H -->
+<div class="letter-group" data-letter="H">
+<div class="letter-header" id="letter-H">H</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">HAProxy</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Load balancer (répartiteur de charge) open source pour TCP/HTTP. Répartit les requêtes entre plusieurs serveurs web via l'algorithme <strong>Round-Robin</strong> par défaut. Architecture : Frontend (écoute) → Backend (serveurs web). <strong>Doit toujours être doublé</strong> (actif/passif avec VRRP/keepalived) pour éviter d'être un SPOF.</div></div>
+</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Hardening (Durcissement)</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Réduction de la surface d'attaque d'un système en désactivant les services, ports et comptes inutiles. Inclut : fermeture des ports réseau non utilisés, suppression des logiciels superflus, application des mises à jour, configuration minimale.</div></div>
+</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">HMAC</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Hash-based Message Authentication Code. Mécanisme de vérification de l'<strong>intégrité</strong> des données en transit. Garantit que les données n'ont pas été modifiées entre l'émetteur et le récepteur. Utilisé dans les VPN IPSec.</div></div>
+</div>
+
+</div>
+
+<!-- I -->
+<div class="letter-group" data-letter="I">
+<div class="letter-header" id="letter-I">I</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">IKE (Internet Key Exchange)</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Protocole de négociation des clés pour VPN IPSec, en deux phases. <strong>Phase 1</strong> : établissement d'un canal sécurisé (tunnel ISAKMP-SA/PARENT-SA) + authentification mutuelle (certificats ou PSK). <strong>Phase 2</strong> : création des tunnels de données chiffrés (ESP-SA/CHILD-SA) avec deux clés symétriques différentes.</div></div>
+</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">IoC (Indicator of Compromise)</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Indicateur de compromission : tout signe d'infection sur un système. Exemples : adresse IP malveillante, hash de fichier suspect, clé de registre anormale, domaine de C2. <strong>Méthode</strong> : relever les IoC sur la machine infectée → les rechercher dans les journaux de TOUTES les autres machines du SI.</div></div>
+</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">iSCSI</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Protocole de stockage réseau (SAN) utilisant TCP/IP pour accéder à des disques distants comme s'ils étaient locaux. Permet de centraliser le stockage sur des baies SAN.</div></div>
+</div>
+
+</div>
+
+<!-- M -->
+<div class="letter-group" data-letter="M">
+<div class="letter-header" id="letter-M">M</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">MAC Spoofing</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Usurpation d'adresse MAC : technique consistant à modifier l'adresse MAC de sa carte réseau pour se faire passer pour une autre machine. <strong>Facile à réaliser</strong> avec des outils logiciels gratuits, car les adresses MAC circulent en clair sur le réseau. C'est pourquoi les VLAN par adresse MAC sont à éviter.</div></div>
+</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">MFA (Multi-Factor Authentication)</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Authentification nécessitant au moins 2 facteurs parmi : ce que l'on sait (mot de passe), ce que l'on possède (token, téléphone), ce que l'on est (biométrie). Même si le mot de passe est volé, l'attaquant ne peut pas se connecter seul.</div></div>
+</div>
+
+</div>
+
+<!-- P -->
+<div class="letter-group" data-letter="P">
+<div class="letter-header" id="letter-P">P</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">PCA (Plan de Continuité d'Activité)</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Ensemble de procédures documentées permettant de maintenir ou restaurer les activités essentielles d'une organisation en cas d'incident majeur. Doit être <strong>testé régulièrement</strong> (obligation légale). Inclut les procédures de sauvegarde, restauration, bascule vers un site de secours.</div></div>
+</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">PKI / IGC (Infrastructure à Clés Publiques)</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Ensemble de mécanismes permettant de créer, gérer, distribuer et révoquer des certificats numériques. Lie de façon fiable une <strong>clé publique</strong> à l'<strong>identité</strong> d'un équipement ou utilisateur via la signature d'une Autorité de Certification (AC). <strong>Recommandée par l'ANSSI</strong> en production, contrairement aux PSK.</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Port-Security (Cisco)</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Fonctionnalité de sécurité des commutateurs Cisco qui limite le nombre d'adresses MAC autorisées par port. Modes de violation : <strong>shutdown</strong> (désactive le port), <strong>restrict</strong> (bloque + alerte SNMP), <strong>protect</strong> (bloque silencieusement). Le mode <strong>sticky</strong> mémorise automatiquement la 1ère MAC connectée.</div></div>
+</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">PSK (Pre-Shared Key / Clé pré-partagée)</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Clé secrète partagée à l'avance entre les deux extrémités d'un VPN. <strong>Déconseillée en production par l'ANSSI</strong> (PSK &lt; 100 bits = risqué). Problèmes : en cas de vol, la PSK est sur la machine ; pour ajouter un équipement, il faut reconfigurer tous les autres. Réservée aux tests et diagnostics.</div></div>
+</div>
+
+</div>
+
+<!-- R -->
+<div class="letter-group" data-letter="R">
+<div class="letter-header" id="letter-R">R</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">RAID 50</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Combinaison RAID 5+0 : tolérance aux pannes (parité distribuée) + performances accrues (striping). Utilisé sur les baies SAN pour garantir la disponibilité des données avec réplication inter-sites.</div></div>
+</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Ransomware</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Malware qui chiffre les fichiers d'une victime et exige une rançon pour les déchiffrer. <strong>Ryuk</strong> : chiffrement AES-256, extension .RYK, persistance via clé de registre, scanne les plages privées (10.0.0.0/8, 172.16-31.0.0/16, 192.168.0.0/16), arrête 180 services et 40 processus (antivirus et sauvegardes en priorité). N'exfiltre pas les données. Groupe : Wizard Spider/UNC1878.</div></div>
+</div>
+
+<div class="def-item juridique" data-cat="juridique">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">RGPD (Règlement Général sur la Protection des Données)</div>
+        <span class="def-badge juridique">Juridique</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Règlement européen encadrant le traitement des données personnelles. Obligations clés : minimisation des données, information/transparence, sécurité des données, désignation d'un DPO (obligatoire pour le public), limitation de conservation, registre des traitements, droit d'accès. <strong>Notification CNIL sous 72h</strong> en cas de violation (Art. 33). Amendes jusqu'à 20M€.</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Round-Robin</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Algorithme de répartition de charge : les requêtes sont distribuées à chaque serveur à tour de rôle. Algorithme par défaut de HAProxy. Simple et équitable mais ne tient pas compte de la charge réelle de chaque serveur.</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">RSTP (Rapid Spanning Tree Protocol)</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Protocole réseau déployé sur les commutateurs pour créer une topologie sans boucle tout en permettant la redondance des liens. En cas de panne d'un lien, un chemin alternatif est activé automatiquement.</div></div>
+</div>
+
+</div>
+
+<!-- S -->
+<div class="letter-group" data-letter="S">
+<div class="letter-header" id="letter-S">S</div>
+
+<div class="def-item risques" data-cat="risques">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SANS (modèle de réponse à incident)</div>
+        <span class="def-badge risques">Risques</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Modèle de réponse à incident en <strong>6 phases</strong> : 1) Préparation, 2) Identification (collecter les IoC, NE PAS réinitialiser le poste !), 3) Confinement (isoler les machines compromises), 4) Éradication (supprimer malware, clés de registre, tâches planifiées), 5) Retour à la normale (restaurer depuis sauvegarde saine), 6) Enseignements (post-incident review).</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Scrubbing center</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Centre de nettoyage du trafic anti-DDoS situé en amont du réseau de la cible (chez l'opérateur/FAI). Filtre le trafic malveillant avant qu'il n'atteigne le pare-feu. Indispensable car les pare-feux seuls sont insuffisants contre les DDoS.</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SPOF (Single Point of Failure)</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Point de défaillance unique : composant dont la panne entraîne l'arrêt complet du service. À éliminer systématiquement par la redondance (ex : doubler les HAProxy, les liens inter-sites, les alimentations).</div></div>
+</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SYN Flood</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Attaque DoS exploitant le 3-Way Handshake TCP. L'attaquant envoie des milliers de paquets SYN sans jamais envoyer le ACK final → le serveur réserve des ressources pour chaque connexion semi-ouverte → saturation de la table des connexions → impossibilité de traiter les connexions légitimes.</div></div>
+</div>
+
+</div>
+
+<!-- T -->
+<div class="letter-group" data-letter="T">
+<div class="letter-header" id="letter-T">T</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">TLS / Terminaison TLS vs Pass-Through</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Deux stratégies de certificats TLS avec HAProxy :
+        <span class="sub"><strong>Terminaison TLS (Stratégie A)</strong> : certificat sur HAProxy uniquement. HTTPS du client jusqu'à HAProxy, puis HTTP non chiffré vers les serveurs backend. Risque si réseau interne compromis.</span>
+        <span class="sub"><strong>Pass-Through TLS (Stratégie B)</strong> : certificat sur chaque serveur web backend. HTTPS de bout en bout. HAProxy transmet sans déchiffrer → ne peut pas inspecter le contenu.</span></div></div>
+</div>
+
+</div>
+
+<!-- V -->
+<div class="letter-group" data-letter="V">
+<div class="letter-header" id="letter-V">V</div>
+
+<div class="def-item reseau" data-cat="reseau">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">VLAN (Virtual Local Area Network)</div>
+        <span class="def-badge reseau">Réseau</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Réseau local virtuel permettant de segmenter un réseau physique en plusieurs sous-réseaux logiques isolés. <strong>VLAN par port</strong> (recommandé) : le VLAN est déterminé par le port physique du commutateur → sécurité élevée. <strong>VLAN par MAC</strong> (à éviter) : déterminé par l'adresse MAC → vulnérable au MAC spoofing.</div></div>
+</div>
+
+<div class="def-item crypto" data-cat="crypto">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">VPN IPSec</div>
+        <span class="def-badge crypto">Crypto & VPN</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Réseau privé virtuel utilisant le protocole IPSec pour sécuriser les communications. Garantit : <strong>confidentialité</strong> (chiffrement AES), <strong>intégrité</strong> (HMAC), <strong>authentification</strong> mutuelle (certificats ou PSK), <strong>non-répudiation</strong> (avec certificats). Établi en 2 phases IKE : Phase 1 (canal sécurisé) puis Phase 2 (tunnels de données avec 2 clés symétriques).</div></div>
+</div>
+
+<div class="def-item infra" data-cat="infra">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">VRRP / Keepalived</div>
+        <span class="def-badge infra">Infra</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Virtual Router Redundancy Protocol : protocole de redondance d'adresses IP pour la haute disponibilité. Permet de partager une IP virtuelle flottante entre 2 serveurs en mode actif/passif. Utilisé pour doubler les HAProxy : si le serveur actif tombe, le passif prend automatiquement le relais.</div></div>
+</div>
+
+</div>
+
+<!-- 3 -->
+<div class="letter-group" data-letter="3">
+<div class="letter-header" id="letter-3">3</div>
+
+<div class="def-item juridique" data-cat="juridique">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">3-2-1 (Règle de sauvegarde)</div>
+        <span class="def-badge juridique">Juridique</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Règle fondamentale de sauvegarde : <strong>3</strong> copies des données (production + 2 sauvegardes), <strong>2</strong> types de supports différents (ex : disque + bande/cloud), <strong>1</strong> copie hors site géographiquement distincte. À distinguer de la réplication qui ne protège pas contre la corruption des données.</div></div>
+</div>
+
+</div>
+
+<!-- R25 -->
+<div class="letter-group" data-letter="R">
+</div>
+
+        </div>
+    </div>
+
+    <div class="footer">Cybersécurité E6 SISR - BTS ESUPEC &mdash; Définitions</div>
+
+    <script>
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const alphaNav = document.getElementById('alphaNav');
+        const existingLetters = new Set([...document.querySelectorAll('.letter-group')].map(g => g.dataset.letter));
+        letters.forEach(l => {
+            const a = document.createElement('a');
+            a.className = 'alpha-link' + (existingLetters.has(l) ? '' : ' disabled');
+            a.textContent = l;
+            a.href = '#letter-' + l;
+            alphaNav.appendChild(a);
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        const countBar = document.getElementById('countBar');
+        let activeFilter = 'all';
+
+        function filterAll() {
+            const query = searchInput.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.def-item');
+            let count = 0;
+            items.forEach(item => {
+                const term = item.querySelector('.def-term').textContent.toLowerCase();
+                const text = item.querySelector('.def-text') ? item.querySelector('.def-text').textContent.toLowerCase() : '';
+                const cat = item.dataset.cat;
+                const matchSearch = !query || term.includes(query) || text.includes(query);
+                const matchFilter = activeFilter === 'all' || cat === activeFilter;
+                const show = matchSearch && matchFilter;
+                item.style.display = show ? '' : 'none';
+                if (show) count++;
+            });
+            document.querySelectorAll('.letter-group').forEach(g => {
+                const visible = [...g.querySelectorAll('.def-item')].some(i => i.style.display !== 'none');
+                g.style.display = visible ? '' : 'none';
+            });
+            countBar.innerHTML = '<strong>' + count + '</strong> définition' + (count > 1 ? 's' : '') + ' affichée' + (count > 1 ? 's' : '');
+        }
+
+        searchInput.addEventListener('input', filterAll);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.dataset.filter;
+                filterAll();
+            });
+        });
+    </script>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>
