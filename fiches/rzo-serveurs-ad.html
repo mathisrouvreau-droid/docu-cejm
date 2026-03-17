@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Directory & Serveurs</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #0984e3;position:sticky;top:0;z-index:100}.topbar a{color:#74b9ff;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a1a2e);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(9,132,227,.15);color:#74b9ff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#0652DD,#0984e3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#74b9ff}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#74b9ff;font-weight:600}.def-box{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(9,132,227,.12),rgba(116,185,255,.06));border:1px solid rgba(9,132,227,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(9,132,227,.12);color:#74b9ff;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#74b9ff;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0652DD}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e3f0ff)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(9,132,227,.1);color:#0652DD}.light-mode .section-title{color:#0652DD}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#0652DD}.light-mode .def-box{background:rgba(9,132,227,.05);border-left-color:#0652DD}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#e8f4ff;border-color:#b3d9ff}.light-mode th{background:rgba(9,132,227,.08);color:#0652DD}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#0652DD}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0652DD}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../sisr-rzo.html">&larr; SISR RZO</a><span class="title">Active Directory & Serveurs</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">SISR RZO</div>
+        <h1>Active Directory & Serveurs</h1>
+        <p>DNS, DHCP, HTTP, FTP, NTP, Active Directory et services réseau</p>
+    </div>
+    <div class="container">
+
+<!-- 1. Services réseau -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">Services réseau & Ports</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>Service</th><th>Port(s)</th><th>Protocole</th><th>Description</th></tr>
+            <tr><td><span class="keyword">DNS</span></td><td>53</td><td>UDP/TCP</td><td>Résolution de noms de domaine en adresses IP</td></tr>
+            <tr><td><span class="keyword">DHCP</span></td><td>67 (serveur) / 68 (client)</td><td>UDP</td><td>Attribution automatique d'adresses IP</td></tr>
+            <tr><td><span class="keyword">HTTP</span></td><td>80</td><td>TCP</td><td>Pages web non chiffrées</td></tr>
+            <tr><td><span class="keyword">HTTPS</span></td><td>443</td><td>TCP</td><td>Pages web chiffrées (TLS/SSL)</td></tr>
+            <tr><td><span class="keyword">FTP</span></td><td>20 (data) / 21 (contrôle)</td><td>TCP</td><td>Transfert de fichiers</td></tr>
+            <tr><td><span class="keyword">TFTP</span></td><td>69</td><td>UDP</td><td>Transfert de fichiers simplifié (sans auth)</td></tr>
+            <tr><td><span class="keyword">SSH</span></td><td>22</td><td>TCP</td><td>Accès distant sécurisé</td></tr>
+            <tr><td><span class="keyword">Telnet</span></td><td>23</td><td>TCP</td><td>Accès distant non sécurisé</td></tr>
+            <tr><td><span class="keyword">SMTP</span></td><td>25</td><td>TCP</td><td>Envoi de courrier électronique</td></tr>
+            <tr><td><span class="keyword">POP3</span></td><td>110</td><td>TCP</td><td>Réception de courrier (téléchargement)</td></tr>
+            <tr><td><span class="keyword">NTP</span></td><td>123</td><td>UDP</td><td>Synchronisation de l'heure</td></tr>
+            <tr><td><span class="keyword">SNMP</span></td><td>161/162</td><td>UDP</td><td>Supervision réseau</td></tr>
+            <tr><td><span class="keyword">AD (LDAP)</span></td><td>389</td><td>TCP/UDP</td><td>Annuaire Active Directory</td></tr>
+            <tr><td><span class="keyword">AD (LDAPS)</span></td><td>636</td><td>TCP</td><td>LDAP sécurisé (chiffré)</td></tr>
+            <tr><td><span class="keyword">Kerberos</span></td><td>88</td><td>TCP/UDP</td><td>Authentification AD</td></tr>
+            <tr><td><span class="keyword">Syslog</span></td><td>514</td><td>UDP</td><td>Journalisation centralisée</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 2. DNS -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">Configuration DNS</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">DNS (Domain Name System)</span> traduit les noms de domaine (www.exemple.com) en adresses IP (192.168.1.100). Indispensable pour la navigation web et le fonctionnement d'Active Directory.</p></div>
+        <h3>Packet Tracer : serveur DNS</h3>
+        <pre><code>! Sur le serveur DNS (onglet Services &gt; DNS) :
+! 1. Activer le service DNS (ON)
+! 2. Ajouter les enregistrements :
+!    Type A : www.exemple.com  &rarr; 192.168.1.100
+!    Type A : ftp.exemple.com  &rarr; 192.168.1.101
+!    Type A : mail.exemple.com &rarr; 192.168.1.102</code></pre>
+    </div>
+    <div class="card">
+        <h3>DNS sur routeur Cisco</h3>
+        <pre><code>! Activer la résolution DNS
+ip domain-lookup
+ip name-server 192.168.1.2
+
+! Créer des entrées DNS statiques
+ip host serveur-web 192.168.1.100
+ip host serveur-ftp 192.168.1.101</code></pre>
+    </div>
+    <div class="card">
+        <h3>Types d'enregistrements DNS</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Description</th><th>Exemple</th></tr>
+            <tr><td><span class="keyword">A</span></td><td>Nom &rarr; IPv4</td><td>www.exemple.com &rarr; 192.168.1.100</td></tr>
+            <tr><td><span class="keyword">AAAA</span></td><td>Nom &rarr; IPv6</td><td>www.exemple.com &rarr; 2001:db8::1</td></tr>
+            <tr><td><span class="keyword">CNAME</span></td><td>Alias vers un autre nom</td><td>web.exemple.com &rarr; www.exemple.com</td></tr>
+            <tr><td><span class="keyword">MX</span></td><td>Serveur de messagerie</td><td>exemple.com &rarr; mail.exemple.com</td></tr>
+            <tr><td><span class="keyword">NS</span></td><td>Serveur DNS autoritaire</td><td>exemple.com &rarr; ns1.exemple.com</td></tr>
+            <tr><td><span class="keyword">PTR</span></td><td>IPv4 &rarr; Nom (reverse)</td><td>192.168.1.100 &rarr; www.exemple.com</td></tr>
+            <tr><td><span class="keyword">SOA</span></td><td>Début d'autorité de zone</td><td>Infos sur la zone DNS</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 3. DHCP -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">Configuration DHCP</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">DHCP (Dynamic Host Configuration Protocol)</span> attribue automatiquement les paramètres IP aux clients : adresse IP, masque, passerelle, DNS. Processus : <strong>DORA</strong> (Discover, Offer, Request, Acknowledge).</p></div>
+        <h3>DHCP sur routeur Cisco</h3>
+        <pre><code>! Exclure les adresses réservées (serveurs, routeur, etc.)
+ip dhcp excluded-address 192.168.1.1 192.168.1.20
+
+! Créer le pool DHCP
+ip dhcp pool LAN_COMPTA
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 192.168.1.2
+ domain-name exemple.local
+ lease 7</code></pre>
+    </div>
+    <div class="card">
+        <h3>Pool DHCP pour un second VLAN</h3>
+        <pre><code>ip dhcp excluded-address 192.168.2.1 192.168.2.20
+
+ip dhcp pool LAN_IT
+ network 192.168.2.0 255.255.255.0
+ default-router 192.168.2.1
+ dns-server 192.168.1.2</code></pre>
+    </div>
+    <div class="card">
+        <h3>Relay DHCP (ip helper-address)</h3>
+        <pre><code>! Si le serveur DHCP est sur un autre réseau/VLAN,
+! configurer le relay sur l'interface du routeur côté client :
+interface GigabitEthernet0/0
+ ip helper-address 192.168.10.100</code></pre>
+        <div class="def-box"><p><span class="keyword">ip helper-address</span> : relaye les broadcasts DHCP (et autres) vers l'adresse unicast du serveur DHCP situé sur un autre réseau. Indispensable quand le serveur DHCP n'est pas sur le même sous-réseau que les clients.</p></div>
+    </div>
+    <div class="card">
+        <h3>Packet Tracer : serveur DHCP</h3>
+        <pre><code>! Sur le serveur (onglet Services &gt; DHCP) :
+! 1. Activer le service DHCP (ON)
+! 2. Configurer le pool :
+!    Pool Name     : serverPool
+!    Default Gateway : 192.168.1.1
+!    DNS Server    : 192.168.1.2
+!    Start IP      : 192.168.1.21
+!    Subnet Mask   : 255.255.255.0
+!    Max Users     : 200</code></pre>
+    </div>
+    <div class="card">
+        <h3>Vérification DHCP</h3>
+        <pre><code>! Voir les baux DHCP attribués
+show ip dhcp binding
+
+! Voir les conflits d'adresses
+show ip dhcp conflict
+
+! Statistiques DHCP
+show ip dhcp pool
+
+! Sur le PC client
+ipconfig /release
+ipconfig /renew
+ipconfig /all</code></pre>
+    </div>
+</div>
+
+<!-- 4. Active Directory -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">Active Directory (simulé)</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">Active Directory (AD)</span> est le service d'annuaire de Microsoft. Il centralise la gestion des utilisateurs, groupes, ordinateurs et stratégies (GPO) dans un domaine. AD repose sur <span class="keyword">DNS</span> (obligatoire), <span class="keyword">LDAP</span> (annuaire) et <span class="keyword">Kerberos</span> (authentification).</p></div>
+        <h3>Composants clés d'AD</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Composant</th><th>Description</th></tr>
+            <tr><td><span class="keyword">Domaine</span></td><td>Unité de base d'AD (ex : exemple.local). Regroupe les objets gérés.</td></tr>
+            <tr><td><span class="keyword">Contrôleur de domaine (DC)</span></td><td>Serveur hébergeant la base AD et gérant l'authentification.</td></tr>
+            <tr><td><span class="keyword">OU (Organizational Unit)</span></td><td>Conteneur pour organiser les objets (utilisateurs, PC) et appliquer des GPO.</td></tr>
+            <tr><td><span class="keyword">GPO (Group Policy Object)</span></td><td>Stratégie de groupe appliquée aux utilisateurs/ordinateurs d'une OU.</td></tr>
+            <tr><td><span class="keyword">Forêt</span></td><td>Ensemble de domaines partageant un schéma et un catalogue global.</td></tr>
+            <tr><td><span class="keyword">Arbre</span></td><td>Hiérarchie de domaines partageant un espace de noms contigu.</td></tr>
+            <tr><td><span class="keyword">Catalogue global</span></td><td>Réplique partielle de tous les objets de la forêt (recherches rapides).</td></tr>
+        </table></div>
+    </div>
+    <div class="card">
+        <h3>Packet Tracer : simulation AD</h3>
+        <pre><code>! Dans Packet Tracer, AD n'est pas directement simulable.
+! On simule les services associés :
+!
+! 1. Serveur DNS : résolution du domaine (exemple.local)
+!    Enregistrement A : dc1.exemple.local &rarr; 192.168.1.10
+!
+! 2. Serveur DHCP : distribution des paramètres réseau
+!    DNS server = IP du contrôleur de domaine
+!    Domain-name = exemple.local
+!
+! 3. Sur les PCs : configurer le DNS vers le DC
+!    ipconfig /all &rarr; vérifier DNS = 192.168.1.10
+!    nslookup dc1.exemple.local</code></pre>
+    </div>
+</div>
+
+<!-- 5. HTTP / FTP -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">Configuration HTTP & FTP</div></div>
+    <div class="card">
+        <h3>Serveur HTTP (Packet Tracer)</h3>
+        <pre><code>! Sur le serveur (onglet Services &gt; HTTP) :
+! 1. Activer HTTP (ON) et/ou HTTPS (ON)
+! 2. Éditer index.html avec le contenu souhaité
+! 3. Configurer le DNS : www.exemple.com &rarr; IP du serveur
+!
+! Test depuis un PC :
+! 1. Ouvrir Web Browser
+! 2. Taper : http://www.exemple.com ou http://192.168.1.100</code></pre>
+    </div>
+    <div class="card">
+        <h3>Serveur FTP (Packet Tracer)</h3>
+        <pre><code>! Sur le serveur (onglet Services &gt; FTP) :
+! 1. Activer le service FTP (ON)
+! 2. Créer un utilisateur :
+!    Username : admin
+!    Password : cisco123
+!    Permissions : Read, Write, Delete, Rename, List
+!
+! Test depuis un PC (Command Prompt) :
+! ftp 192.168.1.101
+! Username : admin
+! Password : cisco123
+! dir
+! get fichier.txt</code></pre>
+    </div>
+</div>
+
+<!-- 6. NTP -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Configuration NTP</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">NTP (Network Time Protocol)</span> synchronise l'horloge des équipements réseau avec un serveur de temps. Essentiel pour les logs, les certificats, Kerberos (AD) et la corrélation d'événements de sécurité.</p></div>
+        <h3>Packet Tracer : serveur NTP</h3>
+        <pre><code>! Sur le serveur (onglet Services &gt; NTP) :
+! 1. Activer le service NTP (ON)
+! 2. Authentification optionnelle</code></pre>
+    </div>
+    <div class="card">
+        <h3>NTP sur routeur / switch Cisco</h3>
+        <pre><code>! Configurer le serveur NTP
+ntp server 192.168.1.3
+
+! Configurer le fuseau horaire
+clock timezone CET 1
+clock summer-time CEST recurring
+
+! Vérification
+show ntp status
+show ntp associations
+show clock</code></pre>
+        <div class="def-box"><p><span class="keyword">Stratum</span> : niveau hiérarchique NTP. Stratum 0 = horloge atomique. Stratum 1 = serveur directement connecté. Un routeur configuré comme client NTP aura typiquement un stratum de N+1 par rapport à son serveur.</p></div>
+    </div>
+</div>
+
+<!-- 7. Schéma réseau type -->
+<div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">Schéma réseau type</div></div>
+    <div class="card">
+        <h3>Architecture classique d'examen</h3>
+        <pre><code>                    Internet
+                       |
+                  [R1 - Routeur]
+                  g0/1: 203.0.113.1 (WAN)
+                  g0/0: lien trunk vers SW1
+                  g0/0.10: 192.168.10.1 (VLAN 10)
+                  g0/0.20: 192.168.20.1 (VLAN 20)
+                       |
+                  [SW1 - Switch L2]
+                  g0/1: trunk vers R1
+                  fa0/1-10: access vlan 10
+                  fa0/11-20: access vlan 20
+                  fa0/24: access vlan 10 (serveurs)
+                 /    |    \
+              [PC1]  [PC2]  [Serveurs]
+          VLAN 10  VLAN 20   VLAN 10</code></pre>
+    </div>
+    <div class="card">
+        <h3>Adressage des serveurs (exemple)</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Serveur</th><th>IP</th><th>Services</th><th>VLAN</th></tr>
+            <tr><td><span class="keyword">SRV-DNS</span></td><td>192.168.10.2</td><td>DNS</td><td>10</td></tr>
+            <tr><td><span class="keyword">SRV-DHCP</span></td><td>192.168.10.3</td><td>DHCP</td><td>10</td></tr>
+            <tr><td><span class="keyword">SRV-WEB</span></td><td>192.168.10.4</td><td>HTTP/HTTPS</td><td>10</td></tr>
+            <tr><td><span class="keyword">SRV-FTP</span></td><td>192.168.10.5</td><td>FTP</td><td>10</td></tr>
+            <tr><td><span class="keyword">SRV-NTP</span></td><td>192.168.10.6</td><td>NTP</td><td>10</td></tr>
+        </table></div>
+        <div class="warn-box"><p><strong>Rappel :</strong> les serveurs doivent avoir une adresse IP <strong>statique</strong> (pas de DHCP). Ils sont souvent dans les adresses exclues du pool DHCP.</p></div>
+    </div>
+</div>
+
+<!-- 8. Tests de connectivité -->
+<div class="section">
+    <div class="section-header"><div class="section-num">8</div><div class="section-title">Tests de connectivité</div></div>
+    <div class="card">
+        <pre><code>! Depuis un PC (Command Prompt)
+ping 192.168.10.1          ! Test passerelle
+ping 192.168.20.1          ! Test inter-VLAN
+ping 203.0.113.1           ! Test accès WAN
+ping 8.8.8.8               ! Test Internet
+
+ipconfig /all              ! Vérifier IP, masque, GW, DNS
+nslookup www.exemple.com   ! Test résolution DNS
+tracert 192.168.20.1       ! Tracer le chemin
+
+! Depuis un routeur/switch
+ping 192.168.10.2
+traceroute 192.168.20.1
+show ip route              ! Vérifier les routes
+show ip interface brief    ! État des interfaces
+show ip nat translations   ! Vérifier NAT</code></pre>
+    </div>
+</div>
+
+<!-- 9. Points clés -->
+<div class="section">
+    <div class="section-header"><div class="section-num">9</div><div class="section-title">Points clés à retenir</div></div>
+    <div class="card highlight-card">
+        <ul>
+            <li><span class="keyword">DNS</span> est obligatoire pour Active Directory et la navigation web</li>
+            <li><span class="keyword">DHCP</span> : processus DORA (Discover, Offer, Request, Acknowledge)</li>
+            <li><span class="keyword">ip helper-address</span> relaye les broadcasts DHCP vers un serveur distant (relay)</li>
+            <li>Les serveurs ont des IP <span class="keyword">statiques</span> (exclues du pool DHCP)</li>
+            <li><span class="keyword">Active Directory</span> = DNS + LDAP + Kerberos. Nécessite un DC et un DNS fonctionnel</li>
+            <li><span class="keyword">NTP</span> synchronise l'heure. Indispensable pour Kerberos (tolérance de 5 min), les logs et les certificats</li>
+            <li>Connaître les <span class="keyword">ports standards</span> : DNS=53, DHCP=67/68, HTTP=80, HTTPS=443, FTP=21, SSH=22, NTP=123</li>
+            <li>Toujours tester la connectivité de <span class="keyword">proche en proche</span> : ping GW &rarr; ping serveur &rarr; ping inter-VLAN &rarr; ping Internet</li>
+            <li>Vérifier <span class="keyword">nslookup</span> pour confirmer que le DNS fonctionne</li>
+            <li>Un <span class="keyword">ip helper-address</span> par interface/VLAN où il y a des clients DHCP</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

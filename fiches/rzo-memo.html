@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémo Rapide — Packet Tracer</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #0984e3;position:sticky;top:0;z-index:100}.topbar a{color:#74b9ff;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a1a2e);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(9,132,227,.15);color:#74b9ff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#0652DD,#0984e3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#74b9ff}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#74b9ff;font-weight:600}.def-box{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(9,132,227,.12),rgba(116,185,255,.06));border:1px solid rgba(9,132,227,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(9,132,227,.12);color:#74b9ff;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#74b9ff;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0652DD}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e3f0ff)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(9,132,227,.1);color:#0652DD}.light-mode .section-title{color:#0652DD}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#0652DD}.light-mode .def-box{background:rgba(9,132,227,.05);border-left-color:#0652DD}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#e8f4ff;border-color:#b3d9ff}.light-mode th{background:rgba(9,132,227,.08);color:#0652DD}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#0652DD}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0652DD}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../sisr-rzo.html">&larr; SISR RZO</a><span class="title">Mémo Rapide &bull; Packet Tracer</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">MÉMO RAPIDE</div>
+        <h1>Mémo Rapide — Packet Tracer</h1>
+        <p>Toutes les commandes essentielles en un coup d'oeil</p>
+    </div>
+    <div class="container">
+
+<!-- 1. NAT/PAT -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">NAT / PAT</div></div>
+    <div class="card">
+        <h3>NAT Statique (1 IP priv &harr; 1 IP pub)</h3>
+        <pre><code>int g0/0
+ ip nat inside
+int g0/1
+ ip nat outside
+
+ip nat inside source static 192.168.1.10 203.0.113.10</code></pre>
+    </div>
+    <div class="card">
+        <h3>PAT / Overload (N IP priv &rarr; 1 IP pub)</h3>
+        <pre><code>access-list 1 permit 192.168.1.0 0.0.0.255
+
+ip nat inside source list 1 interface g0/1 overload</code></pre>
+    </div>
+    <div class="card">
+        <h3>NAT Dynamique (pool)</h3>
+        <pre><code>ip nat pool MON_POOL 203.0.113.1 203.0.113.14 netmask 255.255.255.240
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+ip nat inside source list 1 pool MON_POOL</code></pre>
+    </div>
+    <div class="card">
+        <h3>Vérification</h3>
+        <pre><code>show ip nat translations
+show ip nat statistics
+debug ip nat</code></pre>
+    </div>
+</div>
+
+<!-- 2. ACL -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">ACL (Access Control Lists)</div></div>
+    <div class="card">
+        <h3>ACL Standard numérotée (1-99)</h3>
+        <pre><code>access-list 10 permit 192.168.1.0 0.0.0.255
+access-list 10 deny any
+
+int g0/0
+ ip access-group 10 in</code></pre>
+    </div>
+    <div class="card">
+        <h3>ACL Étendue numérotée (100-199)</h3>
+        <pre><code>access-list 100 permit tcp 192.168.1.0 0.0.0.255 any eq 80
+access-list 100 permit tcp 192.168.1.0 0.0.0.255 any eq 443
+access-list 100 deny ip any any
+
+int g0/0
+ ip access-group 100 in</code></pre>
+    </div>
+    <div class="card">
+        <h3>ACL Nommée</h3>
+        <pre><code>ip access-list standard AUTORISER_LAN
+ permit 192.168.1.0 0.0.0.255
+ deny any
+
+ip access-list extended WEB_ONLY
+ permit tcp any any eq 80
+ permit tcp any any eq 443
+ deny ip any any</code></pre>
+    </div>
+</div>
+
+<!-- 3. OSPF -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">OSPF</div></div>
+    <div class="card">
+        <h3>Configuration de base</h3>
+        <pre><code>router ospf 1
+ router-id 1.1.1.1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 10.0.0.0 0.0.0.3 area 0
+ passive-interface g0/0</code></pre>
+    </div>
+    <div class="card">
+        <h3>Route par défaut</h3>
+        <pre><code>ip route 0.0.0.0 0.0.0.0 &lt;IP-FAI&gt;
+router ospf 1
+ default-information originate</code></pre>
+    </div>
+    <div class="card">
+        <h3>Vérification</h3>
+        <pre><code>show ip ospf neighbor
+show ip ospf interface brief
+show ip route ospf
+show ip ospf database</code></pre>
+    </div>
+</div>
+
+<!-- 4. RIP -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">RIP</div></div>
+    <div class="card">
+        <h3>Configuration RIPv2</h3>
+        <pre><code>router rip
+ version 2
+ no auto-summary
+ network 192.168.1.0
+ network 10.0.0.0
+ passive-interface g0/0
+ default-information originate</code></pre>
+    </div>
+    <div class="card">
+        <h3>Vérification</h3>
+        <pre><code>show ip rip database
+show ip route rip
+show ip protocols</code></pre>
+    </div>
+</div>
+
+<!-- 5. VLANs -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">VLANs</div></div>
+    <div class="card">
+        <h3>Création & ports Access</h3>
+        <pre><code>vlan 10
+ name COMPTA
+vlan 20
+ name IT
+
+int range fa0/1-10
+ switchport mode access
+ switchport access vlan 10
+
+int range fa0/11-20
+ switchport mode access
+ switchport access vlan 20</code></pre>
+    </div>
+    <div class="card">
+        <h3>Trunk</h3>
+        <pre><code>int g0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20</code></pre>
+    </div>
+    <div class="card">
+        <h3>Router-on-a-stick</h3>
+        <pre><code>int g0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+int g0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0</code></pre>
+    </div>
+</div>
+
+<!-- 6. Serveurs -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Serveurs</div></div>
+    <div class="card">
+        <h3>DHCP (sur routeur)</h3>
+        <pre><code>ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp pool LAN1
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 192.168.1.2
+
+! Relay DHCP (si serveur sur un autre réseau)
+int g0/0
+ ip helper-address 192.168.2.100</code></pre>
+    </div>
+    <div class="card">
+        <h3>DNS / HTTP / NTP (Packet Tracer)</h3>
+        <pre><code>! DNS : onglet Services &gt; DNS &gt; ON
+!   Ajouter enregistrement A : www.exemple.com &rarr; 192.168.1.100
+! HTTP : onglet Services &gt; HTTP &gt; ON
+!   Éditer index.html
+! NTP : onglet Services &gt; NTP &gt; ON
+!   Authentification optionnelle</code></pre>
+    </div>
+    <div class="card">
+        <h3>NTP sur routeur</h3>
+        <pre><code>ntp server 192.168.1.3
+show ntp status
+show clock</code></pre>
+    </div>
+</div>
+
+<!-- 7. Règles de placement ACL -->
+<div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">Règles de placement ACL</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">ACL Standard</span> : placer au plus <strong>proche de la destination</strong> (car ne filtre que l'adresse source).</p></div>
+        <div class="def-box"><p><span class="keyword">ACL Étendue</span> : placer au plus <strong>proche de la source</strong> (car filtre source, destination, protocole, port).</p></div>
+        <div class="warn-box"><p><strong>Rappel :</strong> il y a un <span class="keyword">deny any</span> implicite en fin de toute ACL. Pensez à ajouter un <code>permit</code> si nécessaire. Une seule ACL par interface, par direction (in/out).</p></div>
+    </div>
+</div>
+
+<!-- 8. Wildcards rapides -->
+<div class="section">
+    <div class="section-header"><div class="section-num">8</div><div class="section-title">Wildcards rapides</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>CIDR</th><th>Masque</th><th>Wildcard</th><th>Hôtes</th></tr>
+            <tr><td>/32</td><td>255.255.255.255</td><td><span class="keyword">0.0.0.0</span></td><td>1 (host)</td></tr>
+            <tr><td>/30</td><td>255.255.255.252</td><td><span class="keyword">0.0.0.3</span></td><td>4 (2 utiles)</td></tr>
+            <tr><td>/28</td><td>255.255.255.240</td><td><span class="keyword">0.0.0.15</span></td><td>16</td></tr>
+            <tr><td>/27</td><td>255.255.255.224</td><td><span class="keyword">0.0.0.31</span></td><td>32</td></tr>
+            <tr><td>/26</td><td>255.255.255.192</td><td><span class="keyword">0.0.0.63</span></td><td>64</td></tr>
+            <tr><td>/25</td><td>255.255.255.128</td><td><span class="keyword">0.0.0.127</span></td><td>128</td></tr>
+            <tr><td>/24</td><td>255.255.255.0</td><td><span class="keyword">0.0.0.255</span></td><td>256</td></tr>
+            <tr><td>/16</td><td>255.255.0.0</td><td><span class="keyword">0.0.255.255</span></td><td>65 536</td></tr>
+            <tr><td>/8</td><td>255.0.0.0</td><td><span class="keyword">0.255.255.255</span></td><td>16 777 216</td></tr>
+        </table></div>
+        <div class="def-box"><p><strong>Astuce :</strong> Wildcard = <span class="keyword">255.255.255.255 - masque</span>. Exemple : /24 &rarr; 255.255.255.255 - 255.255.255.0 = 0.0.0.255</p></div>
+    </div>
+</div>
+
+<!-- 9. Métriques & AD -->
+<div class="section">
+    <div class="section-header"><div class="section-num">9</div><div class="section-title">Métriques & Distance Administrative</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>Source de route</th><th>AD</th><th>Métrique</th></tr>
+            <tr><td><span class="keyword">Connectée</span></td><td>0</td><td>—</td></tr>
+            <tr><td><span class="keyword">Statique</span></td><td>1</td><td>—</td></tr>
+            <tr><td><span class="keyword">EIGRP (résumé)</span></td><td>5</td><td>Bande passante + délai</td></tr>
+            <tr><td><span class="keyword">eBGP</span></td><td>20</td><td>Attributs de chemin</td></tr>
+            <tr><td><span class="keyword">EIGRP (interne)</span></td><td>90</td><td>Bande passante + délai</td></tr>
+            <tr><td><span class="keyword">OSPF</span></td><td>110</td><td>Coût (100M / BW)</td></tr>
+            <tr><td><span class="keyword">RIP</span></td><td>120</td><td>Nombre de sauts (max 15)</td></tr>
+            <tr><td><span class="keyword">EIGRP (externe)</span></td><td>170</td><td>Bande passante + délai</td></tr>
+            <tr><td><span class="keyword">iBGP</span></td><td>200</td><td>Attributs de chemin</td></tr>
+        </table></div>
+        <div class="def-box"><p><span class="keyword">Distance Administrative (AD)</span> : indice de confiance d'un protocole de routage. Plus la valeur est basse, plus la route est préférée.</p></div>
+    </div>
+</div>
+
+<!-- 10. Check-list -->
+<div class="section">
+    <div class="section-header"><div class="section-num">10</div><div class="section-title">Check-list avant de soumettre</div></div>
+    <div class="card highlight-card">
+        <h3>Vérifications finales</h3>
+        <ul>
+            <li><span class="keyword">ip nat inside / outside</span> sur les bonnes interfaces ?</li>
+            <li><span class="keyword">ACL</span> appliquée sur la bonne interface et dans la bonne direction (in/out) ?</li>
+            <li><span class="keyword">network</span> OSPF/RIP avec les bons wildcards / réseaux ?</li>
+            <li><span class="keyword">passive-interface</span> sur les interfaces LAN ?</li>
+            <li><span class="keyword">no shutdown</span> sur toutes les interfaces utilisées ?</li>
+            <li><span class="keyword">switchport mode access/trunk</span> correctement configuré ?</li>
+            <li><span class="keyword">encapsulation dot1Q</span> sur les sous-interfaces router-on-a-stick ?</li>
+            <li><span class="keyword">ip helper-address</span> configuré pour le relay DHCP ?</li>
+            <li><span class="keyword">default-information originate</span> pour redistribuer la route par défaut ?</li>
+            <li><span class="keyword">Ping</span> de bout en bout fonctionne (PC &rarr; serveur) ?</li>
+            <li><span class="keyword">DNS</span> résolu (nslookup / navigateur web) ?</li>
+            <li><span class="keyword">show ip route</span> : toutes les routes sont présentes ?</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Commandes de diagnostic rapide</h3>
+        <pre><code>show running-config
+show ip interface brief
+show ip route
+show vlan brief
+show interfaces trunk
+show ip nat translations
+show ip ospf neighbor
+show ip protocols
+ping &lt;destination&gt;
+traceroute &lt;destination&gt;</code></pre>
+    </div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

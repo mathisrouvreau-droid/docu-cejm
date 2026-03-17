@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISR RZO - Fiches de révision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+
+        .topbar { background: #1a1a2e; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #0984e3; position: sticky; top: 0; z-index: 100; }
+        .topbar a { color: #74b9ff; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .topbar a:hover { color: #fff; }
+        .topbar .title { font-size: 1rem; color: #8892b0; }
+
+        .header { text-align: center; padding: 50px 20px 30px; background: linear-gradient(135deg, #1a1a2e 0%, #0a1a2e 50%, #0f2460 100%); }
+        .header h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .header p { font-size: 1rem; color: #8892b0; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 25px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #0984e3; }
+        .stat-label { font-size: 0.85rem; color: #8892b0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        .category { margin-bottom: 50px; }
+        .category-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #1a1a2e; }
+        .category-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; background: linear-gradient(135deg, #0652DD, #0984e3); }
+        .category-title { font-size: 1.6rem; font-weight: 700; color: #74b9ff; }
+        .category-count { font-size: 0.8rem; color: #8892b0; margin-left: auto; background: #1a1a2e; padding: 5px 12px; border-radius: 20px; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: #1a1a2e; border-radius: 16px; padding: 25px; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; border: 1px solid #2a2a4a; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #0652DD, #0984e3); }
+        .card:hover { transform: translateY(-5px); border-color: #3a3a5a; box-shadow: 0 10px 40px rgba(9, 132, 227, 0.15); }
+
+        .card-cas { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; color: #74b9ff; }
+        .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; line-height: 1.4; color: #fff; }
+        .card-topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .topic-tag { font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: #8892b0; border: 1px solid rgba(255,255,255,0.08); }
+        .card-arrow { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: #74b9ff; }
+        .card-arrow span { transition: transform 0.3s ease; display: inline-block; }
+        .card:hover .card-arrow span { transform: translateX(5px); }
+
+        .footer { text-align: center; padding: 30px 20px; color: #4a4a6a; font-size: 0.85rem; border-top: 1px solid #1a1a2e; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .stats { gap: 20px; }
+        }
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0984e3}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .header{background:linear-gradient(135deg,#f8f9fa,#e3f2fd)}.light-mode .header h1{color:#2d3436}.light-mode .header p{color:#636e72}.light-mode .stat-number{color:#0984e3}.light-mode .category-header{border-bottom-color:#e0e0e0}.light-mode .category-title{color:#0984e3}.light-mode .category-count{background:#f0f0f5;color:#636e72}.light-mode .card{background:#f8f9fa;border-color:#dfe6e9}.light-mode .card:hover{background:#f0f0f5;border-color:#ccc;box-shadow:0 10px 40px rgba(0,0,0,.1)}.light-mode .card-cas{color:#0984e3}.light-mode .card-title{color:#2d3436}.light-mode .card-arrow{color:#0984e3}.light-mode .topic-tag{background:rgba(0,0,0,.04);color:#666}.light-mode .footer{color:#aaa;border-top-color:#e0e0e0}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0984e3}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html">&larr; Accueil</a>
+        <span class="title">SISR RZO &bull; BTS SIO SISR</span>
+        <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
+    </div>
+
+    <div class="header">
+        <h1>&#127760; SISR RZO</h1>
+        <p>BTS SIO option SISR — Réseau, routage &amp; services</p>
+        <div class="stats">
+            <div class="stat"><div class="stat-number">7</div><div class="stat-label">Fiches</div></div>
+            <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Commandes</div></div>
+            <div class="stat"><div class="stat-number">6</div><div class="stat-label">Thèmes</div></div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Mémo Rapide -->
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#9889;</div>
+                <div class="category-title">Mémo Rapide</div>
+                <div class="category-count">1 fiche &middot; aide-mémoire</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/rzo-memo.html">
+                    <div class="card-cas">Aide-mémoire — Packet Tracer Éval</div>
+                    <div class="card-title">Mémo Rapide — Toutes les commandes essentielles</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">NAT/PAT</span>
+                        <span class="topic-tag">ACL</span>
+                        <span class="topic-tag">OSPF</span>
+                        <span class="topic-tag">RIP</span>
+                        <span class="topic-tag">VLANs</span>
+                        <span class="topic-tag">Serveurs</span>
+                        <span class="topic-tag">Wildcards</span>
+                        <span class="topic-tag">Check-list</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Routage & Translation -->
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128260;</div>
+                <div class="category-title">Routage &amp; Translation</div>
+                <div class="category-count">3 fiches &middot; NAT, OSPF, RIP</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/rzo-nat-pat.html">
+                    <div class="card-cas">Cisco IOS — Translation d'adresses</div>
+                    <div class="card-title">NAT / PAT — Network Address Translation</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">NAT Statique</span>
+                        <span class="topic-tag">PAT Overload</span>
+                        <span class="topic-tag">NAT Dynamique</span>
+                        <span class="topic-tag">Inside/Outside</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/rzo-ospf.html">
+                    <div class="card-cas">Link-State — Algorithme Dijkstra</div>
+                    <div class="card-title">OSPF — Open Shortest Path First</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Area 0</span>
+                        <span class="topic-tag">Router-ID</span>
+                        <span class="topic-tag">DR/BDR</span>
+                        <span class="topic-tag">Coût</span>
+                        <span class="topic-tag">Adjacences</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/rzo-rip.html">
+                    <div class="card-cas">Distance-Vector — Hop Count</div>
+                    <div class="card-title">RIP — Routing Information Protocol</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">RIPv1 vs RIPv2</span>
+                        <span class="topic-tag">Max 15 sauts</span>
+                        <span class="topic-tag">no auto-summary</span>
+                        <span class="topic-tag">Auth MD5</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sécurité & Segmentation -->
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128737;</div>
+                <div class="category-title">Sécurité &amp; Segmentation</div>
+                <div class="category-count">2 fiches &middot; ACL, VLANs</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/rzo-acl.html">
+                    <div class="card-cas">Filtrage — Standard &amp; Étendue</div>
+                    <div class="card-title">ACL — Access Control Lists</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Standard</span>
+                        <span class="topic-tag">Étendue</span>
+                        <span class="topic-tag">Nommée</span>
+                        <span class="topic-tag">Wildcards</span>
+                        <span class="topic-tag">Deny implicite</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+                <a class="card" href="fiches/rzo-vlans.html">
+                    <div class="card-cas">Segmentation — 802.1Q</div>
+                    <div class="card-title">VLANs — Virtual LAN</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Access</span>
+                        <span class="topic-tag">Trunk</span>
+                        <span class="topic-tag">Router-on-a-stick</span>
+                        <span class="topic-tag">Switch L3</span>
+                        <span class="topic-tag">SVI</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Services & Serveurs -->
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128421;</div>
+                <div class="category-title">Services &amp; Serveurs</div>
+                <div class="category-count">1 fiche &middot; DNS, DHCP, AD, HTTP, NTP</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/rzo-serveurs-ad.html">
+                    <div class="card-cas">Packet Tracer — Configuration serveurs</div>
+                    <div class="card-title">Active Directory &amp; Serveurs</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">DNS</span>
+                        <span class="topic-tag">DHCP</span>
+                        <span class="topic-tag">Active Directory</span>
+                        <span class="topic-tag">HTTP/FTP</span>
+                        <span class="topic-tag">NTP</span>
+                        <span class="topic-tag">IP Helper</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">SISR RZO - BTS ESUPEC &mdash; Fiches de révision</div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

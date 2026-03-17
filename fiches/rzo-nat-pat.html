@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAT / PAT (Cisco IOS)</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #0984e3;position:sticky;top:0;z-index:100}.topbar a{color:#74b9ff;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a1a2e);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(9,132,227,.15);color:#74b9ff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#0652DD,#0984e3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#74b9ff}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#74b9ff;font-weight:600}.def-box{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(9,132,227,.12),rgba(116,185,255,.06));border:1px solid rgba(9,132,227,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(9,132,227,.12);color:#74b9ff;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#74b9ff;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0652DD}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e3f0ff)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(9,132,227,.1);color:#0652DD}.light-mode .section-title{color:#0652DD}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#0652DD}.light-mode .def-box{background:rgba(9,132,227,.05);border-left-color:#0652DD}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#e8f4ff;border-color:#b3d9ff}.light-mode th{background:rgba(9,132,227,.08);color:#0652DD}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#0652DD}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0652DD}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../sisr-rzo.html">&larr; SISR RZO</a><span class="title">NAT / PAT &bull; Cisco IOS</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">SISR RZO</div>
+        <h1>NAT / PAT (Cisco IOS)</h1>
+        <p>Traduction d'adresses réseau : NAT statique, dynamique et PAT (overload)</p>
+    </div>
+    <div class="container">
+
+<!-- 1. Concepts -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">Concepts fondamentaux</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">NAT (Network Address Translation)</span> traduit une adresse IP privée en adresse IP publique (et inversement) pour permettre aux hôtes d'un réseau local d'accéder à Internet.</p></div>
+        <div class="table-wrap"><table>
+            <tr><th>Type</th><th>Description</th></tr>
+            <tr><td><span class="keyword">NAT Statique</span></td><td>Association 1-pour-1 permanente entre une IP privée et une IP publique. Utilisé pour les serveurs accessibles depuis l'extérieur.</td></tr>
+            <tr><td><span class="keyword">NAT Dynamique</span></td><td>Association dynamique depuis un pool d'adresses publiques. Les adresses sont attribuées à la demande.</td></tr>
+            <tr><td><span class="keyword">PAT (Port Address Translation)</span></td><td>Plusieurs IP privées partagent une seule IP publique grâce aux numéros de port (overload). Le plus courant.</td></tr>
+        </table></div>
+    </div>
+    <div class="card">
+        <h3>Terminologie NAT</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Terme</th><th>Signification</th></tr>
+            <tr><td><span class="keyword">Inside Local</span></td><td>Adresse IP privée de l'hôte interne (ex : 192.168.1.10)</td></tr>
+            <tr><td><span class="keyword">Inside Global</span></td><td>Adresse IP publique qui représente l'hôte interne vu depuis Internet (ex : 203.0.113.10)</td></tr>
+            <tr><td><span class="keyword">Outside Local</span></td><td>Adresse IP du serveur distant vue depuis le réseau interne</td></tr>
+            <tr><td><span class="keyword">Outside Global</span></td><td>Adresse IP publique réelle du serveur distant</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 2. NAT Statique -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">Configuration NAT Statique</div></div>
+    <div class="card">
+        <h3>Étape 1 : Définir les interfaces inside/outside</h3>
+        <pre><code>interface GigabitEthernet0/0
+ description LAN
+ ip address 192.168.1.1 255.255.255.0
+ ip nat inside
+ no shutdown
+
+interface GigabitEthernet0/1
+ description WAN
+ ip address 203.0.113.1 255.255.255.0
+ ip nat outside
+ no shutdown</code></pre>
+    </div>
+    <div class="card">
+        <h3>Étape 2 : Créer la traduction statique</h3>
+        <pre><code>! Associer l'IP privée 192.168.1.10 à l'IP publique 203.0.113.10
+ip nat inside source static 192.168.1.10 203.0.113.10
+
+! Autre exemple : NAT statique avec port (port forwarding)
+ip nat inside source static tcp 192.168.1.20 80 203.0.113.1 8080</code></pre>
+        <div class="def-box"><p><strong>NAT statique avec port :</strong> redirige le port 8080 de l'IP publique vers le port 80 du serveur interne. Utile pour héberger plusieurs services sur une seule IP publique.</p></div>
+    </div>
+</div>
+
+<!-- 3. PAT (Overload) -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">Configuration PAT (Overload)</div></div>
+    <div class="card">
+        <h3>Méthode 1 : PAT avec l'interface de sortie</h3>
+        <pre><code>! Définir le trafic à traduire (ACL standard)
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+! Appliquer le PAT sur l'interface de sortie
+ip nat inside source list 1 interface GigabitEthernet0/1 overload</code></pre>
+        <div class="def-box"><p>Le mot-clé <span class="keyword">overload</span> est ce qui active le PAT. Sans lui, c'est du NAT dynamique classique (1-pour-1).</p></div>
+    </div>
+    <div class="card">
+        <h3>Méthode 2 : PAT avec un pool</h3>
+        <pre><code>ip nat pool POOL_PAT 203.0.113.1 203.0.113.1 netmask 255.255.255.0
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+ip nat inside source list 1 pool POOL_PAT overload</code></pre>
+    </div>
+</div>
+
+<!-- 4. NAT Dynamique -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">Configuration NAT Dynamique</div></div>
+    <div class="card">
+        <h3>Pool d'adresses publiques</h3>
+        <pre><code>! Définir le pool d'IP publiques
+ip nat pool MON_POOL 203.0.113.1 203.0.113.14 netmask 255.255.255.240
+
+! Définir le trafic autorisé
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+! Associer l'ACL au pool (sans overload = 1-pour-1)
+ip nat inside source list 1 pool MON_POOL</code></pre>
+        <div class="warn-box"><p><strong>Attention :</strong> si le pool est épuisé (toutes les IP publiques utilisées), les nouveaux hôtes ne pourront pas accéder à Internet. C'est pourquoi le PAT (overload) est préféré en pratique.</p></div>
+    </div>
+</div>
+
+<!-- 5. Vérification -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">Vérification & Dépannage</div></div>
+    <div class="card">
+        <h3>Commandes de vérification</h3>
+        <pre><code>! Voir la table de traduction NAT
+show ip nat translations
+
+! Statistiques NAT (nombre de traductions, hits, misses)
+show ip nat statistics
+
+! Effacer toutes les traductions NAT dynamiques
+clear ip nat translation *
+
+! Debug en temps réel (attention aux performances)
+debug ip nat</code></pre>
+    </div>
+    <div class="card">
+        <h3>Exemple de sortie show ip nat translations</h3>
+        <pre><code>Pro  Inside global      Inside local       Outside local      Outside global
+tcp  203.0.113.1:1024   192.168.1.10:1024  8.8.8.8:80         8.8.8.8:80
+tcp  203.0.113.1:1025   192.168.1.11:1025  8.8.8.8:443        8.8.8.8:443
+---  203.0.113.10       192.168.1.10       ---                 ---</code></pre>
+    </div>
+</div>
+
+<!-- 6. Points clés -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Points clés à retenir</div></div>
+    <div class="card highlight-card">
+        <ul>
+            <li><span class="keyword">ip nat inside</span> se configure sur l'interface côté LAN (réseau privé)</li>
+            <li><span class="keyword">ip nat outside</span> se configure sur l'interface côté WAN (Internet)</li>
+            <li>Le mot-clé <span class="keyword">overload</span> transforme un NAT dynamique en PAT</li>
+            <li>L'ACL standard utilisée pour le NAT doit correspondre au réseau source à traduire</li>
+            <li><span class="keyword">NAT statique</span> est obligatoire pour les serveurs qui doivent être joignables depuis Internet</li>
+            <li>Le <span class="keyword">PAT</span> est la solution la plus utilisée en entreprise (économise les IP publiques)</li>
+            <li>Les traductions NAT dynamiques ont un timeout (par défaut 24h pour TCP, 60s pour UDP)</li>
+            <li>Vérifier avec <span class="keyword">show ip nat translations</span> que les traductions apparaissent après un ping</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

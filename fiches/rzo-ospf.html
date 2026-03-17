@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSPF (Open Shortest Path First)</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #0984e3;position:sticky;top:0;z-index:100}.topbar a{color:#74b9ff;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a1a2e);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(9,132,227,.15);color:#74b9ff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#0652DD,#0984e3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#74b9ff}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#74b9ff;font-weight:600}.def-box{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(9,132,227,.12),rgba(116,185,255,.06));border:1px solid rgba(9,132,227,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(9,132,227,.12);color:#74b9ff;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#74b9ff;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0652DD}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e3f0ff)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(9,132,227,.1);color:#0652DD}.light-mode .section-title{color:#0652DD}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#0652DD}.light-mode .def-box{background:rgba(9,132,227,.05);border-left-color:#0652DD}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#e8f4ff;border-color:#b3d9ff}.light-mode th{background:rgba(9,132,227,.08);color:#0652DD}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#0652DD}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0652DD}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../sisr-rzo.html">&larr; SISR RZO</a><span class="title">OSPF &bull; Open Shortest Path First</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">SISR RZO</div>
+        <h1>OSPF (Open Shortest Path First)</h1>
+        <p>Protocole de routage Link-State, algorithme de Dijkstra, AD = 110</p>
+    </div>
+    <div class="container">
+
+<!-- 1. Concepts -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">Concepts fondamentaux</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">OSPF</span> est un protocole de routage dynamique de type <strong>Link-State</strong> (état de lien). Chaque routeur construit une carte complète du réseau (LSDB) et utilise l'algorithme de <span class="keyword">Dijkstra (SPF)</span> pour calculer le chemin le plus court vers chaque destination.</p></div>
+        <div class="table-wrap"><table>
+            <tr><th>Caractéristique</th><th>Valeur</th></tr>
+            <tr><td>Type</td><td><span class="keyword">Link-State</span></td></tr>
+            <tr><td>Algorithme</td><td><span class="keyword">Dijkstra (SPF)</span></td></tr>
+            <tr><td>Distance Administrative</td><td><span class="keyword">110</span></td></tr>
+            <tr><td>Métrique</td><td><span class="keyword">Coût = 100 000 000 / Bande passante (bps)</span></td></tr>
+            <tr><td>Multicast</td><td><span class="keyword">224.0.0.5</span> (all OSPF routers), <span class="keyword">224.0.0.6</span> (DR/BDR)</td></tr>
+            <tr><td>Protocole</td><td>IP protocole 89</td></tr>
+            <tr><td>Converge</td><td>Rapide (quelques secondes)</td></tr>
+            <tr><td>Hiérarchie</td><td>Zones (Area) — Area 0 = backbone obligatoire</td></tr>
+        </table></div>
+    </div>
+    <div class="card">
+        <h3>Coûts OSPF par défaut</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Lien</th><th>Bande passante</th><th>Coût OSPF</th></tr>
+            <tr><td>FastEthernet</td><td>100 Mbps</td><td><span class="keyword">1</span></td></tr>
+            <tr><td>Ethernet</td><td>10 Mbps</td><td><span class="keyword">10</span></td></tr>
+            <tr><td>GigabitEthernet</td><td>1 Gbps</td><td><span class="keyword">1</span> (limité à 1 par défaut)</td></tr>
+            <tr><td>Serial</td><td>1.544 Mbps (T1)</td><td><span class="keyword">64</span></td></tr>
+        </table></div>
+        <div class="def-box"><p><strong>Modifier la référence :</strong> <code>auto-cost reference-bandwidth 10000</code> (en Mbps) pour différencier GigE et FastE.</p></div>
+    </div>
+</div>
+
+<!-- 2. Configuration de base -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">Configuration de base</div></div>
+    <div class="card">
+        <h3>Activer OSPF et annoncer les réseaux</h3>
+        <pre><code>router ospf 1
+ router-id 1.1.1.1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 10.0.0.0 0.0.0.3 area 0
+ network 172.16.0.0 0.0.0.255 area 0</code></pre>
+        <div class="def-box"><p><span class="keyword">router ospf 1</span> : le « 1 » est l'ID de processus local (pas besoin d'être identique sur tous les routeurs).<br>
+        <span class="keyword">router-id</span> : identifiant unique du routeur dans OSPF. Format IP. Choisi manuellement ou = plus haute IP de loopback.</p></div>
+    </div>
+    <div class="card">
+        <h3>Commande network expliquée</h3>
+        <pre><code>network &lt;adresse-réseau&gt; &lt;wildcard&gt; area &lt;numéro&gt;</code></pre>
+        <div class="warn-box"><p><strong>Attention :</strong> le wildcard dans la commande <code>network</code> sert à identifier quelles interfaces participent à OSPF. Ce n'est pas un masque de sous-réseau. Utilisez le wildcard correspondant au masque de l'interface.</p></div>
+    </div>
+</div>
+
+<!-- 3. Route par défaut -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">Route par défaut & Redistribution</div></div>
+    <div class="card">
+        <pre><code>! Créer la route par défaut vers le FAI
+ip route 0.0.0.0 0.0.0.0 203.0.113.1
+
+! Redistribuer la route par défaut dans OSPF
+router ospf 1
+ default-information originate</code></pre>
+        <div class="def-box"><p><span class="keyword">default-information originate</span> : annonce la route par défaut (0.0.0.0/0) à tous les voisins OSPF. Nécessite qu'une route par défaut existe déjà dans la table de routage.</p></div>
+        <div class="warn-box"><p><strong>Variante :</strong> <code>default-information originate always</code> annonce la route par défaut même si elle n'existe pas dans la table de routage.</p></div>
+    </div>
+</div>
+
+<!-- 4. Passive Interface -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">Passive Interface</div></div>
+    <div class="card">
+        <pre><code>router ospf 1
+ passive-interface GigabitEthernet0/0
+ ! ou pour tout désactiver puis réactiver sélectivement :
+ passive-interface default
+ no passive-interface Serial0/0/0</code></pre>
+        <div class="def-box"><p><span class="keyword">passive-interface</span> empêche l'envoi de paquets Hello OSPF sur une interface (typiquement les interfaces LAN). Le réseau est toujours annoncé, mais aucune adjacence ne se forme sur cette interface.</p></div>
+    </div>
+</div>
+
+<!-- 5. États de voisinage -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">États de voisinage OSPF</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>État</th><th>Description</th></tr>
+            <tr><td><span class="keyword">Down</span></td><td>Aucun paquet Hello reçu du voisin</td></tr>
+            <tr><td><span class="keyword">Init</span></td><td>Hello reçu mais le routeur ne se voit pas dans le Hello du voisin</td></tr>
+            <tr><td><span class="keyword">2-Way</span></td><td>Communication bidirectionnelle établie. Élection DR/BDR sur les réseaux multi-accès</td></tr>
+            <tr><td><span class="keyword">ExStart</span></td><td>Négociation du master/slave pour l'échange de LSDB</td></tr>
+            <tr><td><span class="keyword">Exchange</span></td><td>Échange des DBD (Database Description) — résumés des LSA</td></tr>
+            <tr><td><span class="keyword">Loading</span></td><td>Demande (LSR) et réception (LSU) des LSA manquants</td></tr>
+            <tr><td><span class="keyword">Full</span></td><td>LSDB synchronisée. Adjacence complète. État normal de fonctionnement</td></tr>
+        </table></div>
+        <div class="def-box"><p><strong>Résumé :</strong> Down &rarr; Init &rarr; <span class="keyword">2-Way</span> &rarr; ExStart &rarr; Exchange &rarr; Loading &rarr; <span class="keyword">Full</span></p></div>
+    </div>
+</div>
+
+<!-- 6. DR/BDR -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Élection DR / BDR</div></div>
+    <div class="card">
+        <div class="def-box"><p>Sur un réseau <strong>multi-accès</strong> (Ethernet), OSPF élit un <span class="keyword">DR (Designated Router)</span> et un <span class="keyword">BDR (Backup DR)</span> pour réduire le nombre d'adjacences et les échanges de LSA.</p></div>
+        <h3>Critères d'élection (par ordre de priorité)</h3>
+        <ul>
+            <li><span class="keyword">Priorité OSPF</span> la plus élevée (par défaut = 1, configurable 0-255). Priorité 0 = ne peut pas être DR/BDR.</li>
+            <li><span class="keyword">Router-ID</span> le plus élevé (si priorités égales)</li>
+        </ul>
+        <pre><code>! Forcer un routeur comme DR (priorité élevée)
+interface GigabitEthernet0/0
+ ip ospf priority 255
+
+! Empêcher un routeur d'être DR/BDR
+interface GigabitEthernet0/0
+ ip ospf priority 0</code></pre>
+        <div class="warn-box"><p><strong>Important :</strong> l'élection DR/BDR n'est <strong>pas préemptive</strong>. Si un routeur avec une priorité plus haute rejoint le réseau, il ne remplace pas le DR actuel. Il faut redémarrer le processus OSPF (<code>clear ip ospf process</code>).</p></div>
+    </div>
+</div>
+
+<!-- 7. Vérification -->
+<div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">Vérification & Dépannage</div></div>
+    <div class="card">
+        <pre><code>! Voir les voisins OSPF et leur état
+show ip ospf neighbor
+
+! Voir les interfaces participant à OSPF
+show ip ospf interface brief
+
+! Voir les routes OSPF dans la table de routage
+show ip route ospf
+
+! Voir la base de données OSPF (LSDB)
+show ip ospf database
+
+! Informations générales OSPF
+show ip ospf
+
+! Voir les protocoles de routage actifs
+show ip protocols
+
+! Debug des paquets OSPF
+debug ip ospf adj
+debug ip ospf hello</code></pre>
+    </div>
+    <div class="card">
+        <h3>Problèmes courants de voisinage</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Problème</th><th>Cause possible</th></tr>
+            <tr><td>Voisin bloqué en <span class="keyword">Init</span></td><td>ACL bloquant OSPF, interface passive, problème de couche 2</td></tr>
+            <tr><td>Voisin bloqué en <span class="keyword">2-Way</span></td><td>Normal sur réseau multi-accès pour les routeurs non-DR/BDR (DROther)</td></tr>
+            <tr><td>Pas de voisin</td><td>Mauvais réseau/wildcard dans <code>network</code>, Hello/Dead timers différents, Area ID différent, MTU mismatch</td></tr>
+            <tr><td>Voisin bloqué en <span class="keyword">ExStart</span></td><td>MTU mismatch entre les interfaces</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 8. Points clés -->
+<div class="section">
+    <div class="section-header"><div class="section-num">8</div><div class="section-title">Points clés à retenir</div></div>
+    <div class="card highlight-card">
+        <ul>
+            <li><span class="keyword">OSPF</span> est Link-State, utilise Dijkstra, AD = 110, métrique = coût</li>
+            <li>Le <span class="keyword">coût</span> est calculé : 100 000 000 / bande passante (bps)</li>
+            <li>Toutes les zones doivent être connectées à l'<span class="keyword">Area 0</span> (backbone)</li>
+            <li><span class="keyword">router-id</span> doit être unique par routeur (format IP)</li>
+            <li><span class="keyword">passive-interface</span> sur les interfaces LAN (pas de Hello vers les PCs)</li>
+            <li><span class="keyword">default-information originate</span> pour redistribuer la route par défaut</li>
+            <li>Hello timer = 10s, Dead timer = 40s par défaut sur Ethernet</li>
+            <li>Les timers Hello/Dead doivent correspondre entre voisins</li>
+            <li>DR/BDR uniquement sur réseaux multi-accès (Ethernet), pas sur liens point-à-point</li>
+            <li>Vérifier avec <span class="keyword">show ip ospf neighbor</span> que l'état est FULL</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIP (Routing Information Protocol)</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #0984e3;position:sticky;top:0;z-index:100}.topbar a{color:#74b9ff;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a1a2e);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(9,132,227,.15);color:#74b9ff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#0652DD,#0984e3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#74b9ff}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#74b9ff;font-weight:600}.def-box{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(9,132,227,.12),rgba(116,185,255,.06));border:1px solid rgba(9,132,227,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(9,132,227,.12);color:#74b9ff;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#74b9ff;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0652DD}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e3f0ff)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(9,132,227,.1);color:#0652DD}.light-mode .section-title{color:#0652DD}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#0652DD}.light-mode .def-box{background:rgba(9,132,227,.05);border-left-color:#0652DD}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#e8f4ff;border-color:#b3d9ff}.light-mode th{background:rgba(9,132,227,.08);color:#0652DD}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#0652DD}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0652DD}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../sisr-rzo.html">&larr; SISR RZO</a><span class="title">RIP &bull; Routing Information Protocol</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">SISR RZO</div>
+        <h1>RIP (Routing Information Protocol)</h1>
+        <p>Protocole de routage Distance-Vector, métrique = nombre de sauts, AD = 120</p>
+    </div>
+    <div class="container">
+
+<!-- 1. Concepts -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">Concepts fondamentaux</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">RIP (Routing Information Protocol)</span> est un protocole de routage dynamique de type <strong>Distance-Vector</strong> (vecteur de distance). Il utilise le <span class="keyword">nombre de sauts (hop count)</span> comme métrique. Maximum <strong>15 sauts</strong> ; 16 = inaccessible.</p></div>
+        <div class="table-wrap"><table>
+            <tr><th>Caractéristique</th><th>Valeur</th></tr>
+            <tr><td>Type</td><td><span class="keyword">Distance-Vector</span></td></tr>
+            <tr><td>Algorithme</td><td><span class="keyword">Bellman-Ford</span></td></tr>
+            <tr><td>Distance Administrative</td><td><span class="keyword">120</span></td></tr>
+            <tr><td>Métrique</td><td><span class="keyword">Hop count</span> (nombre de sauts, max 15)</td></tr>
+            <tr><td>Mises à jour</td><td>Toutes les <span class="keyword">30 secondes</span> (broadcast/multicast)</td></tr>
+            <tr><td>Transport</td><td>UDP port 520</td></tr>
+            <tr><td>Convergence</td><td>Lente (minutes)</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 2. Configuration RIPv2 -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">Configuration RIPv2</div></div>
+    <div class="card">
+        <h3>Configuration de base</h3>
+        <pre><code>router rip
+ version 2
+ no auto-summary
+ network 192.168.1.0
+ network 10.0.0.0
+ network 172.16.0.0</code></pre>
+        <div class="def-box"><p><span class="keyword">version 2</span> : active RIPv2 (multicast, supporte VLSM/CIDR).<br>
+        <span class="keyword">no auto-summary</span> : désactive le résumé automatique des routes (essentiel pour les réseaux discontinus).<br>
+        <span class="keyword">network</span> : annonce les réseaux classful (pas de wildcard, pas de masque).</p></div>
+    </div>
+    <div class="card">
+        <h3>Passive interface</h3>
+        <pre><code>router rip
+ passive-interface GigabitEthernet0/0
+ ! ou
+ passive-interface default
+ no passive-interface Serial0/0/0</code></pre>
+        <div class="def-box"><p><span class="keyword">passive-interface</span> empêche l'envoi de mises à jour RIP sur une interface (LAN vers les PCs). Le réseau est toujours annoncé aux autres routeurs.</p></div>
+    </div>
+    <div class="card">
+        <h3>Route par défaut</h3>
+        <pre><code>ip route 0.0.0.0 0.0.0.0 203.0.113.1
+
+router rip
+ default-information originate</code></pre>
+    </div>
+</div>
+
+<!-- 3. RIPv1 vs RIPv2 -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">RIPv1 vs RIPv2</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>Caractéristique</th><th>RIPv1</th><th>RIPv2</th></tr>
+            <tr><td>Type de diffusion</td><td><span class="keyword">Broadcast</span> (255.255.255.255)</td><td><span class="keyword">Multicast</span> (224.0.0.9)</td></tr>
+            <tr><td>Classful / Classless</td><td><span class="keyword">Classful</span> (pas de masque)</td><td><span class="keyword">Classless</span> (VLSM, CIDR)</td></tr>
+            <tr><td>Masque de sous-réseau</td><td>Non transmis</td><td><span class="keyword">Transmis</span> dans les mises à jour</td></tr>
+            <tr><td>Authentification</td><td>Non</td><td><span class="keyword">Oui</span> (texte clair ou MD5)</td></tr>
+            <tr><td>Résumé automatique</td><td>Oui (obligatoire)</td><td>Oui (désactivable avec <code>no auto-summary</code>)</td></tr>
+            <tr><td>Réseaux discontinus</td><td>Non supportés</td><td><span class="keyword">Supportés</span> (avec no auto-summary)</td></tr>
+        </table></div>
+        <div class="warn-box"><p><strong>En examen :</strong> toujours utiliser <span class="keyword">RIPv2</span> avec <code>no auto-summary</code>. RIPv1 est obsolète et ne supporte pas le subnetting moderne (VLSM).</p></div>
+    </div>
+</div>
+
+<!-- 4. Authentification MD5 -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">Authentification MD5</div></div>
+    <div class="card">
+        <pre><code>! Créer le trousseau de clés
+key chain RIP_KEYS
+ key 1
+  key-string MonMotDePasse123
+
+! Appliquer sur l'interface
+interface Serial0/0/0
+ ip rip authentication mode md5
+ ip rip authentication key-chain RIP_KEYS</code></pre>
+        <div class="def-box"><p>L'authentification MD5 garantit que les mises à jour RIP proviennent bien d'un routeur autorisé. Le <span class="keyword">key-chain</span> et le <span class="keyword">key-string</span> doivent correspondre sur les deux routeurs voisins.</p></div>
+    </div>
+</div>
+
+<!-- 5. Mécanismes anti-boucle -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">Mécanismes anti-boucle</div></div>
+    <div class="card">
+        <div class="table-wrap"><table>
+            <tr><th>Mécanisme</th><th>Description</th></tr>
+            <tr><td><span class="keyword">Split Horizon</span></td><td>Ne pas renvoyer une route vers l'interface par laquelle elle a été apprise</td></tr>
+            <tr><td><span class="keyword">Route Poisoning</span></td><td>Annoncer une route tombée avec une métrique de 16 (inaccessible)</td></tr>
+            <tr><td><span class="keyword">Poison Reverse</span></td><td>Répondre au Route Poisoning en confirmant la métrique 16</td></tr>
+            <tr><td><span class="keyword">Hold-down Timer</span></td><td>Pendant 180s, ignorer les mises à jour sur une route empoisonnée</td></tr>
+            <tr><td><span class="keyword">Triggered Updates</span></td><td>Envoyer une mise à jour immédiate lors d'un changement (sans attendre 30s)</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 6. Vérification -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Vérification & Dépannage</div></div>
+    <div class="card">
+        <pre><code>! Voir la base de données RIP
+show ip rip database
+
+! Voir les routes RIP dans la table de routage
+show ip route rip
+
+! Voir les protocoles de routage actifs
+show ip protocols
+
+! Debug des mises à jour RIP
+debug ip rip</code></pre>
+    </div>
+    <div class="card">
+        <h3>Lecture de show ip route rip</h3>
+        <pre><code>R    192.168.2.0/24 [120/1] via 10.0.0.2, 00:00:15, Serial0/0/0
+R    192.168.3.0/24 [120/2] via 10.0.0.2, 00:00:15, Serial0/0/0</code></pre>
+        <div class="def-box"><p><span class="keyword">R</span> = route RIP. <span class="keyword">[120/1]</span> = AD 120 / métrique 1 saut. <span class="keyword">via 10.0.0.2</span> = prochain saut. <span class="keyword">00:00:15</span> = temps depuis la dernière mise à jour.</p></div>
+    </div>
+</div>
+
+<!-- 7. Points clés -->
+<div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">Points clés à retenir</div></div>
+    <div class="card highlight-card">
+        <ul>
+            <li><span class="keyword">RIP</span> est Distance-Vector, AD = 120, métrique = hop count (max 15)</li>
+            <li>Toujours utiliser <span class="keyword">version 2</span> + <span class="keyword">no auto-summary</span></li>
+            <li><span class="keyword">network</span> utilise des adresses classful (pas de masque, pas de wildcard)</li>
+            <li>Mises à jour toutes les <span class="keyword">30 secondes</span> en multicast 224.0.0.9 (v2)</li>
+            <li>Convergence <span class="keyword">lente</span> (plusieurs minutes) comparé à OSPF</li>
+            <li><span class="keyword">passive-interface</span> sur les interfaces LAN</li>
+            <li>RIP ne tient pas compte de la bande passante (un lien 10 Mbps = 1 saut, comme un lien 10 Gbps)</li>
+            <li>Limité à des réseaux de petite taille (max 15 sauts)</li>
+            <li><span class="keyword">default-information originate</span> pour redistribuer la route par défaut</li>
+            <li>En entreprise, <span class="keyword">OSPF est préféré</span> à RIP pour sa convergence rapide et sa scalabilité</li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLANs (Virtual LAN)</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #0984e3;position:sticky;top:0;z-index:100}.topbar a{color:#74b9ff;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#0a1a2e);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(9,132,227,.15);color:#74b9ff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:50px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#0652DD,#0984e3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#74b9ff}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#74b9ff;font-weight:600}.def-box{background:rgba(9,132,227,.08);border-left:3px solid #0984e3;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:700px){.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(9,132,227,.12),rgba(116,185,255,.06));border:1px solid rgba(9,132,227,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(9,132,227,.12);color:#74b9ff;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}pre{background:#0d0d1a;border:1px solid #2a2a4a;border-radius:10px;padding:18px;overflow-x:auto;font-size:.85rem;color:#74b9ff;line-height:1.6;margin:12px 0}code{font-family:'Cascadia Code','Fira Code',Consolas,monospace}
+
+.light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#0984e3}.light-mode .topbar a{color:#0652DD}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#e3f0ff)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(9,132,227,.1);color:#0652DD}.light-mode .section-title{color:#0652DD}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#0652DD}.light-mode .def-box{background:rgba(9,132,227,.05);border-left-color:#0652DD}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#e8f4ff;border-color:#b3d9ff}.light-mode th{background:rgba(9,132,227,.08);color:#0652DD}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode pre{background:#f4f4f8;border-color:#dfe6e9;color:#0652DD}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#0652DD}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../sisr-rzo.html">&larr; SISR RZO</a><span class="title">VLANs &bull; Virtual LAN</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">SISR RZO</div>
+        <h1>VLANs (Virtual LAN)</h1>
+        <p>Segmentation réseau, ports Access/Trunk, 802.1Q, inter-VLAN routing</p>
+    </div>
+    <div class="container">
+
+<!-- 1. Concepts -->
+<div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">Concepts fondamentaux</div></div>
+    <div class="card">
+        <div class="def-box"><p>Un <span class="keyword">VLAN (Virtual LAN)</span> est un réseau local virtuel qui segmente logiquement un switch physique en plusieurs domaines de broadcast distincts. Les hôtes d'un VLAN ne peuvent pas communiquer avec ceux d'un autre VLAN sans routage (couche 3).</p></div>
+        <div class="table-wrap"><table>
+            <tr><th>Concept</th><th>Description</th></tr>
+            <tr><td><span class="keyword">VLAN 1</span></td><td>VLAN par défaut (natif). Tous les ports y sont assignés initialement. Ne pas l'utiliser en production.</td></tr>
+            <tr><td><span class="keyword">Port Access</span></td><td>Port appartenant à un seul VLAN. Connecte un hôte (PC, serveur, imprimante).</td></tr>
+            <tr><td><span class="keyword">Port Trunk</span></td><td>Port transportant le trafic de plusieurs VLANs. Connecte switch-switch ou switch-routeur.</td></tr>
+            <tr><td><span class="keyword">802.1Q</span></td><td>Protocole d'encapsulation trunk. Ajoute un tag de 4 octets (dont VLAN ID) dans la trame Ethernet.</td></tr>
+            <tr><td><span class="keyword">VLAN natif</span></td><td>VLAN dont le trafic n'est pas tagué sur un trunk (par défaut VLAN 1). Doit être identique des deux côtés.</td></tr>
+            <tr><td><span class="keyword">VTP</span></td><td>VLAN Trunking Protocol : synchronise la base VLAN entre switches. Modes : Server, Client, Transparent.</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 2. Créer des VLANs -->
+<div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">Créer des VLANs</div></div>
+    <div class="card">
+        <pre><code>! Créer les VLANs
+vlan 10
+ name COMPTA
+vlan 20
+ name IT
+vlan 30
+ name DIRECTION
+vlan 99
+ name GESTION</code></pre>
+    </div>
+</div>
+
+<!-- 3. Ports Access -->
+<div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">Configuration des ports Access</div></div>
+    <div class="card">
+        <pre><code>! Assigner des ports au VLAN 10 (COMPTA)
+interface range FastEthernet0/1-10
+ switchport mode access
+ switchport access vlan 10
+
+! Assigner des ports au VLAN 20 (IT)
+interface range FastEthernet0/11-20
+ switchport mode access
+ switchport access vlan 20
+
+! Assigner des ports au VLAN 30 (DIRECTION)
+interface range FastEthernet0/21-24
+ switchport mode access
+ switchport access vlan 30</code></pre>
+        <div class="def-box"><p><span class="keyword">switchport mode access</span> : force le port en mode access (un seul VLAN).<br>
+        <span class="keyword">switchport access vlan X</span> : assigne le port au VLAN X.</p></div>
+    </div>
+</div>
+
+<!-- 4. Trunk -->
+<div class="section">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">Configuration des ports Trunk</div></div>
+    <div class="card">
+        <pre><code>! Configurer un trunk entre deux switches
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,99
+ switchport trunk native vlan 99</code></pre>
+        <div class="def-box"><p><span class="keyword">switchport trunk encapsulation dot1q</span> : utilise 802.1Q (obligatoire sur certains switches).<br>
+        <span class="keyword">switchport mode trunk</span> : force le port en mode trunk.<br>
+        <span class="keyword">allowed vlan</span> : limite les VLANs autorisés sur le trunk (sécurité).<br>
+        <span class="keyword">native vlan 99</span> : change le VLAN natif (éviter VLAN 1 pour la sécurité).</p></div>
+        <div class="warn-box"><p><strong>Important :</strong> le <span class="keyword">VLAN natif</span> doit être identique des deux côtés du trunk, sinon le switch affiche un « Native VLAN mismatch » et le trafic non tagué sera mal acheminé.</p></div>
+    </div>
+</div>
+
+<!-- 5. Router-on-a-stick -->
+<div class="section">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">Inter-VLAN : Router-on-a-stick</div></div>
+    <div class="card">
+        <div class="def-box"><p><span class="keyword">Router-on-a-stick</span> : un routeur connecté au switch via un seul lien trunk. Des sous-interfaces sont créées sur le routeur, une par VLAN, pour assurer le routage inter-VLAN.</p></div>
+        <h3>Configuration du routeur</h3>
+        <pre><code>interface GigabitEthernet0/0
+ no shutdown
+
+interface GigabitEthernet0/0.10
+ description VLAN 10 - COMPTA
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface GigabitEthernet0/0.20
+ description VLAN 20 - IT
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface GigabitEthernet0/0.30
+ description VLAN 30 - DIRECTION
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+
+interface GigabitEthernet0/0.99
+ description VLAN 99 - GESTION (natif)
+ encapsulation dot1Q 99 native
+ ip address 192.168.99.1 255.255.255.0</code></pre>
+        <div class="warn-box"><p><strong>N'oubliez pas :</strong> l'interface physique (g0/0) doit être activée avec <code>no shutdown</code>, et le port du switch connecté au routeur doit être en mode <span class="keyword">trunk</span>.</p></div>
+    </div>
+    <div class="card">
+        <h3>Configuration du switch (port vers le routeur)</h3>
+        <pre><code>interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,99
+ switchport trunk native vlan 99</code></pre>
+    </div>
+</div>
+
+<!-- 6. Switch L3 / SVI -->
+<div class="section">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Inter-VLAN : Switch L3 / SVI</div></div>
+    <div class="card">
+        <div class="def-box"><p>Un <span class="keyword">Switch Layer 3</span> (multicouche) peut effectuer le routage inter-VLAN directement, sans routeur externe. On crée des <span class="keyword">SVI (Switch Virtual Interface)</span> pour chaque VLAN.</p></div>
+        <pre><code>! Activer le routage IP sur le switch L3
+ip routing
+
+! Créer les VLANs
+vlan 10
+ name COMPTA
+vlan 20
+ name IT
+
+! Créer les SVI (interfaces VLAN)
+interface vlan 10
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+interface vlan 20
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown</code></pre>
+        <div class="def-box"><p><span class="keyword">ip routing</span> : active le routage sur le switch L3. Sans cette commande, les SVI ne permettent que la gestion, pas le routage inter-VLAN.</p></div>
+    </div>
+    <div class="card">
+        <h3>Avantages du Switch L3 vs Router-on-a-stick</h3>
+        <div class="grid-2">
+            <div class="card highlight-card"><h3>Switch L3</h3><ul>
+                <li>Routage matériel (plus rapide)</li>
+                <li>Pas de goulot d'étranglement sur un seul lien</li>
+                <li>Adapté aux grands réseaux</li>
+                <li>Plus cher</li>
+            </ul></div>
+            <div class="card highlight-card"><h3>Router-on-a-stick</h3><ul>
+                <li>Utilise du matériel existant (routeur + switch L2)</li>
+                <li>Moins cher</li>
+                <li>Limité par la bande passante du lien trunk</li>
+                <li>Adapté aux petits réseaux</li>
+            </ul></div>
+        </div>
+    </div>
+</div>
+
+<!-- 7. Vérification -->
+<div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">Vérification & Dépannage</div></div>
+    <div class="card">
+        <pre><code>! Voir tous les VLANs et les ports assignés
+show vlan brief
+
+! Voir les interfaces trunk
+show interfaces trunk
+
+! Voir la config d'un port spécifique
+show interfaces FastEthernet0/1 switchport
+
+! Voir le statut VTP
+show vtp status
+
+! Voir les sous-interfaces du routeur
+show ip interface brief
+
+! Vérifier le routage inter-VLAN
+show ip route</code></pre>
+    </div>
+    <div class="card">
+        <h3>Problèmes courants</h3>
+        <div class="table-wrap"><table>
+            <tr><th>Problème</th><th>Cause possible</th></tr>
+            <tr><td>PC ne communique pas dans le même VLAN</td><td>Port mal assigné (<code>show vlan brief</code>), câble, VLAN inexistant</td></tr>
+            <tr><td>Inter-VLAN ne fonctionne pas</td><td>Trunk mal configuré, sous-interface manquante, <code>no shutdown</code> oublié, encapsulation dot1Q absente</td></tr>
+            <tr><td>Native VLAN mismatch</td><td>VLAN natif différent des deux côtés du trunk</td></tr>
+            <tr><td>VLAN n'apparaît pas sur un switch</td><td>VTP mode client sans serveur, trunk non établi, VLAN non créé</td></tr>
+        </table></div>
+    </div>
+</div>
+
+<!-- 8. Points clés -->
+<div class="section">
+    <div class="section-header"><div class="section-num">8</div><div class="section-title">Points clés à retenir</div></div>
+    <div class="card highlight-card">
+        <ul>
+            <li>Un <span class="keyword">VLAN</span> = un domaine de broadcast = un sous-réseau IP</li>
+            <li><span class="keyword">Access</span> = 1 VLAN (vers hôtes), <span class="keyword">Trunk</span> = plusieurs VLANs (entre équipements réseau)</li>
+            <li>L'encapsulation <span class="keyword">802.1Q</span> ajoute un tag de 4 octets dans la trame Ethernet</li>
+            <li>Le <span class="keyword">VLAN natif</span> doit correspondre des deux côtés d'un trunk</li>
+            <li>Ne pas utiliser le <span class="keyword">VLAN 1</span> en production (sécurité)</li>
+            <li><span class="keyword">Router-on-a-stick</span> : sous-interfaces + encapsulation dot1Q + trunk sur le switch</li>
+            <li><span class="keyword">Switch L3</span> : ip routing + SVI (interface vlan X) + no shutdown</li>
+            <li>Les PCs doivent avoir comme <span class="keyword">passerelle</span> l'IP de la SVI ou sous-interface de leur VLAN</li>
+            <li>Penser à <span class="keyword">allowed vlan</span> sur les trunks pour la sécurité</li>
+            <li>Vérifier avec <span class="keyword">show vlan brief</span> et <span class="keyword">show interfaces trunk</span></li>
+        </ul>
+    </div>
+</div>
+
+    </div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>
