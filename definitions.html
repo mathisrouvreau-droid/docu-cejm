@@ -83,7 +83,7 @@
 <body>
     <div class="topbar">
         <a href="cejm.html">&larr; CEJM</a>
-        <span class="title">Définitions &bull; 142 termes</span>
+        <span class="title">Définitions &bull; 175 termes</span>
 <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
     </div>
 
@@ -95,12 +95,12 @@
             <input type="text" id="searchInput" placeholder="Rechercher une définition..." autocomplete="off">
         </div>
         <div class="filters">
-            <button class="filter-btn active all" data-filter="all">Tout (142)</button>
-            <button class="filter-btn eco" data-filter="eco">Économie (54)</button>
-            <button class="filter-btn mana" data-filter="mana">Management (47)</button>
-            <button class="filter-btn droit" data-filter="droit">Droit (41)</button>
+            <button class="filter-btn active all" data-filter="all">Tout (175)</button>
+            <button class="filter-btn eco" data-filter="eco">Économie (70)</button>
+            <button class="filter-btn mana" data-filter="mana">Management (54)</button>
+            <button class="filter-btn droit" data-filter="droit">Droit (51)</button>
         </div>
-        <div class="count-bar" id="countBar"><strong>142</strong> définitions affichées</div>
+        <div class="count-bar" id="countBar"><strong>175</strong> définitions affichées</div>
     </div>
 
     <div class="container">
@@ -110,6 +110,15 @@
 <!-- A -->
 <div class="letter-group" data-letter="A">
 <div class="letter-header" id="letter-A">A</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Action (titre financier)</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Titre de propriété d'une partie du capital d'une société. Le propriétaire reçoit un revenu (dividende) lié aux résultats et à la politique de distribution des bénéfices.</div></div>
+</div>
 
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
@@ -138,6 +147,15 @@
     <div class="def-details"><div class="def-text">Structure organique peu formalisée, décentralisée, équipes pluridisciplinaires autonomes, coordination par ajustement mutuel. (Mintzberg)</div></div>
 </div>
 
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Affacturage</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">L'entreprise cède ses factures à un organisme financier (le factor) qui verse immédiatement le montant dû, moyennant une commission. Le factor gère la facture jusqu'à son recouvrement.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Agent économique</div>
@@ -145,6 +163,24 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Un agent économique est un centre de décision économique indépendant, disposant d'une autonomie de décision dans l'exercice de sa fonction principale. La Comptabilité nationale les classe en secteurs institutionnels.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">AMF (Autorité des marchés financiers)</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Autorité de régulation du marché financier. Missions : protéger l'épargne investie, informer les investisseurs, veiller au bon fonctionnement du marché financier.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Association</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Convention par laquelle plusieurs personnes mettent en commun leurs connaissances ou activités dans un but autre que partager les bénéfices. Structure à but non lucratif.</div></div>
 </div>
 
 <div class="def-item eco" data-cat="eco">
@@ -163,6 +199,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Condition de la CPP : grand nombre d'acheteurs et vendeurs, aucun ne peut fixer les prix seul.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Autofinancement</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Mode de financement interne par lequel l'entreprise finance ses investissements ou son exploitation au moyen des ressources propres qu'elle dégage de son activité.</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
@@ -209,6 +254,24 @@
 
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Besoin de financement</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Situation d'un agent économique dont les besoins de financement sont supérieurs à l'épargne disponible. Les entreprises, l'État et les collectivités locales présentent généralement un besoin de financement.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">BFR (Besoin en fonds de roulement)</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Différence entre les besoins liés au cycle d'exploitation (stocks + créances clients) et les ressources (dettes fournisseurs). Augmente proportionnellement à l'activité.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Biens publics</div>
         <span class="def-badge eco">Économie</span>
         <span class="toggle-icon">&#9660;</span>
@@ -234,6 +297,15 @@
     <div class="def-details"><div class="def-text">Résultat de la dégradation des conditions de travail. Mental : apathie, dépression. Physique : crise cardiaque, migraines.</div></div>
 </div>
 
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Business angels</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Investisseurs privés qui financent des entreprises en création ou en développement, notamment des TPE et start-up.</div></div>
+</div>
+
 <div class="def-item mana" data-cat="mana">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Business vs Corporate</div>
@@ -249,6 +321,15 @@
 <div class="letter-group" data-letter="C">
 <div class="letter-header" id="letter-C">C</div>
 
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Capacité de financement</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Situation d'un agent économique disposant d'un excès d'épargne par rapport aux besoins à financer. Les ménages dégagent généralement une capacité de financement.</div></div>
+</div>
+
 <div class="def-item droit" data-cat="droit">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Capacité juridique</div>
@@ -256,6 +337,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Aptitude d'une personne à être titulaire de droits et à les exercer seul. Toutes les personnes physiques ont la capacité sauf le <strong>mineur</strong> et le <strong>majeur protégé</strong>. Les personnes morales ont la capacité juridique via leurs représentants légaux.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Capitalisation boursière</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Valeur d'une entreprise cotée en bourse. Se calcule : cours de bourse de l'action × nombre d'actions.</div></div>
 </div>
 
 <div class="def-item eco" data-cat="eco">
@@ -330,6 +420,15 @@
     <div class="def-details"><div class="def-text">La proportion variable de travail et de capital pour réaliser une production. Le choix se fait en fonction du coût relatif du travail et du capital, et de son efficacité. <span class="sub"><strong>Forte intensité capitalistique</strong> : beaucoup de capital, peu de travail. <strong>Faible intensité capitalistique</strong> : beaucoup de main-d'oeuvre, peu de capital.</span></div></div>
 </div>
 
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Concours bancaires</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Modes de financement à court terme tels que le découvert bancaire ou la facilité de caisse, accordés par les banques pour financer les besoins de trésorerie.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Concurrence monopolistique</div>
@@ -393,6 +492,15 @@
     <div class="def-details"><div class="def-text">Contrat dont le prix est fixé autoritairement par la loi. Exception à la liberté contractuelle. Exemples : loyer (encadrement des loyers), SMIC (salaire minimum).</div></div>
 </div>
 
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Coopérative</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Entreprise dont l'objectif est de satisfaire les besoins économiques de ses membres en supprimant les intermédiaires. Principe « 1 homme = 1 voix ». Les sociétaires sont à la fois actionnaires et clients.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Coûts de production</div>
@@ -400,6 +508,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text"><strong>Coût du travail</strong> : salaire brut + cotisations patronales. <strong>Coût du capital</strong> : coût de financement des investissements. <strong>Coût des intrants</strong> : matières premières + produits semi-finis.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Crédit fournisseur</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Délai de paiement accordé à l'entreprise par ses fournisseurs, constituant une ressource de financement du cycle d'exploitation.</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
@@ -429,6 +546,33 @@
     <div class="def-details"><div class="def-text">Augmenter le CA par la conquête de nouveaux clients, financée par ses propres ressources.</div></div>
 </div>
 
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Crowdfunding</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Financement participatif permettant de collecter des fonds auprès d'un grand nombre de particuliers via une plateforme sur internet. Utilisé notamment par les TPE et entreprises en création.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Cycle d'exploitation</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Ensemble des opérations successives liées à l'activité normale de l'entreprise, de l'achat de marchandises ou matières premières au règlement du client. Cycle court et régulier.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Cycle d'investissement</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Cycle long qui accompagne le développement de l'entreprise et conditionne sa pérennité. Comprend les investissements incorporels, corporels et financiers.</div></div>
+</div>
+
 <div class="def-item droit" data-cat="droit">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Cybersquatting</div>
@@ -451,6 +595,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Apparaissent quand les conséquences négatives ne sont pas prises en compte (externalités) et quand certaines activités ne sont pas rentables ou répondent à une demande collective (biens publics).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Désintermédiation</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Tendance des agents à besoin de financement à s'adresser directement aux marchés financiers plutôt qu'aux intermédiaires bancaires, par émission de titres (actions, obligations).</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
@@ -612,6 +765,15 @@
     <div class="def-details"><div class="def-text">Capacité à atteindre les résultats de manière optimale, en économisant les ressources.</div></div>
 </div>
 
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">EIRL (Entreprise individuelle à responsabilité limitée)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Statut permettant à l'entrepreneur individuel de créer un patrimoine d'affectation (professionnel) distinct de son patrimoine personnel, limitant ainsi sa responsabilité.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Élasticité prix/demande</div>
@@ -619,6 +781,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text"><strong>Négative</strong> (normal) : prix augmente, demande baisse. <strong>Positive</strong> (luxe) : prix augmente, demande augmente (effet Veblen). <strong>Nulle</strong> (1ère nécessité) : prix augmente, demande inchangée.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Entreprise individuelle (EI)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Structure juridique sans personnalité juridique propre, confondue avec la personne du créateur. Responsabilité illimitée : l'ensemble du patrimoine de l'entrepreneur répond des dettes.</div></div>
 </div>
 
 <div class="def-item eco" data-cat="eco">
@@ -670,6 +841,24 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Contenu du travail, autonomie, responsabilisation, reconnaissance, promotion. La motivation vient de l'enrichissement du travail.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Financement direct (désintermédié)</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Mode de financement où les entreprises s'adressent directement aux investisseurs par émission de titres financiers (actions, obligations) sur le marché financier, sans intermédiaire bancaire.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Financement intermédié (indirect)</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Mode de financement dans lequel un intermédiaire financier (banque) se place entre les épargnants (prêteurs) et les emprunteurs, en transformant les dépôts en crédits.</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
@@ -789,6 +978,15 @@
     <div class="def-details"><div class="def-text">4 niveaux : <strong>exportation simple</strong> (vendre à l'étranger), <strong>partenariat</strong> (sous-traitance/licence locale), <strong>IDE</strong> (investissement direct à l'étranger), <strong>FMN</strong> (firme multinationale, stratégie mondiale).</div></div>
 </div>
 
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Investissement de capacité</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Investissement destiné à accroître la capacité de production de l'entreprise, lié aux stratégies de diversification ou de croissance.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">ISBLSM</div>
@@ -849,6 +1047,24 @@
     <div class="def-details"><div class="def-text">Condition de la CPP : aucune barrière tarifaire, administrative ou technique.</div></div>
 </div>
 
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Logique entrepreneuriale</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Logique impliquant prise de risque, recherche d'opportunité, innovation et créativité. L'entrepreneur identifie des opportunités et mobilise des ressources pour créer de la valeur.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Logique managériale</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Logique visant l'optimisation des ressources, l'organisation et la gestion pour assurer la pérennité de l'entreprise. Le manager planifie, dirige et contrôle.</div></div>
+</div>
+
 </div>
 
 <!-- M -->
@@ -871,6 +1087,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Décisions qui engagent le long terme et la pérennité de l'entreprise. Relève de la direction.</div></div>
+</div>
+
+<div class="def-item mana" data-cat="mana">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Manager-entrepreneur</div>
+        <span class="def-badge mana">Management</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Attitude consistant à combiner les compétences managériales (organisation, gestion) et entrepreneuriales (innovation, réactivité) au sein d'une même direction. Ex : Louis Schweitzer chez Renault (Logan).</div></div>
 </div>
 
 <div class="def-item eco" data-cat="eco">
@@ -898,6 +1123,33 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Lieu d'échange du facteur travail contre de la monnaie. L'offre provient des actifs, la demande provient des producteurs. Le salaire brut est le prix d'échange.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Marché financier</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Lieu d'échange des capitaux à moyen et long terme (actions, obligations). Se compose du marché primaire (émission de nouveaux titres) et du marché secondaire (négociation des titres déjà émis).</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Marché primaire</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Marché du « neuf » où sont émis les nouveaux titres (actions, obligations). Permet le financement de l'économie, des entreprises et de l'État.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Marché secondaire</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Marché de « l'occasion » où sont négociés les titres déjà émis, organisé sous forme de Bourses de valeurs. Assure la liquidité des placements.</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
@@ -947,6 +1199,15 @@
 <!-- O -->
 <div class="letter-group" data-letter="O">
 <div class="letter-header" id="letter-O">O</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Obligation (titre financier)</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Titre de créance qui donne lieu au versement d'un intérêt (en général fixe) déterminé au moment de l'émission.</div></div>
+</div>
 
 <div class="def-item droit" data-cat="droit">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
@@ -1024,6 +1285,24 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Acteur non indispensable au fonctionnement immédiat de l'organisation mais pouvant influencer ou être influencé par ses activités. Il n'y a <strong>pas de relation contractuelle essentielle</strong>. <span class="sub">Exemples : médias, ONG, collectivités locales, associations de consommateurs, concurrents.</span></div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Patrimoine</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Ensemble des droits et obligations d'une personne, évaluable en argent. Toute personne a un patrimoine et un seul. Certaines structures juridiques permettent de créer un patrimoine distinct.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Patrimoine d'affectation</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Patrimoine professionnel distinct du patrimoine personnel, créé dans le cadre d'une EIRL. Seul ce patrimoine peut être saisi en cas de difficultés.</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
@@ -1214,6 +1493,24 @@
 
 <div class="def-item droit" data-cat="droit">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Régime de la communauté réduite aux acquêts</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Régime matrimonial par défaut. Les biens et dettes acquis avant le mariage restent propres. Tout ce qui est acquis pendant le mariage devient commun.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Régime de la séparation de biens</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Régime matrimonial où chaque époux détient la propriété des biens acquis avant et pendant le mariage. Chacun est responsable de ses propres dettes.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Réparation intégrale</div>
         <span class="def-badge droit">Droit</span>
         <span class="toggle-icon">&#9660;</span>
@@ -1246,6 +1543,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Produit ayant causé un dommage (avec ou sans contrat). Responsabilité sans faute : prouver le défaut de sécurité. Prescription : 3 ans (connaissance) / 10 ans (mise en circulation).</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Responsabilité limitée aux apports</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Principe selon lequel la responsabilité de l'associé est limitée au montant de ses apports dans la société. Applicable aux SA, SAS et SARL.</div></div>
 </div>
 
 <div class="def-item droit" data-cat="droit">
@@ -1290,6 +1596,15 @@
     <div class="def-details"><div class="def-text">Refus d'emploi si payé moins que le chômage.</div></div>
 </div>
 
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SARL (Société à responsabilité limitée)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Société mixte (de 2 à 100 associés) où les associés se choisissent par compétences mais leur pouvoir dépend du capital détenu. Responsabilité limitée aux apports sauf faute de gestion.</div></div>
+</div>
+
 <div class="def-item eco" data-cat="eco">
     <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
         <div class="def-term">Secteurs institutionnels</div>
@@ -1297,6 +1612,15 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Classification des agents économiques : <strong>SNF</strong> (sociétés non financières), <strong>sociétés financières</strong> (banques, assurances), <strong>APU</strong> (administrations publiques), <strong>ménages</strong>, <strong>ISBLSM</strong>, <strong>reste du monde</strong>.</div></div>
+</div>
+
+<div class="def-item eco" data-cat="eco">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Shadow banking</div>
+        <span class="def-badge eco">Économie</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Activités de financement réalisées en dehors des circuits officiels et régulés de la banque. Désigne tous les intermédiaires financiers hors du système bancaire traditionnel participant au financement de l'économie.</div></div>
 </div>
 
 <div class="def-item eco" data-cat="eco">
@@ -1315,6 +1639,33 @@
         <span class="toggle-icon">&#9660;</span>
     </div>
     <div class="def-details"><div class="def-text">Les indicateurs doivent être SMART : Spécifique, Mesurable, Atteignable, Réaliste, Temporellement défini.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">SNC (Société en nom collectif)</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Société de personnes reposant sur la confiance entre associés. Responsabilité illimitée et solidaire. Décisions à l'unanimité. Cession des parts soumise à l'accord unanime.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Société de capitaux</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Société (SA, SAS) où le choix des associés repose sur leur capacité à apporter des capitaux. Parts librement cessibles. Responsabilité limitée aux apports.</div></div>
+</div>
+
+<div class="def-item droit" data-cat="droit">
+    <div class="def-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="def-term">Société de personnes</div>
+        <span class="def-badge droit">Droit</span>
+        <span class="toggle-icon">&#9660;</span>
+    </div>
+    <div class="def-details"><div class="def-text">Société (SNC, SCOP) reposant sur la confiance entre les associés, choisis en fonction de leurs compétences. Responsabilité illimitée et solidaire. Principe « 1 homme = 1 voix ».</div></div>
 </div>
 
 <div class="def-item mana" data-cat="mana">
