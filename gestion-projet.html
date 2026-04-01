@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Projet - Fiches de révision</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+
+        .topbar { background: #1a1a2e; padding: 15px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #f39c12; position: sticky; top: 0; z-index: 100; }
+        .topbar a { color: #fdcb6e; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .topbar a:hover { color: #fff; }
+        .topbar .title { font-size: 1rem; color: #8892b0; }
+
+        .header { text-align: center; padding: 50px 20px 30px; background: linear-gradient(135deg, #1a1a2e 0%, #2e1a0a 50%, #0f3460 100%); }
+        .header h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .header p { font-size: 1rem; color: #8892b0; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 25px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #f39c12; }
+        .stat-label { font-size: 0.85rem; color: #8892b0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        .category { margin-bottom: 50px; }
+        .category-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #1a1a2e; }
+        .category-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; background: linear-gradient(135deg, #e67e22, #f39c12); }
+        .category-title { font-size: 1.6rem; font-weight: 700; color: #fdcb6e; }
+        .category-count { font-size: 0.8rem; color: #8892b0; margin-left: auto; background: #1a1a2e; padding: 5px 12px; border-radius: 20px; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: #1a1a2e; border-radius: 16px; padding: 25px; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; border: 1px solid #2a2a4a; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #e67e22, #f39c12); }
+        .card:hover { transform: translateY(-5px); border-color: #3a3a5a; box-shadow: 0 10px 40px rgba(243, 156, 18, 0.15); }
+
+        .card-cas { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 600; color: #fdcb6e; }
+        .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; line-height: 1.4; color: #fff; }
+        .card-topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .topic-tag { font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.06); color: #8892b0; border: 1px solid rgba(255,255,255,0.08); }
+        .card-arrow { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: #fdcb6e; }
+        .card-arrow span { transition: transform 0.3s ease; display: inline-block; }
+        .card:hover .card-arrow span { transform: translateX(5px); }
+
+        .footer { text-align: center; padding: 30px 20px; color: #4a4a6a; font-size: 0.85rem; border-top: 1px solid #1a1a2e; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .stats { gap: 20px; }
+        }
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#f39c12}.light-mode .topbar a{color:#e67e22}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .header{background:linear-gradient(135deg,#f8f9fa,#fef9e7)}.light-mode .header h1{color:#2d3436}.light-mode .header p{color:#636e72}.light-mode .stat-number{color:#e67e22}.light-mode .category-header{border-bottom-color:#e0e0e0}.light-mode .category-title{color:#e67e22}.light-mode .category-count{background:#f0f0f5;color:#636e72}.light-mode .card{background:#f8f9fa;border-color:#dfe6e9}.light-mode .card:hover{background:#f0f0f5;border-color:#ccc;box-shadow:0 10px 40px rgba(0,0,0,.1)}.light-mode .card-cas{color:#e67e22}.light-mode .card-title{color:#2d3436}.light-mode .card-arrow{color:#e67e22}.light-mode .topic-tag{background:rgba(0,0,0,.04);color:#666}.light-mode .footer{color:#aaa;border-top-color:#e0e0e0}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#e67e22}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html">&larr; Accueil</a>
+        <span class="title">Gestion de Projet &bull; Bloc 1 BTS SIO</span>
+        <a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a>
+    </div>
+
+    <div class="header">
+        <h1>&#128203; Gestion de Projet</h1>
+        <p>Bloc 1 — BTS SIO — Travailler en mode projet : organisation, planification, suivi</p>
+        <div class="stats">
+            <div class="stat"><div class="stat-number">3</div><div class="stat-label">Fiches</div></div>
+            <div class="stat"><div class="stat-number">18</div><div class="stat-label">Thèmes</div></div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128218;</div>
+                <div class="category-title">Organisation</div>
+                <div class="category-count">1 fiche &middot; 7 thèmes</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/gp-organisation.html">
+                    <div class="card-cas">Ressource 1 &amp; Test N1 — Fondamentaux</div>
+                    <div class="card-title">Organisation d'un projet</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Définition projet</span>
+                        <span class="topic-tag">Chef de projet</span>
+                        <span class="topic-tag">COPIL</span>
+                        <span class="topic-tag">5 phases</span>
+                        <span class="topic-tag">Jalons & Livrables</span>
+                        <span class="topic-tag">Cahier des charges</span>
+                        <span class="topic-tag">Contraintes</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#128200;</div>
+                <div class="category-title">Planification</div>
+                <div class="category-count">1 fiche &middot; 6 thèmes</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/gp-planification.html">
+                    <div class="card-cas">Ressource 3 &amp; Applications — Cas Almeria</div>
+                    <div class="card-title">Planification de projet</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Diagramme de Gantt</span>
+                        <span class="topic-tag">Histogramme ressources</span>
+                        <span class="topic-tag">Méthode PERT</span>
+                        <span class="topic-tag">Chemin critique</span>
+                        <span class="topic-tag">MPM vs PERT</span>
+                        <span class="topic-tag">Approche prédictive</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">
+                <div class="category-icon">&#9989;</div>
+                <div class="category-title">Suivi &amp; Clôture</div>
+                <div class="category-count">1 fiche &middot; 5 thèmes</div>
+            </div>
+            <div class="cards-grid">
+                <a class="card" href="fiches/gp-suivi.html">
+                    <div class="card-cas">Cas Almeria — Parties 4 &amp; 5</div>
+                    <div class="card-title">Suivi du projet et clôture</div>
+                    <div class="card-topics">
+                        <span class="topic-tag">Tableau de suivi</span>
+                        <span class="topic-tag">Tableau de bord</span>
+                        <span class="topic-tag">Indicateurs</span>
+                        <span class="topic-tag">Analyse des écarts</span>
+                        <span class="topic-tag">Réunion de clôture</span>
+                    </div>
+                    <div class="card-arrow">Réviser <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">Gestion de Projet Bloc 1 - BTS ESUPEC &mdash; Fiches de révision</div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>

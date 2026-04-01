@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi et clôture - Gestion de Projet</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh}.topbar{background:#1a1a2e;padding:15px 25px;display:flex;align-items:center;gap:15px;border-bottom:2px solid #f39c12;position:sticky;top:0;z-index:100}.topbar a{color:#fdcb6e;text-decoration:none;font-weight:600;font-size:.95rem}.topbar a:hover{color:#fff}.topbar .title{font-size:1rem;color:#8892b0}.hero{background:linear-gradient(135deg,#1a1a2e,#2e1a0a);padding:50px 25px 40px;text-align:center}.hero-badge{display:inline-block;background:rgba(243,156,18,.15);color:#fdcb6e;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:15px}.hero h1{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}.hero p{color:#8892b0;font-size:1rem;max-width:600px;margin:0 auto}.container{max-width:900px;margin:0 auto;padding:40px 20px}.section{margin-bottom:40px}.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}.section-num{width:40px;height:40px;background:linear-gradient(135deg,#e67e22,#f39c12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0}.section-title{font-size:1.4rem;font-weight:700;color:#fdcb6e}.card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:14px;padding:22px;margin-bottom:15px}.card h3{color:#fff;font-size:1.05rem;margin-bottom:10px}.card p,.card li{color:#b0b0c8;line-height:1.7;font-size:.95rem}.card ul,.card ol{padding-left:20px;margin-top:8px}.card li{margin-bottom:6px}.keyword{color:#fdcb6e;font-weight:600}.def-box{background:rgba(243,156,18,.08);border-left:3px solid #f39c12;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.def-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.warn-box{background:rgba(255,152,0,.08);border-left:3px solid #ff9800;padding:15px 18px;border-radius:0 10px 10px 0;margin:12px 0}.warn-box p{color:#c0c0d8;font-size:.93rem;line-height:1.6}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:15px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px}@media(max-width:700px){.grid-2,.grid-3{grid-template-columns:1fr}.hero h1{font-size:1.6rem}}.highlight-card{background:linear-gradient(135deg,rgba(243,156,18,.12),rgba(253,203,110,.06));border:1px solid rgba(243,156,18,.25)}table{width:100%;border-collapse:collapse;font-size:.9rem}th{background:rgba(243,156,18,.12);color:#fdcb6e;padding:10px 14px;text-align:left;font-weight:600}td{padding:10px 14px;border-bottom:1px solid #2a2a4a;color:#b0b0c8;line-height:1.5}.table-wrap{overflow-x:auto;margin:12px 0}.footer{text-align:center;padding:30px 20px;color:#4a4a6a;font-size:.85rem;border-top:1px solid #1a1a2e}
+        .light-mode body{background:#f5f6fa;color:#2d3436}.light-mode .topbar{background:#fff;border-bottom-color:#f39c12}.light-mode .topbar a{color:#e67e22}.light-mode .topbar a:hover{color:#2d3436}.light-mode .topbar .title{color:#636e72}.light-mode .hero{background:linear-gradient(135deg,#f8f9fa,#fef9e7)}.light-mode .hero h1{color:#2d3436}.light-mode .hero p{color:#636e72}.light-mode .hero-badge{background:rgba(243,156,18,.1);color:#e67e22}.light-mode .section-title{color:#e67e22}.light-mode .card{background:#fff;border-color:#dfe6e9}.light-mode .card h3{color:#2d3436}.light-mode .card p,.light-mode .card li{color:#555}.light-mode .keyword{color:#e67e22}.light-mode .def-box{background:rgba(243,156,18,.05);border-left-color:#e67e22}.light-mode .def-box p{color:#555}.light-mode .warn-box{background:rgba(255,152,0,.05)}.light-mode .warn-box p{color:#555}.light-mode .highlight-card{background:#fef9e7;border-color:#f9e79f}.light-mode th{background:rgba(243,156,18,.08);color:#e67e22}.light-mode td{color:#555;border-bottom-color:#dfe6e9}.light-mode .footer{color:#aaa;border-top-color:#e0e0e0}.light-mode #theme-toggle{background:rgba(0,0,0,.06);color:#e67e22}
+    </style>
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')</script>
+</head>
+<body>
+    <div class="topbar"><a href="../gestion-projet.html">&larr; Gestion de Projet</a><span class="title">Suivi &bull; Tableau de bord &bull; Clôture</span><a href="#" onclick="toggleTheme(event)" id="theme-toggle" style="margin-left:auto;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;font-size:.85rem;">Mode clair</a></div>
+    <div class="hero">
+        <div class="hero-badge">Gestion de Projet</div>
+        <h1>Suivi du projet et clôture</h1>
+        <p>Tableau de suivi, tableau de bord, indicateurs, analyse des écarts et réunion de clôture</p>
+    </div>
+    <div class="container">
+
+        <!-- 1 - Tableau de suivi (check-list) -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">1</div><div class="section-title">Tableau de suivi (check-list du projet)</div></div>
+            <div class="card">
+                <div class="def-box"><p>Le <span class="keyword">tableau de suivi</span> (ou check-list du projet) est un document qui recense toutes les activités du projet avec leurs dates prévues et réelles. Il permet de suivre l'avancement et d'identifier rapidement les écarts.</p></div>
+            </div>
+            <div class="card">
+                <h3>Colonnes du tableau de suivi</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Colonne</th><th>Description</th></tr>
+                        <tr><td><span class="keyword">N° d'activité</span></td><td>Identifiant unique de la tâche (A, B, C...)</td></tr>
+                        <tr><td><span class="keyword">Description</span></td><td>Nom et description de l'activité</td></tr>
+                        <tr><td><span class="keyword">Lot</span></td><td>Regroupement par lot (Infrastructure, Applicatif...)</td></tr>
+                        <tr><td><span class="keyword">Durée</span></td><td>Durée prévue en jours</td></tr>
+                        <tr><td><span class="keyword">Date début/fin prév</span></td><td>Dates planifiées de début et fin</td></tr>
+                        <tr><td><span class="keyword">Charge homme</span></td><td>Nombre de personnes affectées (CP, CC, 1, 2...)</td></tr>
+                        <tr><td><span class="keyword">Date début/fin réelle</span></td><td>Dates effectives de réalisation</td></tr>
+                        <tr><td><span class="keyword">Date relance</span></td><td>Date de relance si retard constaté</td></tr>
+                        <tr><td><span class="keyword">Observations</span></td><td>Justification des écarts et actions correctives</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Exemple : Cas Almeria — Serrurerie Papin</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>N°</th><th>Activité</th><th>Lot</th><th>Durée</th><th>Charge</th></tr>
+                        <tr><td>A</td><td>Analyse de l'existant et identification du besoin</td><td>Infrastructure</td><td>3j</td><td>CP</td></tr>
+                        <tr><td>B</td><td>Commande des matériels aux fournisseurs</td><td>Infrastructure</td><td>1j</td><td>CP</td></tr>
+                        <tr><td>K</td><td>Analyse des besoins et des contraintes métiers</td><td>Applicatif</td><td>4j</td><td>CP</td></tr>
+                        <tr><td>L</td><td>Rédaction d'un cahier des charges précis</td><td>Applicatif</td><td>2j</td><td>CP</td></tr>
+                        <tr><td>N</td><td>Développement du logiciel de production</td><td>Applicatif</td><td>15j</td><td>2 (-1j)</td></tr>
+                        <tr><td>P</td><td>Formation des utilisateurs</td><td>Applicatif</td><td>4j</td><td>CP + 1</td></tr>
+                    </table>
+                </div>
+                <div class="warn-box"><p><strong>CP</strong> = Chef de Projet &nbsp;|&nbsp; <strong>CC</strong> = Consultant Cybersécurité &nbsp;|&nbsp; Les lots permettent de regrouper les tâches par domaine : <span class="keyword">Infrastructure</span> (réseau, serveurs) et <span class="keyword">Applicatif</span> (logiciel, site marchand).</p></div>
+            </div>
+        </div>
+
+        <!-- 2 - Tableau de bord -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">2</div><div class="section-title">Tableau de bord du projet</div></div>
+            <div class="card">
+                <div class="def-box"><p>Le <span class="keyword">tableau de bord</span> est un outil de pilotage qui présente les <strong>indicateurs clés</strong> du projet. Il permet de mesurer la qualité de la réalisation et d'identifier les écarts entre les objectifs et le réel.</p></div>
+            </div>
+            <div class="card">
+                <h3>Les indicateurs du tableau de bord</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Indicateur</th><th>Objectif</th><th>Ce qu'on mesure</th></tr>
+                        <tr><td><span class="keyword">Respect des dates des jalons</span></td><td>7/7</td><td>Nombre de jalons respectés sur le total de jalons</td></tr>
+                        <tr><td><span class="keyword">Nombre de jours de retard</span></td><td>0</td><td>Écart entre date de fin prévue et date de fin réelle</td></tr>
+                        <tr><td><span class="keyword">Incidents mise en production</span></td><td>0</td><td>Nombre de problèmes survenus lors de la mise en prod</td></tr>
+                        <tr><td><span class="keyword">Nombre de problèmes rencontrés</span></td><td>0</td><td>Bugs, dysfonctionnements, imprévus techniques</td></tr>
+                        <tr><td><span class="keyword">Moyens supplémentaires</span></td><td>0</td><td>Ressources non prévues mobilisées (jours/homme)</td></tr>
+                        <tr><td><span class="keyword">Coûts supplémentaires</span></td><td>0</td><td>Dépassement budgétaire en euros</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Exemple réel : écarts constatés (Cas Almeria)</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Indicateur</th><th>Objectif</th><th>Réel</th><th>Justification</th></tr>
+                        <tr><td>Respect dates jalons</td><td>7/7</td><td><span class="keyword" style="color:#e74c3c;">0/7</span></td><td>Jalon mise en prod site marchand (date limite 20/01) respecté</td></tr>
+                        <tr><td>Jours de retard</td><td>0</td><td><span class="keyword" style="color:#e74c3c;">4</span></td><td>Retard fournisseur de plus de 4 semaines</td></tr>
+                        <tr><td>Incidents mise en prod</td><td>0</td><td><span class="keyword" style="color:#e74c3c;">3</span></td><td>Problèmes lors du déploiement</td></tr>
+                        <tr><td>Problèmes rencontrés</td><td>0</td><td><span class="keyword" style="color:#e74c3c;">3</span></td><td>Imprévus techniques</td></tr>
+                        <tr><td>Moyens supplémentaires</td><td>0</td><td><span class="keyword" style="color:#e74c3c;">2 jours dev</span></td><td>Développement supplémentaire nécessaire</td></tr>
+                        <tr><td>Coûts supplémentaires</td><td>0</td><td><span class="keyword" style="color:#e74c3c;">1 000 &euro;</span></td><td>Devis n'ayant pas pris en compte la complexité des spécifications</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 - Analyse des écarts -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">3</div><div class="section-title">Analyse des écarts</div></div>
+            <div class="card">
+                <h3>Informations à remonter lors de la réunion de clôture</h3>
+                <ul>
+                    <li>Présenter les <span class="keyword">tableaux de bord et de suivi</span> avec les écarts constatés</li>
+                    <li><strong>4 jours de retard seulement</strong> malgré un retard de plus de 4 semaines du fournisseur &rarr; la <span class="keyword">commande au plus tôt</span> est une bonne mesure préventive</li>
+                    <li>Mieux <span class="keyword">anticiper les besoins en développement</span> pour les prochains projets</li>
+                    <li><span class="keyword">Informer au plus tôt les fournisseurs extérieurs</span> (éditeurs, clients) &rarr; bonne pratique pour adapter la planification (à l'origine du retard)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Leçons apprises</h3>
+                <div class="grid-2">
+                    <div class="card highlight-card">
+                        <h3>Ce qui a bien fonctionné</h3>
+                        <ul>
+                            <li>Commande des matériels au plus tôt</li>
+                            <li>Information rapide des fournisseurs</li>
+                            <li>Limitation du retard à 4 jours malgré 4 semaines de retard fournisseur</li>
+                        </ul>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>Points d'amélioration</h3>
+                        <ul>
+                            <li>Mieux anticiper les besoins en développement</li>
+                            <li>Mieux estimer la complexité des spécifications dans les devis</li>
+                            <li>Prévoir des marges de sécurité pour les dépendances externes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 - Réunion de clôture -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">4</div><div class="section-title">Réunion de clôture</div></div>
+            <div class="card">
+                <div class="def-box"><p>La <span class="keyword">réunion de clôture</span> est la dernière réunion du projet. Elle est <strong>animée par le chef de projet</strong> et réunit toutes les parties prenantes pour faire le bilan du projet.</p></div>
+            </div>
+            <div class="card">
+                <h3>Pourquoi organiser une réunion de clôture ?</h3>
+                <ul>
+                    <li>C'est au <span class="keyword">chef de projet</span> de l'animer — c'est sa responsabilité</li>
+                    <li>Permet de jouer la <span class="keyword">transparence</span> et de communiquer avec le client sur les origines des retards &rarr; maintenir la <strong>satisfaction client</strong></li>
+                    <li>Permet de <span class="keyword">capitaliser l'expérience</span> : documenter ce qui a fonctionné et les erreurs à éviter</li>
+                    <li>Permet de <span class="keyword">remercier les acteurs</span> du projet et valoriser le travail accompli</li>
+                </ul>
+                <div class="warn-box"><p><strong>Le chef de projet ne peut PAS refuser d'y participer</strong>, même s'il a pris du retard. C'est justement l'occasion d'expliquer les écarts et de montrer les mesures correctives prises. La transparence renforce la confiance du client.</p></div>
+            </div>
+        </div>
+
+        <!-- 5 - Outils de gestion de projet -->
+        <div class="section">
+            <div class="section-header"><div class="section-num">5</div><div class="section-title">Outils de gestion de projet</div></div>
+            <div class="card">
+                <h3>Fonctionnalités et paramétrage</h3>
+                <p>Les outils de gestion de projet (ex : MS Project, GanttProject, Trello, Jira) offrent les fonctionnalités suivantes :</p>
+                <ul>
+                    <li><span class="keyword">Planification</span> : créer un Gantt, définir les tâches, durées et dépendances</li>
+                    <li><span class="keyword">Affectation des ressources</span> : assigner des personnes aux tâches, vérifier la charge</li>
+                    <li><span class="keyword">Suivi de l'avancement</span> : comparer prévu vs réel, identifier les retards</li>
+                    <li><span class="keyword">Chemin critique</span> : calcul automatique du chemin critique</li>
+                    <li><span class="keyword">Rapports et tableaux de bord</span> : générer des indicateurs de suivi</li>
+                    <li><span class="keyword">Collaboration</span> : partage entre les membres de l'équipe</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">Gestion de Projet — BTS ESUPEC &mdash; Fiches de révision</div>
+    <script>function toggleTheme(e){e.preventDefault();document.documentElement.classList.toggle('light-mode');localStorage.setItem('theme',document.documentElement.classList.contains('light-mode')?'light':'dark');document.getElementById('theme-toggle').textContent=document.documentElement.classList.contains('light-mode')?'Mode sombre':'Mode clair'}(function(){if(document.documentElement.classList.contains('light-mode')){var t=document.getElementById('theme-toggle');if(t)t.textContent='Mode sombre'}})()</script>
+</body>
+</html>
